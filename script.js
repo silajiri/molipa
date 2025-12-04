@@ -395,12 +395,19 @@ const app = {
         if (!db) return [];
         
         try {
-            const snapshot = await db.collection('leaderboard')
+            let query = db.collection('leaderboard')
                 .where('mode', '==', mode)
-                .orderBy('score', 'desc') 
-                .orderBy(sortField, direction) 
-                .limit(20)
-                .get();
+                .limit(20);
+
+            // Speciální řazení pro Time Attack (Body DESC, Čas ASC)
+            if (mode === 'timeattack') {
+                query = query.orderBy('score', 'desc').orderBy('durationMs', 'asc');
+            } else {
+                // Standardní řazení (Classic, Knowledge) jen podle skóre
+                query = query.orderBy('score', 'desc');
+            }
+
+            const snapshot = await query.get();
                 
             return snapshot.docs.map(doc => ({
                 id: doc.id,
@@ -412,6 +419,7 @@ const app = {
             }));
         } catch (e) {
             console.error("Chyba při načítání dat z Firestore: ", e);
+            // Důležité: Tady by se měla objevit ta chyba s chybějícím indexem
             return [];
         }
     },
