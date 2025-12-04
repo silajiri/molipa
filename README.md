@@ -6,7 +6,7 @@
 
 ## 📖 Popis projektu
 
-Interaktivní webová aplikace vytvořená pro **MO Lípa nad Orlicí** (a partnery) s cílem zábavnou formou prověřit a prohloubit znalosti o českých rybách, jejich lovných mírách, dobách hájení a aktuálním Rybářském řádu. Aplikace je plně responzivní a optimalizovaná pro použití ve vzdělávání, na schůzích či v terénu.
+Interaktivní webová aplikace vytvořená pro **MO Lípa nad Orlicí** s cílem zábavnou formou prověřit a prohloubit znalosti o českých rybách, jejich lovných mírách, dobách hájení a aktuálním Rybářském řádu. Aplikace je plně responzivní a optimalizovaná pro použití ve vzdělávání, na schůzích či v terénu.
 
 ---
 
