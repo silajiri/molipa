@@ -1,0 +1,430 @@
+/* --- ZÁKLADNÍ PROMĚNNÉ A NASTAVENÍ --- */
+:root {
+    --primary: #0077be;       /* Mořská modrá */
+    --primary-dark: #005f99;
+    --secondary: #00a86b;     /* Zelená (příroda/úspěch) */
+    --danger: #d9534f;        /* Červená (chyba/časovka) */
+    --bg-color: #f0f8ff;      /* Světle modré pozadí stránky */
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --gray: #cccccc;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* --- HLAVIČKA --- */
+header {
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+#user-display {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+#current-username {
+    font-weight: bold;
+    color: #fff;
+}
+
+/* --- HLAVNÍ KONTEJNER (KARTY) --- */
+.screen {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px;
+    background: var(--card-bg);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    /* Animace pro plynulý přechod */
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Pomocná třída pro skrytí prvků */
+.hidden {
+    display: none !important;
+}
+
+/* --- FORMULÁŘE A VSTUPY --- */
+input[type="text"] {
+    padding: 10px;
+    font-size: 1.2rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    width: 60%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+/* --- TLAČÍTKA --- */
+button {
+    cursor: pointer;
+    font-family: inherit;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Velká tlačítka v menu */
+.big-btn {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 15px auto;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.primary { background-color: var(--primary); }
+.primary:hover { background-color: var(--primary-dark); }
+
+.secondary { background-color: var(--secondary); }
+/* Třída pro červená tlačítka (časovka) */
+.danger-btn { background-color: var(--danger); } 
+
+/* Tlačítko zpět */
+.back-btn {
+    background: var(--gray);
+    color: #333;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    float: left;
+    margin-bottom: 15px;
+}
+
+/* --- ATLAS RYB (GRID) --- */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    text-align: left;
+}
+
+.fish-card {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.fish-card:hover {
+    transform: scale(1.02);
+    border-color: var(--primary);
+}
+
+.fish-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain; /* Aby se fotka nedeformovala */
+    background: #f9f9f9;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.fish-card h3 {
+    margin: 5px 0;
+    color: var(--primary);
+}
+
+/* --- KVÍZ --- */
+.quiz-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f1f1f1;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#timer-container {
+    font-size: 1.4rem;
+    color: var(--danger);
+    background: #fff0f0;
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid #ffcccc;
+}
+
+#question-container img {
+    max-height: 250px;
+    margin: 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Grid pro odpovědi (2x2) */
+.grid-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.option-btn {
+    background-color: #e6f7ff; /* Velmi světle modrá */
+    color: var(--text-color);
+    padding: 20px;
+    font-size: 1.1rem;
+    border: 2px solid transparent;
+}
+
+.option-btn:hover:not(:disabled) {
+    background-color: #cceeff;
+    border-color: var(--primary);
+}
+
+/* Styly pro správně/špatně */
+.option-btn.correct {
+    background-color: #d4edda !important;
+    border-color: #28a745 !important;
+    color: #155724;
+}
+
+.option-btn.wrong {
+    background-color: #f8d7da !important;
+    border-color: #dc3545 !important;
+    color: #721c24;
+}
+
+/* Zablokovaná tlačítka */
+.option-btn:disabled {
+    cursor: default;
+    opacity: 0.8;
+}
+.option-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+#feedback {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#next-btn {
+    background-color: var(--primary);
+    color: white;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    margin-top: 15px;
+}
+
+/* --- ŽEBŘÍČEK --- */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px;
+    background: #e0e0e0;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    font-weight: bold;
+    color: #555;
+    max-width: 150px;
+}
+
+.tab-btn:first-child { border-radius: 8px 0 0 8px; }
+.tab-btn:last-child { border-radius: 0 8px 8px 0; }
+
+.tab-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #f8f9fa;
+    color: var(--text-color);
+}
+
+/* Zvýraznění řádku aktuálního hráče */
+tr.active-row {
+    background-color: #e0f7fa;
+    font-weight: bold;
+    border-left: 4px solid var(--primary);
+}
+
+/* Historie */
+#history-section {
+    margin-top: 30px;
+    text-align: left;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+#history-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#history-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #ddd;
+}
+
+/* --- RESPONSIVITA PRO MOBILY --- */
+@media (max-width: 600px) {
+    .grid-options {
+        grid-template-columns: 1fr; /* Na mobilu odpovědi pod sebou */
+    }
+    
+    .screen {
+        padding: 15px;
+        margin: 10px;
+    }
+    
+    h1 { font-size: 1.5rem; }
+    
+    .big-btn { font-size: 1rem; }
+}
+
+/* --- MODAL (ZVĚTŠENÍ OBRÁZKU) --- */
+.modal {
+    position: fixed;
+    z-index: 1000; /* Musí být nad vším ostatním */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9); /* Černé pozadí s průhledností */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /* Indikuje, že kliknutím se zavře */
+}
+
+/* Styl pro samotný obrázek v modalu */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 95%;
+    max-height: 95%;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    animation: zoom 0.3s;
+}
+
+/* Animace přiblížení */
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* Křížek pro zavření (volitelné, stačí kliknout vedle) */
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* --- PARTNEŘI A LOGA (FOOTER) --- */
+.partners-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee; /* Jemná oddělovací čára */
+}
+
+.org-name {
+    font-weight: bold;
+    color: var(--primary);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.logos-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Mezera mezi logy */
+    flex-wrap: wrap; /* Aby se na malém mobilu zalomily pod sebe */
+}
+
+.partner-logo {
+    max-height: 80px; /* Maximální výška loga */
+    max-width: 100px; /* Maximální šířka */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.partner-logo:hover {
+    transform: scale(1.1); /* Efekt zvětšení při najetí myší */
+}

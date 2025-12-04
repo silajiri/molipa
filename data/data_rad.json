@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "otazka": "Jaký je denní limit hmotnosti přisvojených ryb v mimopstruhovém revíru?",
+    "moznosti": ["5 kg", "7 kg", "10 kg", "Neomezeně"],
+    "spravna_odpoved": "7 kg",
+    "vysvetleni": "Osoba provádějící lov si může přisvojit nejvýše 7 kg všech druhů ryb v jednom dnu."
+  },
+  {
+    "id": 2,
+    "otazka": "Kolik kusů kapra obecného si lze maximálně přisvojit v jednom dni?",
+    "moznosti": ["1 kus", "2 kusy", "3 kusy", "4 kusy"],
+    "spravna_odpoved": "2 kusy",
+    "vysvetleni": "V denním úlovku smí být nejvýše 2 kusy vyjmenovaných ušlechtilých ryb (kapr, štika, candát, bolen, sumec, amur)."
+  },
+  {
+    "id": 3,
+    "otazka": "Jaká je minimální vzdálenost mezi rybáři při lovu na plavanou nebo položenou?",
+    "moznosti": ["1 metr", "3 metry", "10 metrů", "20 metrů"],
+    "spravna_odpoved": "3 metry",
+    "vysvetleni": "Při lovu zachovávají osoby vzdálenost nejméně 3 m, pokud se nedohodnou jinak."
+  },
+  {
+    "id": 4,
+    "otazka": "Kdy je v mimopstruhovém revíru hájena štika obecná a candát obecný?",
+    "moznosti": ["1. ledna – 15. června", "1. ledna – 30. dubna", "1. září – 30. listopadu", "Nemají dobu hájení"],
+    "spravna_odpoved": "1. ledna – 15. června",
+    "vysvetleni": "Od 1. ledna do 15. června jsou hájeni: bolen, candát, okoun, sumec a štika."
+  },
+  {
+    "id": 5,
+    "otazka": "Jak se správně měří délka ryby?",
+    "moznosti": ["Od oka po konec ocasu", "Od rypce po začátek ocasní ploutve", "Od vrcholu rypce po konec nejdelších paprsků ocasní ploutve", "Od žaber po ocas"],
+    "spravna_odpoved": "Od vrcholu rypce po konec nejdelších paprsků ocasní ploutve",
+    "vysvetleni": "Délka ryby se měří od vrcholu rypce po konec nejdelších paprsků ocasní ploutve."
+  },
+  {
+    "id": 6,
+    "otazka": "Kdy je povolen lov přívlačí na mimopstruhových revírech?",
+    "moznosti": ["Celoročně", "Od 16. června do 31. prosince", "Od 1. května do 31. prosince", "Pouze v létě"],
+    "spravna_odpoved": "Od 16. června do 31. prosince",
+    "vysvetleni": "Lov přívlačí je povolen pouze v době od 16. června do 31. prosince."
+  },
+  {
+    "id": 7,
+    "otazka": "Je povolen lov ryb pod ledem (na dírkách)?",
+    "moznosti": ["Ano, kdykoliv", "Ano, ale jen s povolením", "Ne, je zakázán", "Ano, pokud je led silnější než 10 cm"],
+    "spravna_odpoved": "Ne, je zakázán",
+    "vysvetleni": "V rybářských revírech se zakazuje lovit ryby pod ledem."
+  },
+  {
+    "id": 8,
+    "otazka": "Co musí rybář udělat s vezírkem, pokud v něm uchovává ryby i po skončení lovu?",
+    "moznosti": ["Schovat ho pod vodu", "Označit ho štítkem se jménem a adresou", "Nechat ho u břehu bez označení", "Vezírek se nesmí používat"],
+    "spravna_odpoved": "Označit ho štítkem se jménem a adresou",
+    "vysvetleni": "Pokud jsou ryby uchovávány i po skončení lovu, je nutné označit vezírek štítkem se jménem a adresou."
+  },
+  {
+    "id": 9,
+    "otazka": "Kdy je hájen úhoř říční v rybářských revírech?",
+    "moznosti": ["Celoročně", "1. září – 30. listopadu", "1. ledna – 15. června", "V zimě"],
+    "spravna_odpoved": "1. září – 30. listopadu",
+    "vysvetleni": "Od 1. září do 30. listopadu je v rybářském revíru hájen úhoř říční."
+  },
+  {
+    "id": 10,
+    "otazka": "Jaká je minimální lovná míra kapra obecného (dle vyhlášky)?",
+    "moznosti": ["35 cm", "40 cm", "45 cm", "50 cm"],
+    "spravna_odpoved": "40 cm",
+    "vysvetleni": "Nejmenší lovná míra kapra obecného je 40 cm."
+  },
+  {
+    "id": 11,
+    "otazka": "Co musí mít rybář u sebe při lovu kromě povolenky?",
+    "moznosti": ["Občanský průkaz", "Rybářský lístek", "Průkaz pojištěnce", "Rybářský lístek a průkaz totožnosti"],
+    "spravna_odpoved": "Rybářský lístek a průkaz totožnosti",
+    "vysvetleni": "Při lovu je osoba povinna mít u sebe rybářský lístek a povolenku k lovu, a na požádání prokázat totožnost."
+  },
+  {
+    "id": 12,
+    "otazka": "Jaká je minimální vzdálenost mezi rybáři při lovu přívlačí?",
+    "moznosti": ["3 metry", "10 metrů", "20 metrů", "50 metrů"],
+    "spravna_odpoved": "20 metrů",
+    "vysvetleni": "Při lovu přívlačí zachovávají osoby vzdálenost nejméně 20 m."
+  },
+  {
+    "id": 13,
+    "otazka": "Je povoleno používat srkačku (systém samoseku)?",
+    "moznosti": ["Ano", "Ano, ale jen na kapry", "Ne, je to zakázáno", "Ano, v noci"],
+    "spravna_odpoved": "Ne, je to zakázáno",
+    "vysvetleni": "Nesmí být použit systém samoseku."
+  },
+  {
+    "id": 14,
+    "otazka": "Jak se správně usmrcuje ulovená ryba?",
+    "moznosti": ["Nechá se ležet na břehu", "Pouze se přetne mícha", "Omráčením úderem do temene a přetnutím žaber/míchy", "Okamžitým vykucháním zaživa"],
+    "spravna_odpoved": "Omráčením úderem do temene a přetnutím žaber/míchy",
+    "vysvetleni": "Usmrcování se provádí omráčením silným úderem na temeno hlavy a přetnutím žaberních oblouků nebo míchy."
+  },
+  {
+    "id": 15,
+    "otazka": "Která ryba je celoročně hájená?",
+    "moznosti": ["Okoun říční", "Jelec tloušť", "Losos obecný", "Karas stříbřitý"],
+    "spravna_odpoved": "Losos obecný",
+    "vysvetleni": "Celoročně jsou hájeni: losos obecný."
+  },
+  {
+    "id": 16,
+    "otazka": "Jaká je minimální lovná míra štiky obecné?",
+    "moznosti": ["40 cm", "50 cm", "60 cm", "70 cm"],
+    "spravna_odpoved": "50 cm",
+    "vysvetleni": "Nejmenší lovná míra štiky obecné je 50 cm."
+  },
+  {
+    "id": 17,
+    "otazka": "Jaká je minimální lovná míra sumce velkého?",
+    "moznosti": ["60 cm", "70 cm", "80 cm", "90 cm"],
+    "spravna_odpoved": "70 cm",
+    "vysvetleni": "Nejmenší lovná míra sumce velkého je 70 cm."
+  },
+  {
+    "id": 18,
+    "otazka": "Jaká je minimální lovná míra candáta obecného?",
+    "moznosti": ["40 cm", "45 cm", "50 cm", "55 cm"],
+    "spravna_odpoved": "45 cm",
+    "vysvetleni": "Nejmenší lovná míra candáta obecného je 45 cm."
+  },
+  {
+    "id": 19,
+    "otazka": "Jaká je minimální lovná míra amura bílého?",
+    "moznosti": ["40 cm", "50 cm", "60 cm", "Nemá míru"],
+    "spravna_odpoved": "50 cm",
+    "vysvetleni": "Nejmenší lovná míra amura bílého je 50 cm."
+  },
+  {
+    "id": 20,
+    "otazka": "Jaká je minimální lovná míra lína obecného?",
+    "moznosti": ["15 cm", "20 cm", "25 cm", "30 cm"],
+    "spravna_odpoved": "20 cm",
+    "vysvetleni": "Nejmenší lovná míra lína obecného je 20 cm."
+  },
+  {
+    "id": 21,
+    "otazka": "Jaká je minimální lovná míra pstruha obecného v mimopstruhovém revíru?",
+    "moznosti": ["20 cm", "25 cm", "30 cm", "35 cm"],
+    "spravna_odpoved": "25 cm",
+    "vysvetleni": "Nejmenší lovná míra pstruha obecného je 25 cm."
+  },
+  {
+    "id": 22,
+    "otazka": "Jaká je minimální lovná míra úhoře říčního?",
+    "moznosti": ["40 cm", "45 cm", "50 cm", "55 cm"],
+    "spravna_odpoved": "50 cm",
+    "vysvetleni": "Nejmenší lovná míra úhoře říčního je 50 cm."
+  },
+  {
+    "id": 23,
+    "otazka": "Kdy je v mimopstruhovém revíru hájen bolen dravý?",
+    "moznosti": ["1. ledna – 15. června", "1. ledna – 31. května", "16. března – 15. června", "Nemá dobu hájení"],
+    "spravna_odpoved": "1. ledna – 15. června",
+    "vysvetleni": "Od 1. ledna do 15. června je hájen bolen dravý."
+  },
+  {
+    "id": 24,
+    "otazka": "Kdy je hájen mník jednovousý?",
+    "moznosti": ["Celoročně", "1. ledna – 15. března", "1. září – 30. listopadu", "1. prosince – 15. března"],
+    "spravna_odpoved": "1. ledna – 15. března",
+    "vysvetleni": "Od 1. ledna do 15. března je hájen mník jednovousý."
+  },
+  {
+    "id": 25,
+    "otazka": "Kdy je hájen lipan podhorní?",
+    "moznosti": ["1. ledna – 15. dubna", "1. prosince – 15. června", "1. září – 30. listopadu", "16. března – 15. června"],
+    "spravna_odpoved": "1. prosince – 15. června",
+    "vysvetleni": "Od 1. prosince do 15. června je hájen lipan podhorní."
+  },
+  {
+    "id": 26,
+    "otazka": "Kdy je hájena hlavatka obecná?",
+    "moznosti": ["1. ledna – 30. září", "1. ledna – 15. června", "1. září – 31. prosince", "Celoročně"],
+    "spravna_odpoved": "1. ledna – 30. září",
+    "vysvetleni": "Od 1. ledna do 30. září je hájena hlavatka obecná."
+  },
+  {
+    "id": 27,
+    "otazka": "Které ryby jsou hájeny od 16. března do 15. června?",
+    "moznosti": ["Kapr, Amur, Lín", "Ostroretka, Parma, Podoustev", "Štika, Candát, Sumec", "Pstruh, Lipan, Siven"],
+    "spravna_odpoved": "Ostroretka, Parma, Podoustev",
+    "vysvetleni": "Od 16. března do 15. června jsou hájeni: ostroretka, parma, podoustev, jeseter."
+  },
+  {
+    "id": 28,
+    "otazka": "Jaká je denní doba lovu v mimopstruhovém revíru v letních měsících (duben–září)?",
+    "moznosti": ["Od 00 do 24 hodin", "Od 4 do 24 hodin", "Od 5 do 22 hodin", "Od 6 do 22 hodin"],
+    "spravna_odpoved": "Od 4 do 24 hodin",
+    "vysvetleni": "V měsíci duben až září je denní doba lovu od 4 do 24 hodin."
+  },
+  {
+    "id": 29,
+    "otazka": "Jaká je denní doba lovu v mimopstruhovém revíru v zimních měsících (říjen–březen)?",
+    "moznosti": ["Od 4 do 24 hodin", "Od 5 do 22 hodin", "Od 6 do 20 hodin", "Od 7 do 18 hodin"],
+    "spravna_odpoved": "Od 5 do 22 hodin",
+    "vysvetleni": "V měsíci říjen až březen je denní doba lovu od 5 do 22 hodin."
+  },
+  {
+    "id": 30,
+    "otazka": "Kolik udic smí rybář použít při lovu na položenou v mimopstruhovém revíru?",
+    "moznosti": ["1 udici", "2 udice", "3 udice", "Neomezeně"],
+    "spravna_odpoved": "2 udice",
+    "vysvetleni": "Při lovu na položenou může osoba použít nejvýše 2 udice."
+  },
+  {
+    "id": 31,
+    "otazka": "Jaké jsou maximální rozměry bójky pro lov dravců?",
+    "moznosti": ["10x10x10 cm", "15x15x30 cm", "20x20x40 cm", "30x30x30 cm"],
+    "spravna_odpoved": "15x15x30 cm",
+    "vysvetleni": "Bójka nesmí přesahovat rozměry 15x15x30 cm."
+  },
+  {
+    "id": 32,
+    "otazka": "Kdy musí rybář zapsat přisvojenou ušlechtilou rybu (kapr, štika, candát...)?",
+    "moznosti": ["Okamžitě po ulovení", "Před dalším nahozením", "Po skončení lovu", "Doma"],
+    "spravna_odpoved": "Okamžitě po ulovení",
+    "vysvetleni": "Přisvojený úlovek kapra, amura, štiky, candáta, bolena, sumce a ryb lososovitých se zapisuje bezprostředně po ulovení."
+  },
+  {
+    "id": 33,
+    "otazka": "Kdy se zapisují ostatní druhy ryb (např. plotice, cejn)?",
+    "moznosti": ["Okamžitě po ulovení", "Před dalším nahozením", "Před odchodem od vody", "Nemusí se zapisovat"],
+    "spravna_odpoved": "Před odchodem od vody",
+    "vysvetleni": "Počet kusů a celkovou hmotnost ostatních druhů ryb zapisuje osoba před odchodem od vody."
+  },
+  {
+    "id": 34,
+    "otazka": "Kdy musí rybář zapsat datum a číslo revíru?",
+    "moznosti": ["Po příchodu domů", "Po ulovení první ryby", "Před zahájením lovu", "Při kontrole stráží"],
+    "spravna_odpoved": "Před zahájením lovu",
+    "vysvetleni": "Osoba je povinna zapsat datum lovu a číslo revíru před zahájením lovu."
+  },
+  {
+    "id": 35,
+    "otazka": "Co musí rybář udělat, pokud si v daný den nepřivlastnil žádnou rybu?",
+    "moznosti": ["Nic", "Vyhodit povolenku", "Proškrtnout řádek v povolence", "Nahlásit to hospodáři"],
+    "spravna_odpoved": "Proškrtnout řádek v povolence",
+    "vysvetleni": "Pokud si nepřivlastní žádnou rybu, musí proškrtnout řádek v evidenci."
+  },
+  {
+    "id": 36,
+    "otazka": "Je povoleno lovit ryby na elektrický proud?",
+    "moznosti": ["Ano", "Ano, ale jen sumce", "Ne, je to zakázáno", "Ano, s povolením obce"],
+    "spravna_odpoved": "Ne, je to zakázáno",
+    "vysvetleni": "V rybářských revírech se zakazuje užívat k lovu ryb elektrického proudu."
+  },
+  {
+    "id": 37,
+    "otazka": "Je povoleno používat výbušniny nebo omamné látky?",
+    "moznosti": ["Ano", "Ne, je to přísně zakázáno", "Ano, pro vědecké účely", "Ano, při výlovu rybníka"],
+    "spravna_odpoved": "Ne, je to přísně zakázáno",
+    "vysvetleni": "Zakazuje se používat prostředků výbušných, otravných nebo omamných látek."
+  },
+  {
+    "id": 38,
+    "otazka": "Co musí udělat rybář s invazním nepůvodním druhem (např. sumeček černý)?",
+    "moznosti": ["Pustit ho zpět do vody", "Pustit ho do jiného revíru", "Nevracet zpět do vody", "Použít jako nástrahu"],
+    "spravna_odpoved": "Nevracet zpět do vody",
+    "vysvetleni": "Zakazuje se vrátit po ulovení zpět do vody invazní nepůvodní druh."
+  },
+  {
+    "id": 39,
+    "otazka": "Může rybářská stráž zadržet rybářské nářadí?",
+    "moznosti": ["Ne, nikdy", "Ano, pokud rybář spáchal přestupek", "Ano, ale jen na 1 hodinu", "Ano, pokud se jí nářadí líbí"],
+    "spravna_odpoved": "Ano, pokud rybář spáchal přestupek",
+    "vysvetleni": "Rybářská stráž je oprávněna zadržet rybářské nářadí osobě, která spáchala přestupek."
+  },
+  {
+    "id": 40,
+    "otazka": "Může rybářská stráž vstupovat na soukromé pozemky při kontrole?",
+    "moznosti": ["Ne", "Ano, v nezbytném rozsahu", "Ano, ale jen s policií", "Ano, ale jen ve dne"],
+    "spravna_odpoved": "Ano, v nezbytném rozsahu",
+    "vysvetleni": "Rybářská stráž může vstupovat na pozemky v rozsahu nezbytně nutném pro výkon funkce."
+  },
+  {
+    "id": 41,
+    "otazka": "Smí děti do 10 let manipulovat s udicí?",
+    "moznosti": ["Ne, nesmí", "Ano, samostatně", "Ano, ale jen s 1 udicí v doprovodu dospělého", "Ano, se 2 udicemi"],
+    "spravna_odpoved": "Ano, ale jen s 1 udicí v doprovodu dospělého",
+    "vysvetleni": "Děti do 10 let mohou manipulovat s 1 udicí osoby provádějící lov v jejím doprovodu."
+  },
+  {
+    "id": 42,
+    "otazka": "Jaká je maximální plocha čeřínku pro lov nástražních rybek?",
+    "moznosti": ["0,5 m²", "1 m²", "1,5 m²", "2 m²"],
+    "spravna_odpoved": "1 m²",
+    "vysvetleni": "Plocha čeřínku nesmí převyšovat výměru 1 m²."
+  },
+  {
+    "id": 43,
+    "otazka": "Je povoleno lovit ryby z lodí?",
+    "moznosti": ["Ano, všude", "Ne, je to zakázáno plošně", "Zakázáno, pokud to uživatel revíru nepovolí", "Ano, ale bez motoru"],
+    "spravna_odpoved": "Zakázáno, pokud to uživatel revíru nepovolí",
+    "vysvetleni": "Lov ryb z plavidel je zakázán, pokud uživatel revíru neurčí jinak."
+  },
+  {
+    "id": 44,
+    "otazka": "Je povoleno používat vidlice a rozsošky k lovu ryb?",
+    "moznosti": ["Ano", "Ne", "Ano, na úhoře", "Ano, při výlovu"],
+    "spravna_odpoved": "Ne",
+    "vysvetleni": "Zakazuje se používat vidlic a rozsošek, bodců a lapaček."
+  },
+  {
+    "id": 45,
+    "otazka": "Která z těchto pomůcek je povinná výbava?",
+    "moznosti": ["Podběrák", "Vezírek", "Vyprošťovač háčků", "Stolička"],
+    "spravna_odpoved": "Vyprošťovač háčků",
+    "vysvetleni": "Osoba provádějící lov je povinna mít při lovu vyprošťovač háčků a míru."
+  },
+  {
+    "id": 46,
+    "otazka": "Je povoleno lovit v blízkosti přehradních hrází?",
+    "moznosti": ["Ano", "Ne, min. 50 metrů od hráze", "Ne, min. 100 metrů od hráze", "Ano, z hráze se chytá nejlépe"],
+    "spravna_odpoved": "Ne, min. 100 metrů od hráze",
+    "vysvetleni": "Zakazuje se lov v blízkosti přehradních hrází nejméně 100 metrů od hrázového tělesa."
+  },
+  {
+    "id": 47,
+    "otazka": "Je povoleno lovit v rybím přechodu?",
+    "moznosti": ["Ano", "Ne, ani 50 m nad a pod ním", "Ano, ale jen na plavanou", "Ne, ani 100 m od něj"],
+    "spravna_odpoved": "Ne, ani 50 m nad a pod ním",
+    "vysvetleni": "Zakazuje se lov v rybím přechodu nebo do vzdálenosti 50 m nad ním a pod ním."
+  },
+  {
+    "id": 48,
+    "otazka": "Kdy je povoleno používat jako nástrahu živou rybičku?",
+    "moznosti": ["Celoročně", "1. ledna – 15. června", "16. června – 31. prosince", "Pouze v zimě"],
+    "spravna_odpoved": "16. června – 31. prosince",
+    "vysvetleni": "Nástražní ryba se použije pouze v období od 16. června do 31. prosince."
+  },
+  {
+    "id": 49,
+    "otazka": "Kolik návazců může mít udice při lovu na plavanou v mimopstruhovém revíru?",
+    "moznosti": ["1", "2", "3", "Neomezeně"],
+    "spravna_odpoved": "2",
+    "vysvetleni": "Na každé udici jsou nejvýše 2 návazce s jednoháčky."
+  },
+  {
+    "id": 50,
+    "otazka": "Je povoleno zbavovat ryby vnitřností u vody?",
+    "moznosti": ["Ano, bez omezení", "Ano, ale zbytky se nesmí házet do vody", "Ne, ryba se musí odnést celá", "Ano, zbytky slouží jako krmení"],
+    "spravna_odpoved": "Ano, ale zbytky se nesmí házet do vody",
+    "vysvetleni": "Pokud osoba rybu usmrtí a očistí, nesmí zbytky vhazovat do vody nebo je ponechat na místě."
+  }
+]

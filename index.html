@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rybářský Kvíz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>🐟 Rybářský Znalec</h1>
+        <div id="user-display" class="hidden">Rybář: <span id="current-username"></span></div>
+    </header>
+
+    <main id="app">
+        <section id="screen-login" class="screen">
+            <h2>Vítej rybáři!</h2>
+            <p>Zadej své jméno pro vstup do hry:</p>
+            <input type="text" id="username-input" placeholder="Tvoje přezdívka" maxlength="15">
+            <br>
+            <button class="big-btn primary" onclick="app.login()">Vstoupit</button>
+
+            <div class="partners-footer">
+                <p class="org-name">MO Lípa nad Orlicí</p>
+                <div class="logos-row">
+                    <img src="assets/images/crs.jpg" alt="ČRS" class="partner-logo" title="Český rybářský svaz">
+                    <img src="assets/images/lipa.png" alt="Lípa nad Orlicí" class="partner-logo" title="Lípa nad Orlicí">
+                    <img src="assets/images/cestice.png" alt="Obec Čestice" class="partner-logo" title="Obec Čestice">
+                </div>
+            </div>
+        </section>
+
+        <section id="screen-menu" class="screen hidden">
+            
+            <div style="margin-bottom: 20px; background: #e6f7ff; padding: 15px; border-radius: 8px;">
+                <label for="question-count" style="font-weight:bold; margin-right: 10px;">Počet otázek v kvízu:</label>
+                <input type="number" id="question-count" min="1" max="50" value="5" style="width: 60px; padding: 5px; text-align: center; font-size: 1.1rem; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+
+            <button class="big-btn primary" onclick="app.startQuiz('classic')">🎣 Poznávačka ryb (Body)</button>
+            <button class="big-btn danger-btn" onclick="app.startQuiz('timeattack')">⏱️ Poznávačka ryb (Čas)</button>
+            <button class="big-btn primary" style="background-color: #8e44ad;" onclick="app.startQuiz('knowledge')">📜 Znalec řádu</button>
+            
+            <button class="big-btn secondary" onclick="app.showLearning()">📖 Atlas ryb</button>
+            <button class="big-btn secondary" onclick="app.showLeaderboard('classic')">🏆 Žebříček</button>
+        </section>
+
+        <section id="screen-learning" class="screen hidden">
+            <button class="back-btn" onclick="app.showMenu()">zpět do menu</button>
+            <div style="clear:both"></div>
+            <h2>Atlas ryb</h2>
+            <div id="fish-list" class="grid-container"></div>
+        </section>
+
+        <section id="screen-quiz" class="screen hidden">
+            <div id="status-classic" class="quiz-status hidden">
+                <span>Otázka: <span id="q-current">1</span>/<span id="q-total">10</span></span>
+                <span>Skóre: <span id="score">0</span></span>
+            </div>
+            
+            <div id="status-time" class="quiz-status hidden">
+                <div id="timer-container">⏱️ <span id="timer-val">00:00</span></div>
+                <div>Otázka: <span id="q-current-time">1</span>/<span id="q-total-time">10</span></div>
+            </div>
+
+            <div id="question-container"></div>
+            <div id="options-container" class="grid-options"></div>
+            <div id="feedback" class="hidden"></div>
+            <button id="next-btn" class="hidden" onclick="app.nextQuestion()">Další otázka</button>
+        </section>
+
+        <section id="screen-result" class="screen hidden">
+            <h2 id="result-title">Kvíz dokončen!</h2>
+            <p class="final-score" id="result-text"></p>
+            <button class="big-btn primary" onclick="app.showMenu()">Návrat do menu</button>
+            <button class="big-btn secondary" onclick="app.showLeaderboard('classic')">Zobrazit žebříček</button>
+        </section>
+
+        <section id="screen-leaderboard" class="screen hidden">
+            <button class="back-btn" onclick="app.showMenu()">zpět do menu</button>
+            <div style="clear:both"></div>
+            <h2>🏆 Síň slávy</h2>
+            
+            <div class="tabs">
+                <button id="tab-classic" class="tab-btn active" onclick="app.showLeaderboard('classic')">Ryby (Body)</button>
+                <button id="tab-time" class="tab-btn" onclick="app.showLeaderboard('timeattack')">Ryby (Čas)</button>
+                <button id="tab-knowledge" class="tab-btn" onclick="app.showLeaderboard('knowledge')">Řád</button>
+            </div>
+
+            <table id="leaderboard-table">
+                <thead><tr id="table-header"></tr></thead>
+                <tbody></tbody>
+            </table>
+            
+            <div id="history-section" class="hidden">
+                <h3>Historie hráče: <span id="history-name"></span></h3>
+                <ul id="history-list"></ul>
+            </div>
+        </section>
+    </main>
+
+    <div id="image-modal" class="modal hidden" onclick="app.closeImage()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="img-expanded">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
