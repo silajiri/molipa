@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   {
     "id": 1,
     "nazev_cz": "Amur bílý",
@@ -593,11 +594,603 @@
     "doba_hajeni_od": "",
     "doba_hajeni_do": "",
     "fotografie": [
+=======
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "amur_bily_00.jpg",
+            "amur_bily_01.jpg",
+            "amur_bily_02.jpg",
+            "amur_bily_03.jpg",
+            "amur_bily_04.jpg",
+            "amur_bily_05.jpg",
+            "amur_bily_06.jpg"
+        ],
+        "id": 1,
+        "min_delka_cm": 70,
+        "nazev_anglicky": "Grass carp",
+        "nazev_cz": "Amur bílý",
+        "nazev_latinsky": "Ctenopharyngodon idella – Valenciennes"
+    },
+    {
+        "doba_hajeni_do": "15. června",
+        "doba_hajeni_od": "1. ledna",
+        "fotografie": [
+            "bolen_dravy_00.jpg",
+            "bolen_dravy_01.jpg",
+            "bolen_dravy_02.jpg",
+            "bolen_dravy_03.jpg",
+            "bolen_dravy_04.jpg",
+            "bolen_dravy_05.jpg"
+        ],
+        "id": 2,
+        "min_delka_cm": 40,
+        "nazev_anglicky": "Asp",
+        "nazev_cz": "Bolen dravý",
+        "nazev_latinsky": "Aspius aspius"
+    },
+    {
+        "doba_hajeni_do": "15. června",
+        "doba_hajeni_od": "1. ledna",
+        "fotografie": [
+            "candat_obecny_00.jpg",
+            "candat_obecny_01.jpg",
+            "candat_obecny_03.jpg",
+            "candat_obecny_04.jpg"
+        ],
+        "id": 3,
+        "min_delka_cm": 45,
+        "nazev_anglicky": "Pike perch",
+        "nazev_cz": "Candát obecný",
+        "nazev_latinsky": "Sander lucioperca"
+    },
+    {
+        "doba_hajeni_do": "chráněný",
+        "doba_hajeni_od": "Celoročně",
+        "fotografie": [
+            "cejn_perletovy_00.jpg",
+            "cejn_perletovy_02.jpg",
+            "cejn_perletovy_03.jpg",
+            "cejn_perletovy_04.jpg",
+            "cejn_perletovy_05.jpg"
+        ],
+        "id": 4,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Whiteye bream",
+        "nazev_cz": "Cejn perleťový",
+        "nazev_latinsky": "Abramis sapa"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "cejn_velky_00.jpg",
+            "cejn_velky_01.jpg",
+            "cejn_velky_02.jpg",
+            "cejn_velky_03.jpg",
+            "cejn_velky_04.jpg"
+        ],
+        "id": 5,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Bream",
+        "nazev_cz": "Cejn velký",
+        "nazev_latinsky": "Abramis brama"
+    },
+    {
+        "doba_hajeni_do": "30. září",
+        "doba_hajeni_od": "1. ledna",
+        "fotografie": [
+            "hlavatka_obecna_00.jpg",
+            "hlavatka_obecna_01.jpg",
+            "hlavatka_obecna_02.jpg",
+            "hlavatka_obecna_03.jpg"
+        ],
+        "id": 6,
+        "min_delka_cm": 65,
+        "nazev_anglicky": "Common huchen",
+        "nazev_cz": "Hlavatka obecná",
+        "nazev_latinsky": "Hucho hucho"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "hrouzek_obecny_00.jpg",
+            "hrouzek_obecny_01.jpg",
+            "hrouzek_obecny_02.jpg",
+            "hrouzek_obecny_03.jpg",
+            "hrouzek_obecny_04.jpg"
+        ],
+        "id": 7,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Gudgeon",
+        "nazev_cz": "Hrouzek obecný",
+        "nazev_latinsky": "Gobio gobio"
+    },
+    {
+        "doba_hajeni_do": "15. června",
+        "doba_hajeni_od": "16. března",
+        "fotografie": [
+            "jelec_tloust_00.jpg",
+            "jelec_tloust_01.jpg",
+            "jelec_tloust_02.jpg",
+            "jelec_tloust_03.jpg",
+            "jelec_tloust_04.jpg"
+        ],
+        "id": 8,
+        "min_delka_cm": 25,
+        "nazev_anglicky": "Chub",
+        "nazev_cz": "Jelec tloušť",
+        "nazev_latinsky": "Leuciscus cephalus"
+    },
+    {
+        "doba_hajeni_do": "chráněný",
+        "doba_hajeni_od": "Celoročně",
+        "fotografie": [
+            "drsek_mensi_00.jpg",
+            "drsek_mensi_02.jpg",
+            "drsek_mensi_03.jpg",
+            "drsek_mensi_04.jpg",
+            "drsek_mensi_05.jpg",
+            "drsek_mensi_06.jpg"
+        ],
+        "id": 9,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Streber",
+        "nazev_cz": "Drsek menší",
+        "nazev_latinsky": "Zingel streber"
+    },
+    {
+        "doba_hajeni_do": "chráněný",
+        "doba_hajeni_od": "Celoročně",
+        "fotografie": [
+            "jelec_jesen_00.jpg",
+            "jelec_jesen_02.jpg",
+            "jelec_jesen_03.jpg",
+            "jelec_jesen_04.jpg"
+        ],
+        "id": 10,
+        "min_delka_cm": 25,
+        "nazev_anglicky": "Ide",
+        "nazev_cz": "Jelec jesen",
+        "nazev_latinsky": "Leuciscus idus"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "jelec_proudnik_00.jpg",
+            "jelec_proudnik_02.jpg",
+            "jelec_proudnik_03.jpg"
+        ],
+        "id": 11,
+        "min_delka_cm": 25,
+        "nazev_anglicky": "Dace",
+        "nazev_cz": "Jelec proudník",
+        "nazev_latinsky": "Leuciscus leuciscus"
+    },
+    {
+        "doba_hajeni_do": "15. června",
+        "doba_hajeni_od": "16. března",
+        "fotografie": [
+            "jeseter_maly_00.jpg",
+            "jeseter_maly_02.jpg",
+            "jeseter_maly_03.jpg",
+            "jeseter_maly_04.jpg",
+            "jeseter_maly_05.jpg",
+            "jeseter_maly_06.jpg"
+        ],
+        "id": 12,
+        "min_delka_cm": 30,
+        "nazev_anglicky": "Sterlet",
+        "nazev_cz": "Jeseter malý",
+        "nazev_latinsky": "Acipenser ruthenus"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "jezdik_obecny_00.jpg",
+            "jezdik_obecny_02.jpg",
+            "jezdik_obecny_03.jpg",
+            "jezdik_obecny_04.jpg",
+            "jezdik_obecny_05.jpg"
+        ],
+        "id": 13,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Ruffe",
+        "nazev_cz": "Ježdík obecný",
+        "nazev_latinsky": "Gymnocephalus cernuus"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "kapr_obecny_00.jpg",
+            "kapr_obecny_02.jpg",
+            "kapr_obecny_03.jpg",
+            "kapr_obecny_04.jpg",
+            "kapr_obecny_05.jpg",
+            "kapr_obecny_06.jpg"
+        ],
+        "id": 14,
+        "min_delka_cm": 40,
+        "nazev_anglicky": "Carp",
+        "nazev_cz": "Kapr obecný",
+        "nazev_latinsky": "Cyprinus carpio"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "karas_obecny_00.jpg",
+            "karas_obecny_02.jpg",
+            "karas_obecny_03.jpg",
+            "karas_obecny_04.jpg",
+            "karas_obecny_05.jpg",
+            "karas_obecny_06.jpg"
+        ],
+        "id": 15,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Crucian Carp",
+        "nazev_cz": "Karas obecný",
+        "nazev_latinsky": "Carassius carassius"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "karas_stribrity_00.jpg",
+            "karas_stribrity_02.jpg"
+        ],
+        "id": 16,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Prussian Carp",
+        "nazev_cz": "Karas stříbřitý",
+        "nazev_latinsky": "Carassius auratus"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "koljuska_triostna_00.jpg",
+            "koljuska_triostna_02.jpg",
+            "koljuska_triostna_03.jpg"
+        ],
+        "id": 17,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Three spined stickleback",
+        "nazev_cz": "Koljuška tříostná",
+        "nazev_latinsky": "Gasterosteus aculeatus"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "lin_obecny_00.jpg",
+            "lin_obecny_01.jpg",
+            "lin_obecny_03.jpg",
+            "lin_obecny_04.jpg",
+            "lin_obecny_05.jpg"
+        ],
+        "id": 18,
+        "min_delka_cm": 20,
+        "nazev_anglicky": "Tench",
+        "nazev_cz": "Lín obecný",
+        "nazev_latinsky": "Tinca tinca"
+    },
+    {
+        "doba_hajeni_do": "31. srpna",
+        "doba_hajeni_od": "1. prosince",
+        "fotografie": [
+            "lipan_podhorni_00.jpg",
+            "lipan_podhorni_02.jpg",
+            "lipan_podhorni_03.jpg",
+            "lipan_podhorni_04.jpg",
+            "lipan_podhorni_05.jpg"
+        ],
+        "id": 19,
+        "min_delka_cm": 40,
+        "nazev_anglicky": "Grayling",
+        "nazev_cz": "Lipan podhorní",
+        "nazev_latinsky": "Thymallus thymallus"
+    },
+    {
+        "doba_hajeni_do": "chráněný",
+        "doba_hajeni_od": "Celoročně",
+        "fotografie": [
+            "losos_obecny_00.jpg",
+            "losos_obecny_02.jpg",
+            "losos_obecny_03.jpg",
+            "losos_obecny_04.jpg"
+        ],
+        "id": 20,
+        "min_delka_cm": 50,
+        "nazev_anglicky": "Salmon",
+        "nazev_cz": "Losos obecný",
+        "nazev_latinsky": "Salmo salar"
+    },
+    {
+        "doba_hajeni_do": "chráněný",
+        "doba_hajeni_od": "Celoročně",
+        "fotografie": [
+            "mihule_potocni_00.jpg",
+            "mihule_potocni_01.jpg",
+            "mihule_potocni_03.jpg",
+            "mihule_potocni_04.jpg"
+        ],
+        "id": 21,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Brook lamprey",
+        "nazev_cz": "Mihule potoční",
+        "nazev_latinsky": "Lampetra planeri"
+    },
+    {
+        "doba_hajeni_do": "15. března",
+        "doba_hajeni_od": "1. ledna",
+        "fotografie": [
+            "mnik_jednovousy_00.jpg",
+            "mnik_jednovousy_02.jpg",
+            "mnik_jednovousy_03.jpg",
+            "mnik_jednovousy_04.jpg"
+        ],
+        "id": 22,
+        "min_delka_cm": 30,
+        "nazev_anglicky": "Burbot",
+        "nazev_cz": "Mník jednovousý",
+        "nazev_latinsky": "Lota lota"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "mrenka_mramorovana_00.jpg",
+            "mrenka_mramorovana_01.jpg",
+            "mrenka_mramorovana_03.jpg",
+            "mrenka_mramorovana_04.jpg"
+        ],
+        "id": 23,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Stoneloach",
+        "nazev_cz": "Mřenka mramorovaná",
+        "nazev_latinsky": "Noemacheilus barbatulus"
+    },
+    {
+        "doba_hajeni_do": "15. června",
+        "doba_hajeni_od": "1. ledna",
+        "fotografie": [
+            "okoun_ricni_00.jpg",
+            "okoun_ricni_02.jpg",
+            "okoun_ricni_03.jpg",
+            "okoun_ricni_04.jpg"
+        ],
+        "id": 24,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Perch",
+        "nazev_cz": "Okoun říční",
+        "nazev_latinsky": "Perca fluviatilis"
+    },
+    {
+        "doba_hajeni_do": "15. června",
+        "doba_hajeni_od": "16. března",
+        "fotografie": [
+            "ostroretka_stehovava_00.jpg",
+            "ostroretka_stehovava_01.jpg",
+            "ostroretka_stehovava_03.jpg",
+            "ostroretka_stehovava_04.jpg",
+            "ostroretka_stehovava_05.jpg"
+        ],
+        "id": 25,
+        "min_delka_cm": 30,
+        "nazev_anglicky": "Nase",
+        "nazev_cz": "Ostroretka stěhovavá",
+        "nazev_latinsky": "Chondrostoma nasus"
+    },
+    {
+        "doba_hajeni_do": "chráněný",
+        "doba_hajeni_od": "Celoročně",
+        "fotografie": [
+            "ostrucha_krivocara_00.jpg",
+            "ostrucha_krivocara_02.jpg",
+            "ostrucha_krivocara_03.jpg",
+            "ostrucha_krivocara_04.jpg"
+        ],
+        "id": 26,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Chekhon",
+        "nazev_cz": "Ostrucha křivočára",
+        "nazev_latinsky": "Pelecus cultratus"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "ouklej_obecna_00.jpg",
+            "ouklej_obecna_02.jpg",
+            "ouklej_obecna_03.jpg",
+            "ouklej_obecna_04.jpg",
+            "ouklej_obecna_05.jpg"
+        ],
+        "id": 27,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Bleak",
+        "nazev_cz": "Ouklej obecná",
+        "nazev_latinsky": "Alburnus alburnus"
+    },
+    {
+        "doba_hajeni_do": "chráněný",
+        "doba_hajeni_od": "Celoročně",
+        "fotografie": [
+            "ouklejka_pruhovana_00.jpg",
+            "ouklejka_pruhovana_02.jpg",
+            "ouklejka_pruhovana_03.jpg",
+            "ouklejka_pruhovana_04.png",
+            "ouklejka_pruhovana_05.jpg",
+            "ouklejka_pruhovana_06.jpg"
+        ],
+        "id": 28,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Schneider",
+        "nazev_cz": "Ouklejka pruhovaná",
+        "nazev_latinsky": "Alburnoides bipunctatus"
+    },
+    {
+        "doba_hajeni_do": "15. června",
+        "doba_hajeni_od": "16. března",
+        "fotografie": [
+            "parma_obecna_00.jpg",
+            "parma_obecna_02.jpg",
+            "parma_obecna_03.jpg",
+            "parma_obecna_04.jpg",
+            "parma_obecna_05.jpg"
+        ],
+        "id": 29,
+        "min_delka_cm": 40,
+        "nazev_anglicky": "Barbel",
+        "nazev_cz": "Parma obecná",
+        "nazev_latinsky": "Barbus barbus"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "perlin_ostrobrichy_00.jpg",
+            "perlin_ostrobrichy_02.jpg",
+            "perlin_ostrobrichy_03.jpg",
+            "perlin_ostrobrichy_04.jpg",
+            "perlin_ostrobrichy_05.jpg",
+            "perlin_ostrobrichy_06.jpg"
+        ],
+        "id": 30,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Rudd",
+        "nazev_cz": "Perlín ostrobřichý",
+        "nazev_latinsky": "Scardinius erythrophthalmus"
+    },
+    {
+        "doba_hajeni_do": "chráněný",
+        "doba_hajeni_od": "Celoročně",
+        "fotografie": [
+            "piskor_pruhovany_00.jpg",
+            "piskor_pruhovany_01.jpg",
+            "piskor_pruhovany_03.jpg",
+            "piskor_pruhovany_04.jpg",
+            "piskor_pruhovany_05.jpg"
+        ],
+        "id": 31,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Weatherfish",
+        "nazev_cz": "Piskoř pruhovaný",
+        "nazev_latinsky": "Misgurnus fossilis"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "plotice_obecna_00.jpg",
+            "plotice_obecna_02.jpg",
+            "plotice_obecna_03.jpg",
+            "plotice_obecna_04.jpg"
+        ],
+        "id": 32,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Roach",
+        "nazev_cz": "Plotice obecná",
+        "nazev_latinsky": "Rutilus rutilus"
+    },
+    {
+        "doba_hajeni_do": "15. června",
+        "doba_hajeni_od": "16. března",
+        "fotografie": [
+            "podoustev_ricni_00.jpg",
+            "podoustev_ricni_02.jpg",
+            "podoustev_ricni_03.jpg",
+            "podoustev_ricni_04.jpg",
+            "podoustev_ricni_05.jpg"
+        ],
+        "id": 33,
+        "min_delka_cm": 25,
+        "nazev_anglicky": "Vimba",
+        "nazev_cz": "Podoustev říční",
+        "nazev_latinsky": "Vimba vimba"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "pstruh_duhovy_00.jpg",
+            "pstruh_duhovy_02.jpg",
+            "pstruh_duhovy_03.jpg",
+            "pstruh_duhovy_04.jpg",
+            "pstruh_duhovy_05.jpg"
+        ],
+        "id": 34,
+        "min_delka_cm": 25,
+        "nazev_anglicky": "Rainbow trout",
+        "nazev_cz": "Pstruh duhový",
+        "nazev_latinsky": "Oncorhynchus mykiss"
+    },
+    {
+        "doba_hajeni_do": "15. dubna",
+        "doba_hajeni_od": "1. září",
+        "fotografie": [
+            "pstruh_obecny_00.jpg",
+            "pstruh_obecny_02.jpg",
+            "pstruh_obecny_03.jpg",
+            "pstruh_obecny_04.jpg",
+            "pstruh_obecny_05.jpg",
+            "pstruh_obecny_06.jpg",
+            "pstruh_obecny_07.jpg"
+        ],
+        "id": 35,
+        "min_delka_cm": 27,
+        "nazev_anglicky": "Trout",
+        "nazev_cz": "Pstruh obecný",
+        "nazev_latinsky": "Salmo trutta"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "sih_marena_00.jpg",
+            "sih_marena_01.jpg",
+            "sih_marena_03.jpg",
+            "sih_marena_04.jpg"
+        ],
+        "id": 36,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Whitefish",
+        "nazev_cz": "Síh maréna",
+        "nazev_latinsky": "Coregonus maraena"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "siven_americky_00.jpg",
+            "siven_americky_02.jpg",
+            "siven_americky_03.jpg",
+            "siven_americky_04.jpg",
+            "siven_americky_05.jpg"
+        ],
+        "id": 37,
+        "min_delka_cm": 25,
+        "nazev_anglicky": "Brook charr",
+        "nazev_cz": "Siven americký",
+        "nazev_latinsky": "Salvelinus fontinalis"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+>>>>>>> 327ce79 (feat: Dokonceni integrace Firebase do script.js)
             "slunka_obecna_00.jpg",
             "slunka_obecna_02.jpg",
             "slunka_obecna_03.jpg",
             "slunka_obecna_04.jpg",
             "slunka_obecna_05.jpg"
+<<<<<<< HEAD
         ]
   },
   {
@@ -726,3 +1319,138 @@
     ]
   }
 ]
+=======
+        ],
+        "id": 38,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Belica",
+        "nazev_cz": "Slunka obecná",
+        "nazev_latinsky": "Leucaspius delineatus"
+    },
+    {
+        "doba_hajeni_do": "15. června",
+        "doba_hajeni_od": "1. ledna",
+        "fotografie": [
+            "stika_obecna_00.jpg",
+            "stika_obecna_02.jpg",
+            "stika_obecna_03.jpg",
+            "stika_obecna_04.jpg"
+        ],
+        "id": 39,
+        "min_delka_cm": 50,
+        "nazev_anglicky": "Pike",
+        "nazev_cz": "Štika obecná",
+        "nazev_latinsky": "Esox lucius"
+    },
+    {
+        "doba_hajeni_do": "chráněný",
+        "doba_hajeni_od": "Celoročně",
+        "fotografie": [
+            "strevle_potocni_00.jpg",
+            "strevle_potocni_02.jpg",
+            "strevle_potocni_03.jpg",
+            "strevle_potocni_04.jpg",
+            "strevle_potocni_05.jpg"
+        ],
+        "id": 40,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Minnow",
+        "nazev_cz": "Střevle potoční",
+        "nazev_latinsky": "Phoxinus phoxinus"
+    },
+    {
+        "doba_hajeni_do": "15. června",
+        "doba_hajeni_od": "1. ledna",
+        "fotografie": [
+            "sumec_velky_00.jpg",
+            "sumec_velky_02.jpg",
+            "sumec_velky_03.jpg",
+            "sumec_velky_04.jpg",
+            "sumec_velky_05.jpg"
+        ],
+        "id": 41,
+        "min_delka_cm": 70,
+        "nazev_anglicky": "Wels, Catfish",
+        "nazev_cz": "Sumec velký",
+        "nazev_latinsky": "Silurus glanis"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "sumecek_americky_00.jpg",
+            "sumecek_americky_02.jpg",
+            "sumecek_americky_03.jpg",
+            "sumecek_americky_04.jpg",
+            "sumecek_americky_05.jpg"
+        ],
+        "id": 42,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Brown bullhead",
+        "nazev_cz": "Sumeček americký",
+        "nazev_latinsky": "Ameiurus nebulosus"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "tolstolobec_pestry_00.jpg",
+            "tolstolobec_pestry_02.jpg",
+            "tolstolobec_pestry_03.jpg",
+            "tolstolobec_pestry_04.jpg"
+        ],
+        "id": 43,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Big head Carp",
+        "nazev_cz": "Tolstolobec pestrý",
+        "nazev_latinsky": "Arisichthys nobilis"
+    },
+    {
+        "doba_hajeni_do": "",
+        "doba_hajeni_od": "",
+        "fotografie": [
+            "tolstolobik_bily_00.jpg",
+            "tolstolobik_bily_02.png",
+            "tolstolobik_bily_03.jpg",
+            "tolstolobik_bily_04.jpg"
+        ],
+        "id": 44,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Silver Carp",
+        "nazev_cz": "Tolstolobik bílý",
+        "nazev_latinsky": "Hypophthalmichthys molitrix"
+    },
+    {
+        "doba_hajeni_do": "30. listopadu",
+        "doba_hajeni_od": "1. září",
+        "fotografie": [
+            "uhor_ricni_00.jpg",
+            "uhor_ricni_02.jpg",
+            "uhor_ricni_03.jpg",
+            "uhor_ricni_04.jpg",
+            "uhor_ricni_05.jpg"
+        ],
+        "id": 45,
+        "min_delka_cm": 50,
+        "nazev_anglicky": "Eel",
+        "nazev_cz": "Úhoř říční",
+        "nazev_latinsky": "Anguilla anguilla"
+    },
+    {
+        "doba_hajeni_do": "chráněný",
+        "doba_hajeni_od": "Celoročně",
+        "fotografie": [
+            "vranka_obecna_00.jpg",
+            "vranka_obecna_02.jpg",
+            "vranka_obecna_03.jpg",
+            "vranka_obecna_04.jpg",
+            "vranka_obecna_05.jpg"
+        ],
+        "id": 46,
+        "min_delka_cm": "",
+        "nazev_anglicky": "Bullhead",
+        "nazev_cz": "Vranka obecná",
+        "nazev_latinsky": "Cottus gobio"
+    }
+]
+>>>>>>> 327ce79 (feat: Dokonceni integrace Firebase do script.js)
