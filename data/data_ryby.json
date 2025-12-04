@@ -592,7 +592,13 @@
     "min_delka_cm": "",
     "doba_hajeni_od": "",
     "doba_hajeni_do": "",
-    "fotografie": "[\"slunka_obecna_00.jpg\",\"slunka_obecna_02.jpg\",\"slunka_obecna_03.jpg\",\"slunka_obecna_04.jpg\",\"slunka_obecna_05.jpg:]"
+    "fotografie": [
+            "slunka_obecna_00.jpg",
+            "slunka_obecna_02.jpg",
+            "slunka_obecna_03.jpg",
+            "slunka_obecna_04.jpg",
+            "slunka_obecna_05.jpg"
+        ]
   },
   {
     "id": 39,
