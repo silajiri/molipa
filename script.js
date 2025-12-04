@@ -1,6 +1,9 @@
 // Globální proměnné pro Firebase a Firestore
 let db;
 
+// PŘEDPOKLAD: Globální proměnná 'firebaseConfig' je definována a načtena ze souboru config.js.
+// SDK soubory (firebase-app.js, firebase-firestore.js) jsou načteny v index.html.
+
 const app = {
     // Statická data pro ryby a řád
     dataRyby: [],
@@ -8,7 +11,7 @@ const app = {
     user: null,
     
     // Stav hry
-    gameMode: 'classic', 
+    gameMode: 'classic', // 'classic', 'timeattack', 'knowledge'
     score: 0,
     currentQuestionIndex: 0,
     questions: [],
@@ -18,30 +21,19 @@ const app = {
     timerInterval: null,
     startTime: 0,
 
-    // --- FIREBASE KONFIGURACE (NAHRADIT SVÝMI KLÍČI!) ---
-    firebaseConfig: {
-        apiKey: "AIzaSyDglbU-Fh3jYWOZ2RsQerbZBpYl-dM8U9E",
-        authDomain: "molipa-3921a.firebaseapp.com",
-        projectId: "molipa-3921a",
-        storageBucket: "molipa-3921a.firebasestorage.app",
-        messagingSenderId: "981161888486",
-        appId: "981161888486:web:c2f1e200c1fd6a92694927"
-    },
-    // ----------------------------------------------------
-
     // --- MODAL & FORMATOVACI FUNKCE ---
-    openImage: (src) => { /* Funkce zůstává stejná */ 
+    openImage: (src) => {
         const modal = document.getElementById('image-modal');
         const modalImg = document.getElementById('img-expanded');
         modalImg.src = src;
         modal.classList.remove('hidden');
     },
 
-    closeImage: () => { /* Funkce zůstává stejná */ 
+    closeImage: () => {
         document.getElementById('image-modal').classList.add('hidden');
     },
 
-    formatHajeni: (fish) => { /* Funkce zůstává stejná */
+    formatHajeni: (fish) => {
         if (fish.doba_hajeni_od === "Celoročně" && fish.doba_hajeni_do === "chráněný") {
             return "🚫 Celoročně chráněný";
         }
@@ -51,14 +43,14 @@ const app = {
         return "✅ Bez hájení";
     },
 
-    formatDelka: (fish) => { /* Funkce zůstává stejná */
+    formatDelka: (fish) => {
         if (!fish.min_delka_cm) {
             return "❌ Nemá stanoveno"; 
         }
         return `${fish.min_delka_cm} cm`;
     },
 
-    formatTime: (ms) => { /* Funkce zůstává stejná */
+    formatTime: (ms) => {
         const totalSeconds = Math.floor(ms / 1000);
         const minutes = Math.floor(totalSeconds / 60);
         const seconds = totalSeconds % 60;
@@ -68,99 +60,36 @@ const app = {
 
     // --- INICIALIZACE A FIREBASE ZAPOJENÍ ---
     init: async () => {
-        // Inicializace Firebase
-        if (typeof firebase !== 'undefined') {
+        // Inicializace Firebase (používá globální proměnnou firebaseConfig)
+        const isConfigured = typeof firebaseConfig !== 'undefined';
+        if (typeof firebase !== 'undefined' && isConfigured) {
             try {
-                firebase.initializeApp(app.firebaseConfig);
+                firebase.initializeApp(firebaseConfig);
                 db = firebase.firestore();
-                console.log("Firebase inicializován.");
+                console.log("✅ Firebase inicializován.");
             } catch (error) {
                 console.error("Chyba při inicializaci Firebase:", error);
-                alert("Chyba Firebase: Zkontrolujte API klíče v script.js!");
             }
+        } else {
+             console.warn("⚠️ Firebase není inicializován (chybí soubor config.js nebo SDK). Žebříček bude nefunkční.");
         }
         
         // Načtení statických dat (Ryby a Řád)
         try {
-            const [resRyby, resRad] = await Promise.all([
-                fetch('data/data_ryby.json'),
-                fetch('data/data_rad.json')
-            ]);
-            
-            if (resRyby.ok) app.dataRyby = await resRyby.json();
-            if (resRad.ok) app.dataRad = await resRad.json();
+            const resRyby = await fetch('data/data_ryby.json');
+            if (!resRyby.ok) throw new Error(`Soubor data_ryby.json nebyl nalezen (CHYBA 404)`);
+            app.dataRyby = await resRyby.json();
+
+            const resRad = await fetch('data/data_rad.json');
+            if (!resRad.ok) throw new Error(`Soubor data_rad.json nebyl nalezen (CHYBA 404)`);
+            app.dataRad = await resRad.json();
             
         } catch (error) {
-            console.error(error);
-            alert("Nepodařilo se načíst lokální data (JSON soubory).");
+            console.error("KRITICKÁ CHYBA LOKÁLNÍCH DAT:", error);
+            alert(`⚠️ NEPODDAŘILO SE NAČÍST DATA: ${error.message}\n\nZkontrolujte Cestu (data/) a Syntaxi JSON souborů.`);
         }
     },
     
-    // --- UKLÁDÁNÍ DAT NA FIREBASE ---
-    saveScoreToDatabase: async (score, mode, duration = null) => {
-        if (!app.user) return;
-
-        const collectionName = 'leaderboard'; // Jedna kolekce pro všechny módy
-        
-        try {
-            await db.collection(collectionName).add({
-                name: app.user,
-                score: score,
-                mode: mode,
-                durationMs: duration,
-                questions: app.questions.length,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp() // Přesný čas uložení
-            });
-            console.log(`Skóre (${mode}) úspěšně uloženo na Firebase.`);
-
-        } catch (e) {
-            console.error("Chyba při ukládání skóre na Firebase: ", e);
-            alert("Chyba při ukládání skóre. Zkontrolujte připojení a pravidla Firestore.");
-        }
-    },
-
-    // --- PŘEPSANÉ FUNKCE UKLÁDÁNÍ ---
-    saveResultClassic: (score) => {
-        // Už neukládáme lokálně, voláme centrální funkci
-        app.saveScoreToDatabase(score, 'classic');
-    },
-
-    saveResultTimeAttack: (score, timeMs) => {
-        // Ukládáme skóre s časem
-        app.saveScoreToDatabase(score, 'timeattack', timeMs);
-    },
-    
-    saveResultKnowledge: (score) => {
-        // Ukládáme skóre pro kvíz Řádu
-        app.saveScoreToDatabase(score, 'knowledge');
-    },
-
-    // --- PŘEPSANÁ FUNKCE NAČÍTÁNÍ ŽEBŘÍČKU Z FIREBASE ---
-    fetchLeaderboard: async (mode, sortField, direction) => {
-        const snapshot = await db.collection('leaderboard')
-            .where('mode', '==', mode) // Filtrujeme jen daný mód
-            .orderBy(sortField, direction)
-            .limit(20) // Omezíme na top 20 výsledků pro přehlednost
-            .get();
-            
-        // Mapujeme výsledky do struktury, kterou očekává renderLeaderboard...
-        return snapshot.docs.map(doc => ({
-            id: doc.id,
-            name: doc.data().name,
-            bestValue: doc.data().score, // Použijeme pro Classic/Knowledge
-            bestScore: doc.data().score, // Použijeme pro Timeattack (body)
-            bestTime: doc.data().durationMs, // Použijeme pro Timeattack (čas)
-            questions: doc.data().questions,
-            timestamp: doc.data().timestamp ? doc.data().timestamp.toDate().toLocaleString() : 'N/A'
-        }));
-    },
-
-
-    // --- PŮVODNÍ FUNKCE (Změněny jen volání dat) ---
-
-    // Funkce login, showMenu, showLearning, startQuiz, generateQuestions atd.
-    // Zůstávají v logice stejné, jen se spoléhají na app.dataRyby / app.dataRad
-
     showScreen: (screenId) => {
         document.querySelectorAll('.screen').forEach(el => el.classList.add('hidden'));
         document.getElementById(screenId).classList.remove('hidden');
@@ -177,7 +106,7 @@ const app = {
             alert("Zadej jméno!");
         }
     },
-    
+
     showMenu: () => {
         app.stopTimer();
         app.showScreen('screen-menu');
@@ -202,6 +131,8 @@ const app = {
         });
         app.showScreen('screen-learning');
     },
+
+    // --- LOGIKA KVÍZU ---
 
     startQuiz: (mode) => {
         app.gameMode = mode;
@@ -233,19 +164,204 @@ const app = {
         app.renderQuestion();
     },
 
-    // ... (ostatní funkce startTimer, stopTimer, generateQuestions, renderQuestion, handleAnswer, nextQuestion)
-    // ... (kvůli omezení prostoru zde vynechány, ale předpokládá se, že jsou z předchozího kroku)
+    startTimer: () => {
+        app.startTime = Date.now();
+        const timerEl = document.getElementById('timer-val');
+        app.timerInterval = setInterval(() => {
+            const now = Date.now();
+            const elapsed = now - app.startTime;
+            timerEl.textContent = app.formatTime(elapsed);
+        }, 50);
+    },
 
-    // POUŽIJEME ZÁSTUPNÉ FUNKCE PRO ZACHOVÁNÍ ČISTOTY VÝSTUPU
-    
-    startTimer: () => { /* Zástupná fce */ },
-    stopTimer: () => { /* Zástupná fce */ },
-    generateQuestions: () => { /* Zástupná fce */ },
-    renderQuestion: () => { /* Zástupná fce */ },
-    handleAnswer: (btn, selected, correct, explanation) => { /* Zástupná fce */ },
-    nextQuestion: () => { /* Zástupná fce */ },
-    
-    // --- KOMPLETNÍ FUNKCE ---
+    stopTimer: () => {
+        if (app.timerInterval) clearInterval(app.timerInterval);
+    },
+
+    generateQuestions: () => {
+        app.questions = [];
+        
+        // --- 1. Mód ZNALEC ŘÁDU (z data_rad.json) ---
+        if (app.gameMode === 'knowledge') {
+            const availableQuestions = [...app.dataRad]; 
+            const shuffled = availableQuestions.sort(() => Math.random() - 0.5);
+            const selected = shuffled.slice(0, Math.min(app.maxQuestions, availableQuestions.length));
+            
+            app.questions = selected.map(q => ({
+                text: q.otazka,
+                image: null, 
+                options: q.moznosti.sort(() => Math.random() - 0.5), 
+                correctAnswer: q.spravna_odpoved,
+                explanation: q.vysvetleni
+            }));
+            return;
+        }
+
+        // --- 2. Módy POZNÁVAČKA RYB (Classic + Timeattack) ---
+        for (let i = 0; i < app.maxQuestions; i++) {
+            const type = Math.random() > 0.5 ? 1 : 2;
+            const targetFish = app.dataRyby[Math.floor(Math.random() * app.dataRyby.length)];
+            
+            let questionObj = { 
+                fish: targetFish, 
+                type: type, 
+                options: [],
+                explanation: null
+            };
+            let correctVal, questionTypeKey;
+
+            if (type === 1) {
+                questionObj.text = "Jak se jmenuje ryba na obrázku?";
+                const randomPhotoIdx = Math.floor(Math.random() * targetFish.fotografie.length);
+                questionObj.image = 'assets/images/' + targetFish.fotografie[randomPhotoIdx];
+                correctVal = targetFish.nazev_cz;
+                questionTypeKey = 'nazev';
+            } else {
+                const ruleType = Math.random() > 0.5 ? 'length' : 'season';
+                if (ruleType === 'length') {
+                    questionObj.text = `Jaká je minimální lovná délka ryby: ${targetFish.nazev_cz}?`;
+                    correctVal = app.formatDelka(targetFish);
+                    questionTypeKey = 'delka'; 
+                } else {
+                    questionObj.text = `Kdy je doba hájení pro rybu: ${targetFish.nazev_cz}?`;
+                    correctVal = app.formatHajeni(targetFish);
+                    questionTypeKey = 'hajeni';
+                }
+            }
+
+            questionObj.correctAnswer = correctVal;
+            let options = [correctVal];
+            
+            let attempts = 0;
+            while (options.length < 4 && attempts < 50) {
+                attempts++;
+                const randomFish = app.dataRyby[Math.floor(Math.random() * app.dataRyby.length)];
+                let wrongVal;
+                
+                if (questionTypeKey === 'nazev') wrongVal = randomFish.nazev_cz;
+                else if (questionTypeKey === 'delka') wrongVal = app.formatDelka(randomFish);
+                else if (questionTypeKey === 'hajeni') wrongVal = app.formatHajeni(randomFish);
+
+                if (!options.includes(wrongVal)) options.push(wrongVal);
+            }
+            
+            questionObj.options = options.sort(() => Math.random() - 0.5);
+            app.questions.push(questionObj);
+        }
+    },
+
+    renderQuestion: () => {
+        const q = app.questions[app.currentQuestionIndex];
+        const container = document.getElementById('question-container');
+        const optionsContainer = document.getElementById('options-container');
+        const feedback = document.getElementById('feedback');
+        const nextBtn = document.getElementById('next-btn');
+
+        feedback.className = 'hidden';
+        nextBtn.className = 'hidden';
+        optionsContainer.innerHTML = '';
+        
+        if (app.gameMode === 'timeattack') {
+            document.getElementById('q-current-time').textContent = app.currentQuestionIndex + 1;
+        } else {
+            document.getElementById('q-current').textContent = app.currentQuestionIndex + 1;
+            document.getElementById('score').textContent = app.score;
+            document.getElementById('q-total').textContent = app.questions.length;
+        }
+
+        let html = `<h3>${q.text}</h3>`;
+        if (q.image) {
+            html += `<img src="${q.image}" 
+                     onclick="app.openImage('${q.image}')" 
+                     style="max-width:100%; height:200px; object-fit:contain; border-radius:5px; cursor:zoom-in" 
+                     title="Klikni pro zvětšení">`;
+        }
+        container.innerHTML = html;
+
+        q.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = opt;
+            btn.onclick = () => app.handleAnswer(btn, opt, q.correctAnswer, q.explanation);
+            optionsContainer.appendChild(btn);
+        });
+    },
+
+    handleAnswer: (btn, selected, correct, explanation) => {
+        const isCorrect = (selected === correct);
+
+        if (app.gameMode === 'timeattack') {
+            if (isCorrect) {
+                app.score++;
+                btn.classList.add('correct');
+            } else {
+                btn.classList.add('wrong');
+            }
+            setTimeout(() => app.nextQuestion(), 300);
+            return; 
+        }
+
+        const allBtns = document.querySelectorAll('.option-btn');
+        allBtns.forEach(b => b.disabled = true);
+        const feedback = document.getElementById('feedback');
+        feedback.classList.remove('hidden');
+
+        let feedbackText = "";
+        if (isCorrect) {
+            app.score++;
+            btn.classList.add('correct');
+            feedbackText = `<span style="color:green">Správně! +1 bod</span>`;
+        } else {
+            btn.classList.add('wrong');
+            allBtns.forEach(b => {
+                if (b.textContent === correct) b.classList.add('correct');
+            });
+            feedbackText = `<span style="color:red">Chyba! Správně je: ${correct}</span>`;
+        }
+        
+        if (explanation) {
+            feedbackText += `<br><small style="color:#555; font-style:italic; display:block; margin-top:5px;">💡 ${explanation}</small>`;
+        }
+        
+        feedback.innerHTML = feedbackText;
+        document.getElementById('next-btn').classList.remove('hidden');
+    },
+
+    nextQuestion: () => {
+        app.currentQuestionIndex++;
+        if (app.currentQuestionIndex < app.questions.length) {
+            app.renderQuestion();
+        } else {
+            app.finishQuiz();
+        }
+    },
+
+    // --- FIREBASE UKLÁDÁNÍ A NAČÍTÁNÍ ---
+
+    saveScoreToDatabase: async (score, mode, duration = null) => {
+        if (!app.user || !db) return;
+
+        const collectionName = 'leaderboard';
+        
+        try {
+            await db.collection(collectionName).add({
+                name: app.user,
+                score: score,
+                mode: mode,
+                durationMs: duration,
+                questions: app.questions.length,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            console.log(`Skóre (${mode}) úspěšně uloženo na Firebase.`);
+
+        } catch (e) {
+            console.error("Chyba při ukládání skóre na Firebase: ", e);
+        }
+    },
+
+    saveResultClassic: (score) => { app.saveScoreToDatabase(score, 'classic'); },
+    saveResultTimeAttack: (score, timeMs) => { app.saveScoreToDatabase(score, 'timeattack', timeMs); },
+    saveResultKnowledge: (score) => { app.saveScoreToDatabase(score, 'knowledge'); },
 
     finishQuiz: () => {
         app.stopTimer();
@@ -256,7 +372,6 @@ const app = {
             const now = Date.now();
             const finalTime = now - app.startTime;
             const timeString = app.formatTime(finalTime);
-            
             resultText = `
                 Dosažené body: <span style="font-size:1.5em; font-weight:bold">${app.score} / ${app.questions.length}</span><br>
                 Výsledný čas: <span style="font-size:1.5em; font-weight:bold">${timeString}</span>
@@ -276,14 +391,38 @@ const app = {
         btnLeaderboard.onclick = () => app.showLeaderboard(app.gameMode);
     },
 
+    fetchLeaderboard: async (mode, sortField, direction) => {
+        if (!db) return [];
+        
+        try {
+            const snapshot = await db.collection('leaderboard')
+                .where('mode', '==', mode)
+                .orderBy('score', 'desc') 
+                .orderBy(sortField, direction) 
+                .limit(20)
+                .get();
+                
+            return snapshot.docs.map(doc => ({
+                id: doc.id,
+                name: doc.data().name,
+                score: doc.data().score,
+                durationMs: doc.data().durationMs,
+                questions: doc.data().questions,
+                timestamp: doc.data().timestamp ? doc.data().timestamp.toDate().toLocaleString() : 'N/A'
+            }));
+        } catch (e) {
+            console.error("Chyba při načítání dat z Firestore: ", e);
+            return [];
+        }
+    },
+
     showLeaderboard: (mode = 'classic') => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         
-        // Zobrazíme načítání
         const tbody = document.querySelector('#leaderboard-table tbody');
         tbody.innerHTML = '<tr><td colspan="4">Načítám data ze serveru...</td></tr>';
         
-        let sortField = 'score'; // default
+        let sortField = 'score';
         let sortDirection = 'desc';
 
         if (mode === 'classic') {
@@ -294,42 +433,38 @@ const app = {
             sortField = 'score';
         } else {
             document.getElementById('tab-time').classList.add('active');
-            // Pro timeattack prioritizujeme skóre DESC, pak čas ASC
-            sortField = 'durationMs'; // Složitější sorting se provede v renderu
+            sortField = 'durationMs';
+            sortDirection = 'asc';
         }
         
-        // Načteme data a zavoláme render
         app.fetchLeaderboard(mode, sortField, sortDirection)
             .then(data => {
                 if (mode === 'timeattack') {
                     app.renderLeaderboardTime(data);
                 } else {
-                    // Sorting pro points-based kvízy (Classic, Knowledge)
-                    data.sort((a, b) => b.score - a.score);
-                    app.renderLeaderboardPoints(data, mode);
+                    app.renderLeaderboardPoints(data);
                 }
             })
             .catch(e => {
                 console.error("Chyba při načítání žebříčku: ", e);
-                tbody.innerHTML = '<tr><td colspan="4">Nepodařilo se načíst data žebříčku.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="4">Nepodařilo se načíst data žebříčku. (Zkontrolujte klíče a pravidla Firebase.)</td></tr>';
             });
         
         document.getElementById('history-section').classList.add('hidden');
         app.showScreen('screen-leaderboard');
     },
 
-    renderLeaderboardPoints: (data, mode) => {
+    renderLeaderboardPoints: (data) => {
         document.getElementById('table-header').innerHTML = `<th>Pořadí</th><th>Jméno</th><th>Body</th><th>Datum</th>`;
         const tbody = document.querySelector('#leaderboard-table tbody');
         tbody.innerHTML = '';
         
         data.forEach((u, index) => {
             const tr = document.createElement('tr');
-            if (u.name === app.user) tr.classList.add('active-row');
             tr.innerHTML = `
                 <td>${index + 1}.</td>
                 <td>${u.name}</td>
-                <td>${u.bestValue} / ${u.questions}</td>
+                <td>${u.score} / ${u.questions}</td>
                 <td>${u.timestamp}</td>
             `;
             tbody.appendChild(tr);
@@ -337,32 +472,23 @@ const app = {
     },
 
     renderLeaderboardTime: (data) => {
-        // Složené řazení: body DESC, čas ASC. Vzhledem k tomu, že Firestore to neudělá optimálně jen jedním dotazem,
-        // stáhli jsme data a řadíme je zde na straně klienta.
-        data.sort((a, b) => {
-            if (b.bestScore !== a.bestScore) return b.bestScore - a.bestScore; 
-            return a.bestTime - b.bestTime; 
-        });
-
         document.getElementById('table-header').innerHTML = `<th>Pořadí</th><th>Jméno</th><th>Body</th><th>Čas</th>`;
         const tbody = document.querySelector('#leaderboard-table tbody');
         tbody.innerHTML = '';
 
         data.forEach((u, index) => {
             const tr = document.createElement('tr');
-            if (u.name === app.user) tr.classList.add('active-row');
             tr.innerHTML = `
                 <td>${index + 1}.</td>
                 <td>${u.name}</td>
-                <td>${u.bestScore}</td>
-                <td>${app.formatTime(u.bestTime)}</td>
+                <td>${u.score}</td>
+                <td>${app.formatTime(u.durationMs)}</td>
             `;
             tbody.appendChild(tr);
         });
     },
-    
-    // ... (showHistory není potřeba, dokud neimplementujeme historii na serveru)
-    showHistory: (userName, mode) => { /* Zástupná fce */ }
+
+    showHistory: () => { /* Funkce historie je zatím zástupná, jelikož se data nejsou strukturována pro historii */ }
 };
 
 window.onload = app.init;
