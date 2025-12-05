@@ -1,45 +1,52 @@
 # 🎣 Rybářský Znalec: Kvíz a Atlas
 
+https://silajiri.github.io/molipa/
+
 ![Version](https://img.shields.io/badge/Status-Complete-green) 
 ![License](https://img.shields.io/badge/License-MIT-blue.svg) 
-![Built With](https://img.shields.io/badge/Built_With-HTML%20%7C%20CSS%20%7C%20JS-orange)
+![Built With](https://img.shields.io/badge/Built_With-HTML%7CCSS%7CJS%7CFirebase-red) 
 
 ## 📖 Popis projektu
 
-Interaktivní webová aplikace vytvořená pro **MO Lípa nad Orlicí** s cílem zábavnou formou prověřit a prohloubit znalosti o českých rybách, jejich lovných mírách, dobách hájení a aktuálním Rybářském řádu. Aplikace je plně responzivní a optimalizovaná pro použití ve vzdělávání, na schůzích či v terénu.
+Interaktivní webová aplikace vytvořená pro **MO Lípa nad Orlicí** s cílem prověřit znalosti o českých rybách a Rybářském řádu. Aplikace přešla z lokálního ukládání na **centralizovaný systém skóre (Firebase)**, což umožňuje sdílený žebříček pro všechny hráče.
 
 ---
-
 ## ✨ Klíčové funkce
 
-* **🎣 Poznávačka ryb (Classic/Time Attack):** Kvíz s náhodně generovanými otázkami na identifikaci ryby z fotografie a na jejich základní parametry (délka, hájení). Podporuje bodový i časový režim.
-* **📜 Znalec řádu:** Samostatný kvízový modul testující teoretické znalosti z Rybářského řádu (na základě dokumentu ČRS 2026/2027), s automatickým vysvětlením správné odpovědi.
-* **⚙️ Nastavitelný kvíz:** Možnost zvolit vlastní počet otázek (až 50+).
-* **🏆 Síň slávy:** Místní ukládání nejlepších výsledků pro všechny herní módy s rozdělením na Body, Čas a Znalost Řádu.
-* **🔍 Atlas ryb:** Interaktivní seznam pro rychlé vyhledávání informací (míry, hájení) s možností zvětšení fotografií.
-* **💾 Ukládání dat:** Všechny herní statistiky jsou lokálně uloženy v prohlížeči (`localStorage`).
+* **🌐 Centralizovaný Žebříček:** Výsledky jsou ukládány v databázi **Firebase Firestore**, díky čemuž jsou žebříčky sdílené a konzistentní pro všechny uživatele na jakémkoliv zařízení.
+* **📜 Znalec řádu:** Samostatný kvízový modul testující teoretické znalosti z Rybářského řádu s automatickým vysvětlením správné odpovědi.
+* **🎣 Poznávačka ryb (Classic/Time Attack):** Kvíz na identifikaci ryby z fotografie a na jejich základní parametry (délka, hájení).
+* **⚙️ Flexibilní nastavení:** Možnost zvolit vlastní počet otázek (až 50+).
+* **🔍 Atlas s detailními informacemi:** Seznam ryb, jejich míry a hájení s možností zvětšení fotografií.
 
 ---
+## 💻 Technologie a Spuštění
 
-## 💻 Technologie a spuštění
+Projekt je postaven na moderních statických technologiích s externím datovým úložištěm.
 
-Projekt je postaven na čistých webových technologiích, bez externích knihoven.
-
-| Technologie | Popis |
+| Technologie | Role |
 | :--- | :--- |
-| **HTML5** | Struktura aplikace a navigace |
-| **CSS3** | Stylování, responzivní design |
-| **Vanilla JavaScript** | Herní logika, generování otázek, správa stavu, žebříčky |
-| **JSON** | Databáze ryb (`data_ryby.json`) a otázek řádu (`data_rad.json`) |
+| **HTML/CSS/Vanilla JS** | Frontend, aplikační logika |
+| **Firebase Firestore** | Centralizovaná databáze pro ukládání skóre |
+| **JSON** | Statická databáze obsahu (`data_ryby.json`, `data_rad.json`) |
 
 ### Lokální spuštění
 
-1.  Naklonujte nebo stáhněte celý repozitář.
-2.  Ujistěte se, že máte zachovanou strukturu složek (`data/`, `assets/images/`).
-3.  Otevřete `index.html` v prohlížeči, ideálně pomocí **Live Serveru** (doplněk VS Code) nebo jiného lokálního webového serveru pro správné načtení JSON souborů.
+Pro lokální testování je nezbytné splnit následující kroky:
+
+1.  **Struktura:** Zachovejte strukturu složek (`data/`, `assets/images/`).
+2.  **Konfigurace klíčů:** Vytvořte v hlavní složce soubor **`config.js`** s vaší Firebase konfigurací (API klíče). *Tento soubor by neměl být nahrán na GitHub!*
+3.  **Spuštění:** Spusťte `index.html` pomocí **Live Serveru** (nebo jiného lokálního webového serveru), aby se správně načetly JSON soubory a navázalo se připojení k Firebase.
 
 ---
+## 🛡️ Bezpečnost Dat
 
+Bezpečnost žebříčku je zajištěna následujícími mechanismy, přestože je API klíč veřejný:
+
+1.  **Firebase Security Rules:** Pravidla databáze povolují pouze **čtení** (pro zobrazení žebříčku) a **vytváření** (nový záznam skóre), ale zakazují mazání nebo přepisování starých výsledků.
+2.  **Google Cloud API Restrictions:** Klíč je omezen pouze na doménu **`github.io`** a lokální IP adresu (`127.0.0.1`), čímž je zneužití klíče na cizích webech minimalizováno.
+
+---
 ## 🤝 Partneři a Autoři
 
 Tato aplikace byla vytvořena pro:
