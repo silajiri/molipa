@@ -358,10 +358,10 @@
   },
   {
     "id": 52,
-    "otazka": "Jaká je minimální lovná míra ?",
+    "otazka": "Jaká je minimální lovná míra jelce tlouště?",
     "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
-    "spravna_odpoved": "27 cm",
-    "vysvetleni": "Nejmenší lovná míra lipana podhorního je 40 cm."
+    "spravna_odpoved": "25 cm",
+    "vysvetleni": "Nejmenší lovná míra jelce tlouště je 25 cm."
   },
   {
     "id": 53,
@@ -425,5 +425,75 @@
     "moznosti": ["Ano, vždy", "Ano, pokud je uloven na pstruhové vodě", "Ne, nepovažuje se", "Ano, pokud má nad 30 cm"],
     "spravna_odpoved": "Ne, nepovažuje se",
     "vysvetleni": "Rybářský řád výslovně uvádí, že síh maréna a síh peleď se pro účely limitu 3 ks nepovažují za ryby lososovité."
+  },
+  {
+    "id": 62,
+    "otazka": "Jaká je minimální lovná míra ostroretky stěhované?",
+    "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
+    "spravna_odpoved": "30 cm",
+    "vysvetleni": "Nejmenší lovná míra ostroretky stěhovavé je 30 cm."
+  },
+  {
+    "id": 63,
+    "otazka": "Jaká je minimální lovná míra parmy obecné?",
+    "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
+    "spravna_odpoved": "40 cm",
+    "vysvetleni": "Nejmenší lovná míra parmy obecné je 40 cm."
+  },
+  {
+    "id": 64,
+    "otazka": "Jaká je minimální lovná míra podoustve říční?",
+    "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
+    "spravna_odpoved": "25 cm",
+    "vysvetleni": "Nejmenší lovná míra podoustve říční je 25 cm."
+  },
+  {
+    "id": 65,
+    "otazka": "Jaká je minimální lovná míra sivena amerického?",
+    "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
+    "spravna_odpoved": "25 cm",
+    "vysvetleni": "Nejmenší lovná míra sivena amerického je 25 cm."
+  },
+  {
+    "id": 66,
+    "otazka": "Jaká je minimální lovná míra pstruha duhového?",
+    "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
+    "spravna_odpoved": "25 cm",
+    "vysvetleni": "Nejmenší lovná míra pstruha duhového je 25 cm."
+  },
+  {
+    "id": 67,
+    "otazka": "Jaká je minimální lovná míra mníka jednovousého?",
+    "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
+    "spravna_odpoved": "30 cm",
+    "vysvetleni": "Nejmenší lovná míra mníka jednovousého je 30 cm."
+  },
+  {
+    "id": 68,
+    "otazka": "Jaká je minimální lovná míra bolena dravého?",
+    "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
+    "spravna_odpoved": "40 cm",
+    "vysvetleni": "Nejmenší lovná míra bolena dravého je 40 cm."
+  },
+  {
+    "id": 69,
+    "otazka": "Jaká je minimální lovná míra jesetera malého?",
+    "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
+    "spravna_odpoved": "30 cm",
+    "vysvetleni": "Nejmenší lovná míra jesetera malého je 30 cm."
+  },
+  {
+    "id": 70,
+    "otazka": "Jaká je minimální lovná míra hlavatky obecné?",
+    "moznosti": ["20 cm", "25 cm", "65 cm", "70 cm"],
+    "spravna_odpoved": "65 cm",
+    "vysvetleni": "Nejmenší lovná míra hlavatky obecné je 65 cm."
+  },
+  {
+    "id": 71,
+    "otazka": "Jaká je minimální lovná míra jelce jesena?",
+    "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
+    "spravna_odpoved": "25 cm",
+    "vysvetleni": "Nejmenší lovná míra jelce jesena je 25 cm."
   }
 ]
