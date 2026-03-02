@@ -122,15 +122,15 @@
     "id": 18,
     "otazka": "Jaká je minimální lovná míra candáta obecného?",
     "moznosti": ["40 cm", "45 cm", "50 cm", "55 cm"],
-    "spravna_odpoved": "45 cm",
-    "vysvetleni": "Nejmenší lovná míra candáta obecného je 45 cm."
+    "spravna_odpoved": "50 cm",
+    "vysvetleni": "Nejmenší lovná míra candáta obecného je 50 cm."
   },
   {
     "id": 19,
     "otazka": "Jaká je minimální lovná míra amura bílého?",
-    "moznosti": ["40 cm", "50 cm", "60 cm", "Nemá míru"],
-    "spravna_odpoved": "50 cm",
-    "vysvetleni": "Nejmenší lovná míra amura bílého je 50 cm."
+    "moznosti": ["40 cm", "50 cm", "60 cm", "70 cm"],
+    "spravna_odpoved": "70 cm",
+    "vysvetleni": "Nejmenší lovná míra amura bílého je 70 cm."
   },
   {
     "id": 20,
@@ -142,9 +142,9 @@
   {
     "id": 21,
     "otazka": "Jaká je minimální lovná míra pstruha obecného v mimopstruhovém revíru?",
-    "moznosti": ["20 cm", "25 cm", "30 cm", "35 cm"],
-    "spravna_odpoved": "25 cm",
-    "vysvetleni": "Nejmenší lovná míra pstruha obecného je 25 cm."
+    "moznosti": ["20 cm", "25 cm", "27 cm", "30 cm"],
+    "spravna_odpoved": "27 cm",
+    "vysvetleni": "Nejmenší lovná míra pstruha obecného je 27 cm."
   },
   {
     "id": 22,
@@ -170,9 +170,9 @@
   {
     "id": 25,
     "otazka": "Kdy je hájen lipan podhorní?",
-    "moznosti": ["1. ledna – 15. dubna", "1. prosince – 15. června", "1. září – 30. listopadu", "16. března – 15. června"],
-    "spravna_odpoved": "1. prosince – 15. června",
-    "vysvetleni": "Od 1. prosince do 15. června je hájen lipan podhorní."
+    "moznosti": ["1. ledna – 15. dubna", "1. prosince – 31. srpna", "1. září – 30. listopadu", "16. března – 15. června"],
+    "spravna_odpoved": "1. prosince – 31. srpna",
+    "vysvetleni": "Od 1. prosince do 31. srpna je hájen lipan podhorní."
   },
   {
     "id": 26,
@@ -330,7 +330,7 @@
   },
   {
     "id": 48,
-    "otazka": "Kdy je povoleno používat jako nástrahu živou rybičku?",
+    "otazka": "Kdy je povoleno používat v mimopstruhovém revíru jako nástrahu živou rybičku?",
     "moznosti": ["Celoročně", "1. ledna – 15. června", "16. června – 31. prosince", "Pouze v zimě"],
     "spravna_odpoved": "16. června – 31. prosince",
     "vysvetleni": "Nástražní ryba se použije pouze v období od 16. června do 31. prosince."
@@ -348,5 +348,82 @@
     "moznosti": ["Ano, bez omezení", "Ano, ale zbytky se nesmí házet do vody", "Ne, ryba se musí odnést celá", "Ano, zbytky slouží jako krmení"],
     "spravna_odpoved": "Ano, ale zbytky se nesmí házet do vody",
     "vysvetleni": "Pokud osoba rybu usmrtí a očistí, nesmí zbytky vhazovat do vody nebo je ponechat na místě."
+  },
+  {
+    "id": 51,
+    "otazka": "Jaká je minimální lovná míra lipana podhorního?",
+    "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
+    "spravna_odpoved": "27 cm",
+    "vysvetleni": "Nejmenší lovná míra lipana podhorního je 40 cm."
+  },
+  {
+    "id": 52,
+    "otazka": "Jaká je minimální lovná míra ?",
+    "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
+    "spravna_odpoved": "27 cm",
+    "vysvetleni": "Nejmenší lovná míra lipana podhorního je 40 cm."
+  },
+  {
+    "id": 53,
+    "otazka": "Jaká je minimální lovná míra ?",
+    "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
+    "spravna_odpoved": "27 cm",
+    "vysvetleni": "Nejmenší lovná míra lipana podhorního je 40 cm."
+  },
+  {
+    "id": 54,
+    "otazka": "Kolik kusů kapra obecného, amura, štiky, candáta, bolena, sumce nebo jejich kombinace si lze maximálně přisvojit v jednom dni?",
+    "moznosti": ["1 kus", "2 kusy", "3 kusy", "4 kusy"],
+    "spravna_odpoved": "2 kusy",
+    "vysvetleni": "V denním úlovku smí být nejvýše 2 kusy vyjmenovaných ušlechtilých ryb (kapr, štika, candát, bolen, sumec, amur)."
+  },
+  {
+    "id": 55,
+    "otazka": "Kolik kusů lososovitých ryb si lze maximálně přisvojit v jednom dni?",
+    "moznosti": ["1 kus", "2 kusy", "3 kusy", "5 kusů"],
+    "spravna_odpoved": "3 kusy",
+    "vysvetleni": "V jednom dnu si lze přisvojit nejvýše 3 kusy ryb lososovitých (pstruh obecný, pstruh duhový, siven americký, lipan podhorní)."
+  },
+  {
+    "id": 56,
+    "otazka": "Kolik dnů v kalendářním týdnu lze na pstruhových vodách VÚS lovit ryby přívlačí nebo muškařením?",
+    "moznosti": ["Každý den", "Nejvýše 3 dny", "Nejvýše 4 dny", "Pouze o víkendu"],
+    "spravna_odpoved": "Nejvýše 3 dny",
+    "vysvetleni": "Osoba provádějící lov smí na pstruhových rybářských revírech VÚS lovit ryby přívlačí nebo muškařením nejvýše 3 dny v kalendářním týdnu."
+  },
+  {
+    "id": 57,
+    "otazka": "Které z následujících ryb patří mezi okounovité (Percidae)?",
+    "moznosti": ["Kapr a lín", "Pstruh a siven", "Candát obecný, okoun říční a ježdík obecný", "Štika a sumec"],
+    "spravna_odpoved": "Candát obecný, okoun říční a ježdík obecný",
+    "vysvetleni": "Mezi hospodářsky významné okounovité ryby v našich revírech patří zejména candát a okoun."
+  },
+  {
+    "id": 58,
+    "otazka": "Do kdy musí držitel povolenky vrátit vyplněný oddíl II (statistika úlovků)?",
+    "moznosti": ["Do 7 dnů", "Do 15 dnů", "Do 30 dnů", "Do konce ledna následujícího roku"],
+    "spravna_odpoved": "Do 15 dnů",
+    "vysvetleni": "Držitel povolenky je povinen vrátit ji uživateli revíru do 15 dnů po skončení její platnosti s řádně vyplněnou statistikou."
+  },
+  {
+    "id": 59,
+    "otazka": "Může se úhoř říční použít jako nástražní ryba?",
+    "moznosti": ["Ano, bez omezení", "Ano, pokud má nad 50 cm", "Ne, je to zakázáno", "Ano, ale jen mrtvý"],
+    "spravna_odpoved": "Ne, je to zakázáno",
+    "vysvetleni": "K lovu mohou být použity pouze ryby, které nemají stanovenou nejmenší lovnou míru a nejsou chráněny. Úhoř má stanovenou lovnou míru (50 cm)."
+  },
+  {
+    "id": 60,
+    "otazka": "Která z těchto skupin obsahuje pouze lososovité ryby?",
+    "moznosti": ["Pstruh obecný, siven americký, lipan podhorní", "Pstruh obecný, amur bílý, lín obecný", "Candát obecný, pstruh duhový, štika obecná", "Siven americký, úhoř říční, mník jednovousý"],
+    "spravna_odpoved": "Pstruh obecný, siven americký, lipan podhorní",
+    "vysvetleni": "Tato skupina ryb má specifické doby hájení a přísnější limity počtu přisvojených kusů."
+  },
+  {
+    "id": 61,
+    "otazka": "Je síh (maréna nebo peleď) pro účely denního limitu považován za lososovitou rybu?",
+    "moznosti": ["Ano, vždy", "Ano, pokud je uloven na pstruhové vodě", "Ne, nepovažuje se", "Ano, pokud má nad 30 cm"],
+    "spravna_odpoved": "Ne, nepovažuje se",
+    "vysvetleni": "Rybářský řád výslovně uvádí, že síh maréna a síh peleď se pro účely limitu 3 ks nepovažují za ryby lososovité."
   }
 ]
