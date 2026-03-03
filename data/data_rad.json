@@ -495,5 +495,65 @@
     "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
     "spravna_odpoved": "25 cm",
     "vysvetleni": "Nejmenší lovná míra jelce jesena je 25 cm."
+  },
+  {
+    "id": 72,
+    "otazka": "Které pomůcky je rybář povinen mít u sebe pro zjištění délky ryb a bezpečné vyjmutí háčku?",
+    "moznosti": [
+      "Podběrák a vezírek",
+      "Vyprošťovač háčků a míru pro zjištění délky",
+      "Pean a váhu",
+      "Podběrák a pean"
+    ],
+    "spravna_odpoved": "Vyprošťovač háčků a míru pro zjištění délky",
+    "vysvetleni": "Dle Rybářského řádu je osoba provádějící lov povinna mít u sebe vyprošťovač háčků a míru pro zjištění délky ryb."
+  },
+  {
+    "id": 73,
+    "otazka": "V jakém období platí na mimopstruhových revírech zákaz používání dvojháčků a trojháčků?",
+    "moznosti": [
+      "Od 1. září do 31. prosince",
+      "Od 1. ledna do 15. června",
+      "Po celý rok",
+      "Pouze v měsících červenec a srpen"
+    ],
+    "spravna_odpoved": "Od 1. ledna do 15. června",
+    "vysvetleni": "V tomto období je na mimopstruhových revírech zakázán lov na víceháčkové systémy."
+  },
+  {
+    "id": 74,
+    "otazka": "Co musí rybář udělat, pokud je místo lovu při jeho příchodu znečištěno odpadky?",
+    "moznosti": [
+      "Nahlásit to a začít lovit",
+      "Před zahájením lovu místo uklidit",
+      "Uklidit místo až po skončení svého lovu",
+      "Ignorovat to, pokud odpadky nejsou jeho"
+    ],
+    "spravna_odpoved": "Před zahájením lovu místo uklidit",
+    "vysvetleni": "Osoba provádějící lov je povinna prohlédnout místo lovu a pokud je znečištěno, musí jej před začátkem rybaření uklidit."
+  },
+  {
+    "id": 75,
+    "otazka": "Jakým způsobem lze v revírech označovat krmná místa?",
+    "moznosti": [
+      "Jakoukoliv bójkou nebo pet lahví",
+      "Pouze tyčovými bójkami (nesmí být napevno ukotveny)",
+      "Plovoucími deskami",
+      "Značení krmných míst je zakázáno"
+    ],
+    "spravna_odpoved": "Pouze tyčovými bójkami (nesmí být napevno ukotveny)",
+    "vysvetleni": "Plovoucí předměty k označení krmných míst jsou zakázány s výjimkou tyčových bójek, které musí být po ukončení lovu vytaženy."
+  },
+  {
+    "id": 76,
+    "otazka": "Je povoleno tzv. 'podsekávání' ryb při lovu?",
+    "moznosti": [
+      "Ano, u dravců",
+      "Ano, u plevelných ryb",
+      "Ne, je to zakázáno",
+      "Ano, pokud je ryba ulovena za hřbet"
+    ],
+    "spravna_odpoved": "Ne, je to zakázáno",
+    "vysvetleni": "Při lovu se zakazuje podsekávání ryb, tedy záměrné zasekávání háčku do jiné části těla než do tlamy."
   }
 ]
