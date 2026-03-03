@@ -368,6 +368,34 @@ const app = {
         
         let resultText = "";
         
+        // --- NOVÁ LOGIKA PRO VÝPOČET ÚSPĚŠNOSTI A VÝBĚR GIFU ---
+        const percentage = app.score / app.questions.length;
+        let gifCategory = "";
+        let maxGifs = 0;
+
+        // Podmínky pro výběr kategorie (1a, 1b, 1c)
+        if (percentage > 0.8) {
+            gifCategory = "winner";
+            maxGifs = 4; // Máš winner_1 až winner_4
+        } else if (percentage >= 0.4 && percentage <= 0.8) {
+            gifCategory = "well_done";
+            maxGifs = 4; // Máš well_done_1 až well_done_4
+        } else {
+            gifCategory = "looser";
+            maxGifs = 7; // Máš looser_1 až looser_7
+        }
+
+        // Náhodný výběr z dostupné sady (1 až maxGifs)
+        const randomNum = Math.floor(Math.random() * maxGifs) + 1;
+        const gifFileName = `${gifCategory}_${randomNum}.gif`;
+        const gifPath = `assets/images/${gifFileName}`; // Cesta dle tvé struktury
+
+        // Nastavení GIFu do HTML a jeho zobrazení
+        const gifElement = document.getElementById('result-gif');
+        gifElement.src = gifPath;
+        gifElement.style.display = "block"; 
+        // --------------------------------------------------------
+
         if (app.gameMode === 'timeattack') {
             const now = Date.now();
             const finalTime = now - app.startTime;
