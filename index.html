@@ -38,10 +38,11 @@
                 <input type="number" id="question-count" min="1" max="50" value="5" style="width: 60px; padding: 5px; text-align: center; font-size: 1.1rem; border: 1px solid #ccc; border-radius: 4px;">
             </div>
 
-            <button class="big-btn primary" onclick="app.startQuiz('classic')">🎣 Poznávačka ryb (Body)</button>
-            <button class="big-btn danger-btn" onclick="app.startQuiz('timeattack')">⏱️ Poznávačka ryb (Čas)</button>
+            <button class="big-btn primary" onclick="app.startQuiz('classic')">🎣 Kvíz na body</button>
+            <button class="big-btn danger-btn" onclick="app.startQuiz('timeattack')">⏱️ Kvíz na čas</button>
             <button class="big-btn primary" style="background-color: #8e44ad;" onclick="app.startQuiz('knowledge')">📜 Znalec řádu</button>
-            
+            <button class="big-btn primary" style="background-color: #27ae60;" onclick="app.startQuiz('poznavacka')">🐠 Poznávačka</button>
+
             <button class="big-btn secondary" onclick="app.showLearning()">📖 Atlas ryb</button>
             <button class="big-btn secondary" onclick="app.showLeaderboard('classic')">🏆 Žebříček</button>
         </section>
@@ -66,8 +67,8 @@
 
             <div id="question-container"></div>
             <div id="options-container" class="grid-options"></div>
-            <div id="feedback" class="hidden"></div>
             <button id="next-btn" class="hidden" onclick="app.nextQuestion()">Další otázka</button>
+            <div id="feedback" class="hidden"></div>
         </section>
 
         <section id="screen-result" class="screen hidden">
@@ -84,9 +85,10 @@
             <h2>🏆 Síň slávy</h2>
             
             <div class="tabs">
-                <button id="tab-classic" class="tab-btn active" onclick="app.showLeaderboard('classic')">Ryby (Body)</button>
-                <button id="tab-time" class="tab-btn" onclick="app.showLeaderboard('timeattack')">Ryby (Čas)</button>
+                <button id="tab-classic" class="tab-btn active" onclick="app.showLeaderboard('classic')">Kvíz na body</button>
+                <button id="tab-time" class="tab-btn" onclick="app.showLeaderboard('timeattack')">Kvíz na čas</button>
                 <button id="tab-knowledge" class="tab-btn" onclick="app.showLeaderboard('knowledge')">Řád</button>
+                <button id="tab-poznavacka" class="tab-btn" onclick="app.showLeaderboard('poznavacka')">Poznávačka</button>
             </div>
 
             <table id="leaderboard-table">

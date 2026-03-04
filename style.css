@@ -24,22 +24,28 @@ body {
 header {
     background-color: var(--primary);
     color: white;
-    padding: 1rem;
+    padding: 0.4rem 1rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 header h1 {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
+    white-space: nowrap;
 }
 
 #user-display {
-    margin-top: 10px;
-    font-size: 0.9rem;
+    margin-top: 0;
+    font-size: 0.85rem;
     background: rgba(255, 255, 255, 0.2);
     display: inline-block;
-    padding: 5px 15px;
+    padding: 3px 12px;
     border-radius: 20px;
+    white-space: nowrap;
 }
 
 #current-username {
@@ -252,7 +258,8 @@ button:active {
     color: white;
     padding: 12px 30px;
     font-size: 1.1rem;
-    margin-top: 15px;
+    margin-top: 8px;
+    width: 100%;
 }
 
 /* --- ŽEBŘÍČEK --- */
@@ -327,18 +334,59 @@ tr.active-row {
 
 /* --- RESPONSIVITA PRO MOBILY --- */
 @media (max-width: 600px) {
-    .grid-options {
-        grid-template-columns: 1fr; /* Na mobilu odpovědi pod sebou */
-    }
-    
+    /* Karta */
     .screen {
-        padding: 15px;
-        margin: 10px;
+        padding: 10px;
+        margin: 5px;
+        border-radius: 10px;
     }
-    
-    h1 { font-size: 1.5rem; }
-    
-    .big-btn { font-size: 1rem; }
+
+    /* Stavový řádek kvízu */
+    .quiz-status {
+        padding: 6px 10px;
+        margin-bottom: 8px;
+        font-size: 0.85rem;
+    }
+
+    /* Obrázek ryby */
+    #question-container img {
+        max-height: 150px !important;
+        height: 150px;
+        margin: 5px 0;
+    }
+
+    /* Mřížka odpovědí – zachovat 2 sloupce, jsou kompaktnější */
+    .grid-options {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    .option-btn {
+        padding: 12px 6px;
+        font-size: 0.9rem;
+    }
+
+    #feedback {
+        margin-top: 8px;
+        font-size: 1rem;
+        padding: 8px;
+    }
+
+    #next-btn {
+        margin-top: 8px;
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+
+    /* Menu */
+    .big-btn {
+        font-size: 1rem;
+        padding: 12px;
+        margin: 8px auto;
+    }
+
+    h1 { font-size: 1.2rem; }
 }
 
 /* --- MODAL (ZVĚTŠENÍ OBRÁZKU) --- */

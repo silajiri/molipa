@@ -197,7 +197,34 @@ const app = {
             return;
         }
 
-        // --- 2. Módy POZNÁVAČKA RYB (Classic + Timeattack) ---
+        // --- 2. Mód POZNÁVAČKA (pouze foto) ---
+        if (app.gameMode === 'poznavacka') {
+            const fishWithPhotos = app.dataRyby.filter(f => f.fotografie && f.fotografie.length > 0);
+            const shuffled = [...fishWithPhotos].sort(() => Math.random() - 0.5);
+            const selected = shuffled.slice(0, Math.min(app.maxQuestions, fishWithPhotos.length));
+
+            app.questions = selected.map(targetFish => {
+                const randomPhotoIdx = Math.floor(Math.random() * targetFish.fotografie.length);
+                const correctVal = targetFish.nazev_cz;
+                let options = [correctVal];
+                const otherFish = fishWithPhotos.filter(f => f.nazev_cz !== correctVal).sort(() => Math.random() - 0.5);
+                let i = 0;
+                while (options.length < 4 && i < otherFish.length) {
+                    options.push(otherFish[i].nazev_cz);
+                    i++;
+                }
+                return {
+                    text: "Jak se jmenuje ryba na obrázku?",
+                    image: 'assets/images/' + targetFish.fotografie[randomPhotoIdx],
+                    options: options.sort(() => Math.random() - 0.5),
+                    correctAnswer: correctVal,
+                    explanation: null
+                };
+            });
+            return;
+        }
+
+        // --- 3. Módy KVÍZ (Classic + Timeattack) ---
         for (let i = 0; i < app.maxQuestions; i++) {
             const type = Math.random() > 0.5 ? 1 : 2;
             const targetFish = app.dataRyby[Math.floor(Math.random() * app.dataRyby.length)];
@@ -259,6 +286,8 @@ const app = {
 
         feedback.className = 'hidden';
         nextBtn.className = 'hidden';
+        nextBtn.style.backgroundColor = '';
+        nextBtn.textContent = 'Další otázka';
         optionsContainer.innerHTML = '';
         
         if (app.gameMode === 'timeattack') {
@@ -304,27 +333,30 @@ const app = {
         const allBtns = document.querySelectorAll('.option-btn');
         allBtns.forEach(b => b.disabled = true);
         const feedback = document.getElementById('feedback');
-        feedback.classList.remove('hidden');
+        const nextBtn = document.getElementById('next-btn');
 
-        let feedbackText = "";
         if (isCorrect) {
             app.score++;
             btn.classList.add('correct');
-            feedbackText = `<span style="color:green">Správně! +1 bod</span>`;
+            nextBtn.style.backgroundColor = '#28a745';
+            nextBtn.textContent = '✅ Správně! Další otázka';
+            feedback.classList.add('hidden');
         } else {
             btn.classList.add('wrong');
             allBtns.forEach(b => {
                 if (b.textContent === correct) b.classList.add('correct');
             });
-            feedbackText = `<span style="color:red">Chyba! Správně je: ${correct}</span>`;
+            nextBtn.style.backgroundColor = '';
+            nextBtn.textContent = 'Další otázka';
+            let feedbackText = `<span style="color:red">Chyba! Správně je: ${correct}</span>`;
+            if (explanation) {
+                feedbackText += `<br><small style="color:#555; font-style:italic; display:block; margin-top:5px;">💡 ${explanation}</small>`;
+            }
+            feedback.innerHTML = feedbackText;
+            feedback.classList.remove('hidden');
         }
-        
-        if (explanation) {
-            feedbackText += `<br><small style="color:#555; font-style:italic; display:block; margin-top:5px;">💡 ${explanation}</small>`;
-        }
-        
-        feedback.innerHTML = feedbackText;
-        document.getElementById('next-btn').classList.remove('hidden');
+
+        nextBtn.classList.remove('hidden');
     },
 
     nextQuestion: () => {
@@ -362,6 +394,7 @@ const app = {
     saveResultClassic: (score) => { app.saveScoreToDatabase(score, 'classic'); },
     saveResultTimeAttack: (score, timeMs) => { app.saveScoreToDatabase(score, 'timeattack', timeMs); },
     saveResultKnowledge: (score) => { app.saveScoreToDatabase(score, 'knowledge'); },
+    saveResultPoznavacka: (score) => { app.saveScoreToDatabase(score, 'poznavacka'); },
 
     finishQuiz: () => {
         app.stopTimer();
@@ -408,6 +441,9 @@ const app = {
         } else if (app.gameMode === 'knowledge') {
             resultText = `Získal jsi <span style="font-size:1.5em; font-weight:bold">${app.score}</span> bodů z ${app.questions.length}.`;
             app.saveResultKnowledge(app.score);
+        } else if (app.gameMode === 'poznavacka') {
+            resultText = `Získal jsi <span style="font-size:1.5em; font-weight:bold">${app.score}</span> bodů z ${app.questions.length}.`;
+            app.saveResultPoznavacka(app.score);
         } else {
             resultText = `Získal jsi <span style="font-size:1.5em; font-weight:bold">${app.score}</span> bodů z ${app.questions.length}.`;
             app.saveResultClassic(app.score);
@@ -466,6 +502,9 @@ const app = {
             sortField = 'score';
         } else if (mode === 'knowledge') {
             document.getElementById('tab-knowledge').classList.add('active');
+            sortField = 'score';
+        } else if (mode === 'poznavacka') {
+            document.getElementById('tab-poznavacka').classList.add('active');
             sortField = 'score';
         } else {
             document.getElementById('tab-time').classList.add('active');
