@@ -15,10 +15,13 @@ Interaktivní webová aplikace vytvořená pro **MO Lípa nad Orlicí** s cílem
 ## ✨ Klíčové funkce
 
 * **🌐 Centralizovaný Žebříček:** Výsledky jsou ukládány v databázi **Firebase Firestore**, díky čemuž jsou žebříčky sdílené a konzistentní pro všechny uživatele na jakémkoliv zařízení.
+* **🎣 Kvíz na body:** Mix otázek – poznávání ryb z fotografie i znalost jejich parametrů (délka, hájení).
+* **⏱️ Kvíz na čas:** Stejný mix otázek jako Kvíz na body, ale hodnotí se celkový čas dokončení.
+* **🐠 Poznávačka:** Výhradně fotografie ryb – hráč identifikuje rybu z nabízených čtyř možností. Určeno k tréninku vizuálního rozpoznávání.
 * **📜 Znalec řádu:** Samostatný kvízový modul testující teoretické znalosti z Rybářského řádu s automatickým vysvětlením správné odpovědi.
-* **🎣 Poznávačka ryb (Classic/Time Attack):** Kvíz na identifikaci ryby z fotografie a na jejich základní parametry (délka, hájení).
 * **⚙️ Flexibilní nastavení:** Možnost zvolit vlastní počet otázek (až 50+).
 * **🔍 Atlas s detailními informacemi:** Seznam ryb, jejich míry a hájení s možností zvětšení fotografií.
+* **📱 Optimalizace pro mobil:** Kompaktní rozvržení zajišťuje přehledné zobrazení celého kvízu bez nutnosti rolování.
 
 ---
 ## 💻 Technologie a Spuštění
@@ -54,8 +57,6 @@ Tato aplikace byla vytvořena pro:
 
 ### **MO Lípa nad Orlicí**
 
-**Za podpory partnerů:**
-
 <div align="center">
     <img src="assets/images/crs.jpg" alt="Český rybářský svaz" width="100"/>
     &nbsp;&nbsp;&nbsp;
@@ -66,4 +67,4 @@ Tato aplikace byla vytvořena pro:
 
 ***
 
-**Autor kódu:** Generováno AI asistentem na základě zadání (Prosinec 2025).
+**Autor kódu:** Generováno AI asistentem na základě zadání (Prosinec 2025 – Březen 2026).

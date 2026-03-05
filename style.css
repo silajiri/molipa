@@ -75,6 +75,30 @@ header h1 {
     display: none !important;
 }
 
+/* --- EMOJI PICKER --- */
+.emoji-picker {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px auto 16px;
+    max-width: 300px;
+}
+
+.emoji-picker span {
+    font-size: 1.6rem;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 4px 6px;
+    transition: background 0.15s, transform 0.15s;
+    user-select: none;
+}
+
+.emoji-picker span:hover {
+    background: #d0eaff;
+    transform: scale(1.2);
+}
+
 /* --- FORMULÁŘE A VSTUPY --- */
 input[type="text"] {
     padding: 10px;

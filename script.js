@@ -95,6 +95,14 @@ const app = {
         document.getElementById(screenId).classList.remove('hidden');
     },
 
+    addEmoji: (emoji) => {
+        const input = document.getElementById('username-input');
+        if (input.value.length < 15) {
+            input.value += emoji;
+        }
+        input.focus();
+    },
+
     login: () => {
         const name = document.getElementById('username-input').value.trim();
         if (name) {
@@ -455,7 +463,7 @@ const app = {
         btnLeaderboard.onclick = () => app.showLeaderboard(app.gameMode);
     },
 
-    fetchLeaderboard: async (mode, sortField, direction) => {
+    fetchLeaderboard: async (mode) => {
         if (!db) return [];
         
         try {
@@ -556,7 +564,7 @@ const app = {
             tr.innerHTML = `
                 <td>${index + 1}.</td>
                 <td>${u.name}</td>
-                <td>${u.score}</td>
+                <td>${u.score} / ${u.questions}</td>
                 <td>${app.formatTime(u.durationMs)}</td>
             `;
             tbody.appendChild(tr);

@@ -18,7 +18,16 @@
             <h2>Vítej rybáři!</h2>
             <p>Zadej své jméno pro vstup do hry:</p>
             <input type="text" id="username-input" placeholder="Tvoje přezdívka" maxlength="15">
-            <br>
+            <div class="emoji-picker">
+                <span onclick="app.addEmoji('🎣')">🎣</span>
+                <span onclick="app.addEmoji('🐟')">🐟</span>
+                <span onclick="app.addEmoji('🐠')">🐠</span>
+                <span onclick="app.addEmoji('🦈')">🦈</span>
+                <span onclick="app.addEmoji('🪝')">🪝</span>
+                <span onclick="app.addEmoji('⚓')">⚓</span>
+                <span onclick="app.addEmoji('🌊')">🌊</span>
+                <span onclick="app.addEmoji('🏆')">🏆</span>
+            </div>
             <button class="big-btn primary" onclick="app.login()">Vstoupit</button>
 
             <div class="partners-footer">
