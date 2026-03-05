@@ -198,6 +198,17 @@ button:active {
     color: var(--primary);
 }
 
+.photo-count-badge {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 2px 7px;
+    border-radius: 10px;
+}
+
 /* --- KVÍZ --- */
 .quiz-status {
     display: flex;
@@ -284,6 +295,79 @@ button:active {
     font-size: 1.1rem;
     margin-top: 8px;
     width: 100%;
+}
+
+/* --- PLOVOUCÍ HELP TLAČÍTKO --- */
+.help-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 500;
+    background: #8e44ad;
+    color: white;
+    font-size: 1.4rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+    opacity: 0.9;
+}
+
+.help-fab:hover {
+    opacity: 1;
+    background: #6c3483;
+    transform: scale(1.1);
+}
+
+/* --- NÁPOVĚDA – ZNALEC ŘÁDU --- */
+.help-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    text-align: left;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.help-question {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #222;
+}
+
+.help-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.help-option {
+    background: #f0f0f0;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.help-option-correct {
+    background: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+    font-weight: bold;
+}
+
+.help-explanation {
+    font-size: 0.85rem;
+    color: #555;
+    font-style: italic;
+    border-top: 1px dashed #ddd;
+    padding-top: 8px;
 }
 
 /* --- ŽEBŘÍČEK --- */
@@ -413,28 +497,36 @@ tr.active-row {
     h1 { font-size: 1.2rem; }
 }
 
-/* --- MODAL (ZVĚTŠENÍ OBRÁZKU) --- */
+/* --- MODAL (GALERIE OBRÁZKŮ) --- */
 .modal {
     position: fixed;
-    z-index: 1000; /* Musí být nad vším ostatním */
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.9); /* Černé pozadí s průhledností */
+    background-color: rgba(0,0,0,0.92);
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer; /* Indikuje, že kliknutím se zavře */
+    cursor: pointer;
+}
+
+/* Střední obsah galerie (obrázek + info) – klik nezavírá */
+.gallery-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+    max-width: 90vw;
 }
 
 /* Styl pro samotný obrázek v modalu */
 .modal-content {
-    margin: auto;
     display: block;
-    max-width: 95%;
-    max-height: 95%;
+    max-width: 100%;
+    max-height: 80vh;
     border-radius: 5px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     animation: zoom 0.3s;
@@ -442,11 +534,63 @@ tr.active-row {
 
 /* Animace přiblížení */
 @keyframes zoom {
-    from {transform:scale(0)} 
+    from {transform:scale(0)}
     to {transform:scale(1)}
 }
 
-/* Křížek pro zavření (volitelné, stačí kliknout vedle) */
+/* Informační panel pod obrázkem */
+.gallery-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+    padding: 0 5px;
+    color: #f1f1f1;
+    font-size: 1rem;
+}
+
+#gallery-fish-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+#gallery-counter {
+    opacity: 0.75;
+    font-size: 0.9rem;
+}
+
+/* Navigační šipky galerie */
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: none;
+    font-size: 3rem;
+    line-height: 1;
+    width: 55px;
+    height: 80px;
+    cursor: pointer;
+    z-index: 1001;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.gallery-nav:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: none;
+}
+
+.gallery-prev { left: 15px; }
+.gallery-next { right: 15px; }
+
+/* Křížek pro zavření */
 .close-modal {
     position: absolute;
     top: 15px;
@@ -455,6 +599,8 @@ tr.active-row {
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
+    cursor: pointer;
+    z-index: 1002;
 }
 
 .close-modal:hover,
@@ -462,6 +608,17 @@ tr.active-row {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .gallery-nav {
+        width: 40px;
+        height: 60px;
+        font-size: 2rem;
+    }
+
+    .gallery-prev { left: 5px; }
+    .gallery-next { right: 5px; }
 }
 
 /* --- PARTNEŘI A LOGA (FOOTER) --- */

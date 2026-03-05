@@ -110,11 +110,28 @@
                 <ul id="history-list"></ul>
             </div>
         </section>
+
+        <section id="screen-help" class="screen hidden">
+            <button class="back-btn" onclick="app.showMenu()">zpět do menu</button>
+            <div style="clear:both"></div>
+            <h2>📖 Nápověda – Znalec řádu</h2>
+            <div id="help-list"></div>
+        </section>
     </main>
 
+    <button class="help-fab hidden" onclick="app.showHelp()" title="Nápověda – Znalec řádu">❓</button>
+
     <div id="image-modal" class="modal hidden" onclick="app.closeImage()">
-        <span class="close-modal">&times;</span>
-        <img class="modal-content" id="img-expanded">
+        <span class="close-modal" onclick="app.closeImage()">&times;</span>
+        <button class="gallery-nav gallery-prev" onclick="event.stopPropagation(); app.galleryPrev()">&#8249;</button>
+        <div class="gallery-center" onclick="event.stopPropagation()">
+            <img class="modal-content" id="img-expanded">
+            <div class="gallery-info">
+                <span id="gallery-fish-name"></span>
+                <span id="gallery-counter"></span>
+            </div>
+        </div>
+        <button class="gallery-nav gallery-next" onclick="event.stopPropagation(); app.galleryNext()">&#8250;</button>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>

@@ -21,12 +21,53 @@ const app = {
     timerInterval: null,
     startTime: 0,
 
-    // --- MODAL & FORMATOVACI FUNKCE ---
+    // Proměnné pro galerii
+    galleryFishIndex: 0,
+    galleryPhotoIndex: 0,
+
+    // --- MODAL & GALERIE ---
+    openGallery: (fishIndex, photoIndex) => {
+        app.galleryFishIndex = fishIndex;
+        app.galleryPhotoIndex = photoIndex;
+        app.renderGalleryImage();
+        document.getElementById('image-modal').classList.remove('hidden');
+    },
+
+    renderGalleryImage: () => {
+        const fish = app.dataRyby[app.galleryFishIndex];
+        const photos = fish.fotografie;
+        const src = 'assets/images/' + photos[app.galleryPhotoIndex];
+        document.getElementById('img-expanded').src = src;
+        document.getElementById('gallery-fish-name').textContent = fish.nazev_cz;
+        document.getElementById('gallery-counter').textContent =
+            photos.length > 1 ? `${app.galleryPhotoIndex + 1} / ${photos.length}` : '';
+        const prevBtn = document.querySelector('.gallery-prev');
+        const nextBtn = document.querySelector('.gallery-next');
+        const hidden = photos.length <= 1;
+        prevBtn.classList.toggle('hidden', hidden);
+        nextBtn.classList.toggle('hidden', hidden);
+    },
+
+    galleryPrev: () => {
+        const photos = app.dataRyby[app.galleryFishIndex].fotografie;
+        app.galleryPhotoIndex = (app.galleryPhotoIndex - 1 + photos.length) % photos.length;
+        app.renderGalleryImage();
+    },
+
+    galleryNext: () => {
+        const photos = app.dataRyby[app.galleryFishIndex].fotografie;
+        app.galleryPhotoIndex = (app.galleryPhotoIndex + 1) % photos.length;
+        app.renderGalleryImage();
+    },
+
     openImage: (src) => {
-        const modal = document.getElementById('image-modal');
-        const modalImg = document.getElementById('img-expanded');
-        modalImg.src = src;
-        modal.classList.remove('hidden');
+        // Jednoduchý mód pro obrázky z kvízu (bez galerie)
+        document.getElementById('img-expanded').src = src;
+        document.getElementById('gallery-fish-name').textContent = '';
+        document.getElementById('gallery-counter').textContent = '';
+        document.querySelector('.gallery-prev').classList.add('hidden');
+        document.querySelector('.gallery-next').classList.add('hidden');
+        document.getElementById('image-modal').classList.remove('hidden');
     },
 
     closeImage: () => {
@@ -73,7 +114,17 @@ const app = {
         } else {
              console.warn("⚠️ Firebase není inicializován (chybí soubor config.js nebo SDK). Žebříček bude nefunkční.");
         }
-        
+
+        // Klávesnicová navigace v galerii
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('image-modal');
+            if (!modal.classList.contains('hidden')) {
+                if (e.key === 'ArrowLeft') app.galleryPrev();
+                else if (e.key === 'ArrowRight') app.galleryNext();
+                else if (e.key === 'Escape') app.closeImage();
+            }
+        });
+
         // Načtení statických dat (Ryby a Řád)
         try {
             const resRyby = await fetch('data/data_ryby.json');
@@ -93,6 +144,7 @@ const app = {
     showScreen: (screenId) => {
         document.querySelectorAll('.screen').forEach(el => el.classList.add('hidden'));
         document.getElementById(screenId).classList.remove('hidden');
+        document.querySelector('.help-fab').classList.add('hidden');
     },
 
     addEmoji: (emoji) => {
@@ -118,18 +170,24 @@ const app = {
     showMenu: () => {
         app.stopTimer();
         app.showScreen('screen-menu');
+        document.querySelector('.help-fab').classList.remove('hidden');
     },
 
     showLearning: () => {
         const list = document.getElementById('fish-list');
         list.innerHTML = '';
-        app.dataRyby.forEach(fish => {
+        app.dataRyby.forEach((fish, fishIndex) => {
             const card = document.createElement('div');
             card.className = 'fish-card';
             const imgPath = fish.fotografie.length > 0 ? 'assets/images/' + fish.fotografie[0] : '';
-            
+            const photoCount = fish.fotografie.length;
+            const badge = photoCount > 1 ? `<span class="photo-count-badge">📷 ${photoCount}</span>` : '';
+
             card.innerHTML = `
-                <img src="${imgPath}" alt="${fish.nazev_cz}" onclick="app.openImage('${imgPath}')" style="cursor:pointer" title="Klikni pro zvětšení">
+                <div style="position:relative">
+                    <img src="${imgPath}" alt="${fish.nazev_cz}" onclick="app.openGallery(${fishIndex}, 0)" style="cursor:pointer" title="Klikni pro galerii fotek">
+                    ${badge}
+                </div>
                 <h3>${fish.nazev_cz}</h3>
                 <p><i>${fish.nazev_latinsky}</i></p>
                 <p><strong>Min. délka:</strong> ${app.formatDelka(fish)}</p>
@@ -138,6 +196,26 @@ const app = {
             list.appendChild(card);
         });
         app.showScreen('screen-learning');
+    },
+
+    showHelp: () => {
+        const list = document.getElementById('help-list');
+        list.innerHTML = '';
+        app.dataRad.forEach((q, index) => {
+            const card = document.createElement('div');
+            card.className = 'help-card';
+            const optionsHtml = q.moznosti.map(opt => {
+                const isCorrect = opt === q.spravna_odpoved;
+                return `<span class="help-option ${isCorrect ? 'help-option-correct' : ''}">${opt}</span>`;
+            }).join('');
+            card.innerHTML = `
+                <div class="help-question"><strong>${index + 1}. ${q.otazka}</strong></div>
+                <div class="help-options">${optionsHtml}</div>
+                <div class="help-explanation">💡 ${q.vysvetleni}</div>
+            `;
+            list.appendChild(card);
+        });
+        app.showScreen('screen-help');
     },
 
     // --- LOGIKA KVÍZU ---
