@@ -311,9 +311,14 @@ const app = {
         }
 
         // --- 3. Módy KVÍZ (Classic + Timeattack) ---
+        let shuffledPool = [...app.dataRyby].sort(() => Math.random() - 0.5);
+
         for (let i = 0; i < app.maxQuestions; i++) {
+            if (shuffledPool.length === 0) {
+                shuffledPool = [...app.dataRyby].sort(() => Math.random() - 0.5);
+            }
+            const targetFish = shuffledPool.pop();
             const type = Math.random() > 0.5 ? 1 : 2;
-            const targetFish = app.dataRyby[Math.floor(Math.random() * app.dataRyby.length)];
             
             let questionObj = { 
                 fish: targetFish, 
@@ -323,7 +328,13 @@ const app = {
             };
             let correctVal, questionTypeKey;
 
-            if (type === 1) {
+            // Fallback: Pokud ryba nemá fotky, přepneme na textovou otázku
+            let actualType = type;
+            if (actualType === 1 && (!targetFish.fotografie || targetFish.fotografie.length === 0)) {
+                actualType = 2;
+            }
+
+            if (actualType === 1) {
                 questionObj.text = "Jak se jmenuje ryba na obrázku?";
                 const randomPhotoIdx = Math.floor(Math.random() * targetFish.fotografie.length);
                 questionObj.image = 'assets/images/' + targetFish.fotografie[randomPhotoIdx];
@@ -570,7 +581,7 @@ const app = {
         } catch (e) {
             console.error("Chyba při načítání dat z Firestore: ", e);
             // Důležité: Tady by se měla objevit ta chyba s chybějícím indexem
-            return [];
+            throw e;
         }
     },
 
@@ -598,7 +609,7 @@ const app = {
             sortDirection = 'asc';
         }
         
-        app.fetchLeaderboard(mode, sortField, sortDirection)
+        app.fetchLeaderboard(mode)
             .then(data => {
                 if (mode === 'timeattack') {
                     app.renderLeaderboardTime(data);
@@ -622,12 +633,27 @@ const app = {
         
         data.forEach((u, index) => {
             const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${index + 1}.</td>
-                <td>${u.name}</td>
-                <td>${u.score} / ${u.questions}</td>
-                <td>${u.timestamp}</td>
-            `;
+            if (app.user && u.name === app.user) {
+                tr.classList.add('active-row');
+            }
+            
+            const tdPos = document.createElement('td');
+            tdPos.textContent = `${index + 1}.`;
+            
+            const tdName = document.createElement('td');
+            tdName.textContent = u.name;
+            
+            const tdScore = document.createElement('td');
+            tdScore.textContent = `${u.score} / ${u.questions}`;
+            
+            const tdDate = document.createElement('td');
+            tdDate.textContent = u.timestamp;
+            
+            tr.appendChild(tdPos);
+            tr.appendChild(tdName);
+            tr.appendChild(tdScore);
+            tr.appendChild(tdDate);
+            
             tbody.appendChild(tr);
         });
     },
@@ -639,12 +665,27 @@ const app = {
 
         data.forEach((u, index) => {
             const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${index + 1}.</td>
-                <td>${u.name}</td>
-                <td>${u.score} / ${u.questions}</td>
-                <td>${app.formatTime(u.durationMs)}</td>
-            `;
+            if (app.user && u.name === app.user) {
+                tr.classList.add('active-row');
+            }
+            
+            const tdPos = document.createElement('td');
+            tdPos.textContent = `${index + 1}.`;
+            
+            const tdName = document.createElement('td');
+            tdName.textContent = u.name;
+            
+            const tdScore = document.createElement('td');
+            tdScore.textContent = `${u.score} / ${u.questions}`;
+            
+            const tdTime = document.createElement('td');
+            tdTime.textContent = app.formatTime(u.durationMs);
+            
+            tr.appendChild(tdPos);
+            tr.appendChild(tdName);
+            tr.appendChild(tdScore);
+            tr.appendChild(tdTime);
+            
             tbody.appendChild(tr);
         });
     },

@@ -353,7 +353,7 @@
     "id": 51,
     "otazka": "Jaká je minimální lovná míra lipana podhorního?",
     "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
-    "spravna_odpoved": "27 cm",
+    "spravna_odpoved": "40 cm",
     "vysvetleni": "Nejmenší lovná míra lipana podhorního je 40 cm."
   },
   {
@@ -365,10 +365,10 @@
   },
   {
     "id": 53,
-    "otazka": "Jaká je minimální lovná míra ?",
-    "moznosti": ["20 cm", "25 cm", "30 cm", "40 cm"],
-    "spravna_odpoved": "27 cm",
-    "vysvetleni": "Nejmenší lovná míra lipana podhorního je 40 cm."
+    "otazka": "Jaká je minimální lovná míra úhoře říčního?",
+    "moznosti": ["20 cm", "25 cm", "30 cm", "50 cm"],
+    "spravna_odpoved": "50 cm",
+    "vysvetleni": "Nejmenší lovná míra úhoře říčního je 50 cm."
   },
   {
     "id": 54,

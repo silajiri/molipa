@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rybářský Kvíz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,14 +22,14 @@
             <p>Zadej své jméno pro vstup do hry:</p>
             <input type="text" id="username-input" placeholder="Tvoje přezdívka" maxlength="15">
             <div class="emoji-picker">
-                <span onclick="app.addEmoji('🎣')">🎣</span>
-                <span onclick="app.addEmoji('🐟')">🐟</span>
-                <span onclick="app.addEmoji('🐠')">🐠</span>
-                <span onclick="app.addEmoji('🦈')">🦈</span>
-                <span onclick="app.addEmoji('🪝')">🪝</span>
-                <span onclick="app.addEmoji('⚓')">⚓</span>
-                <span onclick="app.addEmoji('🌊')">🌊</span>
-                <span onclick="app.addEmoji('🏆')">🏆</span>
+                <button type="button" class="emoji-btn" onclick="app.addEmoji('🎣')">🎣</button>
+                <button type="button" class="emoji-btn" onclick="app.addEmoji('🐟')">🐟</button>
+                <button type="button" class="emoji-btn" onclick="app.addEmoji('🐠')">🐠</button>
+                <button type="button" class="emoji-btn" onclick="app.addEmoji('🦈')">🦈</button>
+                <button type="button" class="emoji-btn" onclick="app.addEmoji('🪝')">🪝</button>
+                <button type="button" class="emoji-btn" onclick="app.addEmoji('⚓')">⚓</button>
+                <button type="button" class="emoji-btn" onclick="app.addEmoji('🌊')">🌊</button>
+                <button type="button" class="emoji-btn" onclick="app.addEmoji('🏆')">🏆</button>
             </div>
             <button class="big-btn primary" onclick="app.login()">Vstoupit</button>
 
@@ -58,12 +61,13 @@
 
         <section id="screen-learning" class="screen hidden">
             <button class="back-btn" onclick="app.showMenu()">zpět do menu</button>
-            <div style="clear:both"></div>
             <h2>Atlas ryb</h2>
             <div id="fish-list" class="grid-container"></div>
         </section>
 
         <section id="screen-quiz" class="screen hidden">
+            <button class="back-btn" onclick="app.showMenu()">ukončit kvíz</button>
+            
             <div id="status-classic" class="quiz-status hidden">
                 <span>Otázka: <span id="q-current">1</span>/<span id="q-total">10</span></span>
                 <span>Skóre: <span id="score">0</span></span>
@@ -90,7 +94,6 @@
 
         <section id="screen-leaderboard" class="screen hidden">
             <button class="back-btn" onclick="app.showMenu()">zpět do menu</button>
-            <div style="clear:both"></div>
             <h2>🏆 Síň slávy</h2>
             
             <div class="tabs">
@@ -113,7 +116,6 @@
 
         <section id="screen-help" class="screen hidden">
             <button class="back-btn" onclick="app.showMenu()">zpět do menu</button>
-            <div style="clear:both"></div>
             <h2>📖 Nápověda – Znalec řádu</h2>
             <div id="help-list"></div>
         </section>

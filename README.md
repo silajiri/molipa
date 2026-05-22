@@ -20,7 +20,10 @@ Interaktivní webová aplikace vytvořená pro **MO Lípa nad Orlicí** s cílem
 * **🐠 Poznávačka:** Výhradně fotografie ryb – hráč identifikuje rybu z nabízených čtyř možností. Určeno k tréninku vizuálního rozpoznávání.
 * **📜 Znalec řádu:** Samostatný kvízový modul testující teoretické znalosti z Rybářského řádu s automatickým vysvětlením správné odpovědi.
 * **⚙️ Flexibilní nastavení:** Možnost zvolit vlastní počet otázek (až 50+).
-* **🔍 Atlas s detailními informacemi:** Seznam ryb, jejich míry a hájení s možností zvětšení fotografií.
+* **🖼️ Fotogalerie v atlasu:** Kliknutím na fotografii ryby se otevře interaktivní galerie – hráč může listovat všemi dostupnými fotkami dané ryby pomocí šipek, klávesnice (← →) nebo dotyku. Galerie zobrazuje název ryby a čítač snímků.
+* **🔍 Atlas s detailními informacemi:** Seznam ryb, jejich míry a hájení. Karty s více fotografiemi jsou označeny odznakem s počtem snímků.
+* **❓ Nápověda Znalce řádu:** Plovoucí tlačítko v menu zpřístupní přehled všech otázek včetně správných odpovědí a vysvětlení – vhodné pro přípravu před hrou.
+* **🎭 Emoji přezdívky:** Na přihlašovací obrazovce lze do jména jedním kliknutím vložit tematické emoji.
 * **📱 Optimalizace pro mobil:** Kompaktní rozvržení zajišťuje přehledné zobrazení celého kvízu bez nutnosti rolování.
 
 ---
