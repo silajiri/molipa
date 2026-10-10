@@ -15,6 +15,7 @@ const app = {
     score: 0,
     currentQuestionIndex: 0,
     questions: [],
+    mistakes: [], // chybně zodpovězené otázky v aktuální hře
     maxQuestions: 5,
     
     // Proměnné pro časovku
@@ -228,6 +229,7 @@ const app = {
         app.maxQuestions = count;
 
         app.score = 0;
+        app.mistakes = [];
         app.currentQuestionIndex = 0;
         app.generateQuestions();
         app.showScreen('screen-quiz');
@@ -416,6 +418,17 @@ const app = {
     handleAnswer: (btn, selected, correct, explanation) => {
         const isCorrect = (selected === correct);
 
+        if (!isCorrect) {
+            const q = app.questions[app.currentQuestionIndex];
+            app.mistakes.push({
+                text: q.text,
+                image: q.image || null,
+                selected: selected,
+                correct: correct,
+                explanation: explanation || null
+            });
+        }
+
         if (app.gameMode === 'timeattack') {
             if (isCorrect) {
                 app.score++;
@@ -547,9 +560,65 @@ const app = {
         }
 
         document.getElementById('result-text').innerHTML = resultText;
+        app.renderMistakes();
         app.showScreen('screen-result');
         const btnLeaderboard = document.querySelector('#screen-result .secondary');
         btnLeaderboard.onclick = () => app.showLeaderboard(app.gameMode);
+    },
+
+    // Přehled chybně zodpovězených otázek na obrazovce s výsledkem
+    renderMistakes: () => {
+        const section = document.getElementById('mistakes-section');
+        const list = document.getElementById('mistakes-list');
+        list.innerHTML = '';
+
+        if (app.mistakes.length === 0) {
+            section.classList.add('hidden');
+            return;
+        }
+
+        document.getElementById('mistakes-title').textContent =
+            `❌ Co ti nevyšlo (${app.mistakes.length})`;
+
+        app.mistakes.forEach(m => {
+            const card = document.createElement('div');
+            card.className = 'mistake-card';
+
+            const q = document.createElement('div');
+            q.className = 'mistake-question';
+            q.textContent = m.text;
+            card.appendChild(q);
+
+            if (m.image) {
+                const img = document.createElement('img');
+                img.className = 'mistake-img';
+                img.src = m.image;
+                img.alt = '';
+                img.onclick = () => app.openImage(m.image);
+                card.appendChild(img);
+            }
+
+            const wrong = document.createElement('div');
+            wrong.className = 'mistake-wrong';
+            wrong.textContent = `Tvoje odpověď: ${m.selected}`;
+            card.appendChild(wrong);
+
+            const right = document.createElement('div');
+            right.className = 'mistake-right';
+            right.textContent = `Správně: ${m.correct}`;
+            card.appendChild(right);
+
+            if (m.explanation) {
+                const exp = document.createElement('div');
+                exp.className = 'help-explanation';
+                exp.textContent = `💡 ${m.explanation}`;
+                card.appendChild(exp);
+            }
+
+            list.appendChild(card);
+        });
+
+        section.classList.remove('hidden');
     },
 
     fetchLeaderboard: async (mode) => {

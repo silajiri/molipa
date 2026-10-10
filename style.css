@@ -888,3 +888,51 @@ tr.active-row {
     filter: grayscale(0) contrast(1) opacity(1);
     transform: scale(1.08) translateY(-2px);
 }
+
+/* --- Přehled chyb na konci hry --- */
+#mistakes-section {
+    margin: 20px 0;
+    text-align: left;
+}
+
+#mistakes-section h3 {
+    margin-bottom: 12px;
+    color: var(--danger);
+}
+
+.mistake-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--danger);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.mistake-question {
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.mistake-img {
+    display: block;
+    max-width: 100%;
+    height: 140px;
+    object-fit: contain;
+    border-radius: 6px;
+    margin: 6px 0 10px;
+    cursor: zoom-in;
+}
+
+.mistake-wrong {
+    color: var(--danger);
+    font-size: 0.95rem;
+}
+
+.mistake-right {
+    color: #064e3b;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
