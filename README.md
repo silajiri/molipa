@@ -16,13 +16,14 @@ Interaktivní webová aplikace vytvořená pro **MO Lípa nad Orlicí** s cílem
 
 * **🌐 Centralizovaný Žebříček:** Výsledky jsou ukládány v databázi **Firebase Firestore**, díky čemuž jsou žebříčky sdílené a konzistentní pro všechny uživatele na jakémkoliv zařízení.
 * **🎣 Kvíz na body:** Mix otázek – poznávání ryb z fotografie i znalost jejich parametrů (délka, hájení).
-* **⏱️ Kvíz na čas:** Stejný mix otázek jako Kvíz na body, ale hodnotí se celkový čas dokončení.
+* **⏱️ Kvíz na čas:** Stejný mix otázek jako Kvíz na body, ale hodnotí se celkový čas dokončení. Za každou špatnou odpověď se k času přičítají **3 sekundy**, takže rychlé tipování se nevyplatí.
 * **🐠 Poznávačka:** Výhradně fotografie ryb – hráč identifikuje rybu z nabízených čtyř možností. Určeno k tréninku vizuálního rozpoznávání.
 * **📜 Znalec řádu:** Samostatný kvízový modul testující teoretické znalosti z Rybářského řádu s automatickým vysvětlením správné odpovědi.
 * **⚙️ Flexibilní nastavení:** Možnost zvolit vlastní počet otázek (až 50+).
 * **🖼️ Fotogalerie v atlasu:** Kliknutím na fotografii ryby se otevře interaktivní galerie – hráč může listovat všemi dostupnými fotkami dané ryby pomocí šipek, klávesnice (← →) nebo dotyku. Galerie zobrazuje název ryby a čítač snímků.
 * **🔍 Atlas s detailními informacemi:** Seznam ryb, jejich míry a hájení. Karty s více fotografiemi jsou označeny odznakem s počtem snímků.
 * **❓ Nápověda Znalce řádu:** Plovoucí tlačítko v menu zpřístupní přehled všech otázek včetně správných odpovědí a vysvětlení – vhodné pro přípravu před hrou.
+* **💾 Zapamatování přezdívky:** Jméno se uloží v prohlížeči a příště se předvyplní. Změnit ho lze tlačítkem ✎ v záhlaví.
 * **🎭 Emoji přezdívky:** Na přihlašovací obrazovce lze do jména jedním kliknutím vložit tematické emoji.
 * **📱 Optimalizace pro mobil:** Kompaktní rozvržení zajišťuje přehledné zobrazení celého kvízu bez nutnosti rolování.
 
