@@ -16,6 +16,7 @@ const app = {
     currentQuestionIndex: 0,
     questions: [],
     mistakes: [], // chybně zodpovězené otázky v aktuální hře
+    isRetry: false, // true = opakování chyb (výsledek se neukládá do žebříčku)
     maxQuestions: 5,
     
     // Proměnné pro časovku
@@ -238,10 +239,29 @@ const app = {
         if (isNaN(count) || count < 1) count = 5;
         app.maxQuestions = count;
 
+        app.isRetry = false;
+        app.generateQuestions();
+        app.launchQuiz();
+    },
+
+    // Opakování otázek, které hráč právě zkazil (bez ukládání do žebříčku a bez časovače)
+    startRetry: () => {
+        if (app.mistakes.length === 0) return;
+
+        app.isRetry = true;
+        if (app.gameMode === 'timeattack') app.gameMode = 'classic';
+        app.questions = app.shuffle(app.mistakes.map(m => ({
+            ...m.question,
+            options: app.shuffle(m.question.options)
+        })));
+        app.launchQuiz();
+    },
+
+    launchQuiz: () => {
+        const mode = app.gameMode;
         app.score = 0;
         app.mistakes = [];
         app.currentQuestionIndex = 0;
-        app.generateQuestions();
         app.showScreen('screen-quiz');
 
         document.getElementById('status-classic').classList.add('hidden');
@@ -430,6 +450,7 @@ const app = {
         if (!isCorrect) {
             const q = app.questions[app.currentQuestionIndex];
             app.mistakes.push({
+                question: q,
                 text: q.text,
                 image: q.image || null,
                 selected: selected,
@@ -556,18 +577,23 @@ const app = {
                 Dosažené body: <span style="font-size:1.5em; font-weight:bold">${app.score} / ${app.questions.length}</span><br>
                 Výsledný čas: <span style="font-size:1.5em; font-weight:bold">${timeString}</span>
             `;
-            app.saveResultTimeAttack(app.score, finalTime);
+            if (!app.isRetry) app.saveResultTimeAttack(app.score, finalTime);
         } else if (app.gameMode === 'knowledge') {
             resultText = `Získal jsi <span style="font-size:1.5em; font-weight:bold">${app.score}</span> bodů z ${app.questions.length}.`;
-            app.saveResultKnowledge(app.score);
+            if (!app.isRetry) app.saveResultKnowledge(app.score);
         } else if (app.gameMode === 'poznavacka') {
             resultText = `Získal jsi <span style="font-size:1.5em; font-weight:bold">${app.score}</span> bodů z ${app.questions.length}.`;
-            app.saveResultPoznavacka(app.score);
+            if (!app.isRetry) app.saveResultPoznavacka(app.score);
         } else {
             resultText = `Získal jsi <span style="font-size:1.5em; font-weight:bold">${app.score}</span> bodů z ${app.questions.length}.`;
-            app.saveResultClassic(app.score);
+            if (!app.isRetry) app.saveResultClassic(app.score);
         }
 
+        if (app.isRetry) {
+            resultText += `<br><small>Opakování chyb se do žebříčku neukládá.</small>`;
+        }
+        document.getElementById('result-title').textContent =
+            app.isRetry ? 'Opakování dokončeno!' : 'Kvíz dokončen!';
         document.getElementById('result-text').innerHTML = resultText;
         app.renderMistakes();
         app.showScreen('screen-result');
