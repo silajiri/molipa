@@ -339,9 +339,153 @@ const app = {
         if (app.timerInterval) clearInterval(app.timerInterval);
     },
 
+    // --- HRA „CO SE DNES NECHYTÁ?“ (režim 'situace') ---
+
+    MESICE: ['ledna', 'února', 'března', 'dubna', 'května', 'června',
+             'července', 'srpna', 'září', 'října', 'listopadu', 'prosince'],
+    DNY_V_MESICI: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+
+    randInt: (min, max) => min + Math.floor(Math.random() * (max - min + 1)),
+
+    // "16. března" -> číslo 316 (měsíc*100 + den), pro porovnávání dat bez roku
+    parseDatum: (text) => {
+        const m = /^(\d+)\.\s*(\S+)$/.exec((text || '').trim());
+        if (!m) return null;
+        const month = app.MESICE.indexOf(m[2]);
+        return month < 0 ? null : (month + 1) * 100 + parseInt(m[1]);
+    },
+
+    formatDatum: (md) => `${md % 100}. ${app.MESICE[Math.floor(md / 100) - 1]}`,
+
+    randomDatum: () => {
+        const month = app.randInt(1, 12);
+        return month * 100 + app.randInt(1, app.DNY_V_MESICI[month - 1]);
+    },
+
+    // Interval hájení ryby jako {od, do} nebo null (chráněné ryby řeší isChranena)
+    getHajeni: (fish) => {
+        const od = app.parseDatum(fish.doba_hajeni_od);
+        const do_ = app.parseDatum(fish.doba_hajeni_do);
+        return (od && do_) ? { od, do: do_ } : null;
+    },
+
+    isChranena: (fish) =>
+        fish.doba_hajeni_od === 'Celoročně' && fish.doba_hajeni_do === 'chráněný',
+
+    // Je datum v hájení? Podporuje i interval přes přelom roku (např. 1. prosince – 31. srpna)
+    jeVHajeni: (hajeni, md) => hajeni.od <= hajeni.do
+        ? (md >= hajeni.od && md <= hajeni.do)
+        : (md >= hajeni.od || md <= hajeni.do),
+
+    randomDatumPodleHajeni: (hajeni, vHajeni) => {
+        for (let i = 0; i < 200; i++) {
+            const md = app.randomDatum();
+            if (app.jeVHajeni(hajeni, md) === vHajeni) return md;
+        }
+        return app.randomDatum();
+    },
+
+    // Rozhodnutí podle pravidel: smí si hráč rybu ponechat? (jediný zdroj pravdy pro správnou odpověď)
+    posudSituaci: (fish, md, delka) => {
+        if (app.isChranena(fish)) return { keep: false, reason: 'chranena' };
+        const hajeni = app.getHajeni(fish);
+        if (hajeni && app.jeVHajeni(hajeni, md)) return { keep: false, reason: 'hajeni' };
+        if (fish.min_delka_cm && delka < fish.min_delka_cm) return { keep: false, reason: 'mira' };
+        return { keep: true, reason: 'ok' };
+    },
+
+    // Sestaví situaci s požadovaným výsledkem; null, pokud to pro danou rybu nejde
+    sestavSituaci: (fish, chceKeep) => {
+        const hajeni = app.getHajeni(fish);
+        const min = fish.min_delka_cm || 0;
+        const okDelka = () => min ? min + app.randInt(0, 25) : app.randInt(15, 60);
+        let md, delka;
+
+        if (chceKeep) {
+            if (app.isChranena(fish)) return null;
+            md = hajeni ? app.randomDatumPodleHajeni(hajeni, false) : app.randomDatum();
+            delka = okDelka();
+        } else {
+            const duvody = [];
+            if (app.isChranena(fish)) duvody.push('chranena');
+            if (hajeni) duvody.push('hajeni');
+            if (min) duvody.push('mira');
+            if (duvody.length === 0) return null;
+
+            const duvod = duvody[app.randInt(0, duvody.length - 1)];
+            if (duvod === 'chranena') {
+                md = app.randomDatum();
+                delka = app.randInt(15, 60);
+            } else if (duvod === 'hajeni') {
+                md = app.randomDatumPodleHajeni(hajeni, true);
+                delka = okDelka();
+            } else {
+                md = hajeni ? app.randomDatumPodleHajeni(hajeni, false) : app.randomDatum();
+                delka = Math.max(5, min - app.randInt(1, Math.max(1, Math.round(min * 0.35))));
+            }
+        }
+        return { md, delka };
+    },
+
+    vysvetleniSituace: (fish, md, delka, verdict) => {
+        const datum = app.formatDatum(md);
+        const hajeni = app.getHajeni(fish);
+        if (verdict.reason === 'chranena') {
+            return `🚫 ${fish.nazev_cz} je celoročně chráněná ryba, musíš ji vždy pustit zpět.`;
+        }
+        if (verdict.reason === 'hajeni') {
+            return `Doba hájení: ${fish.doba_hajeni_od} – ${fish.doba_hajeni_do}. Dne ${datum} je ryba v hájení, musíš ji pustit.`;
+        }
+        if (verdict.reason === 'mira') {
+            return `Minimální lovná míra je ${fish.min_delka_cm} cm, tvoje ryba má ${delka} cm. Je podměrečná, pusť ji.`;
+        }
+        const casti = [];
+        if (fish.min_delka_cm) casti.push(`míra ${fish.min_delka_cm} cm je splněna (${delka} cm)`);
+        else casti.push('míra není stanovena');
+        casti.push(hajeni
+            ? `${datum} je mimo hájení (${fish.doba_hajeni_od} – ${fish.doba_hajeni_do})`
+            : 'ryba nemá dobu hájení');
+        return `Ryba je v pořádku: ${casti.join(', ')}. Můžeš si ji ponechat.`;
+    },
+
+    generateSituations: () => {
+        const KEEP = '✅ Ponechat si';
+        const RELEASE = '↩️ Pustit zpět';
+        const questions = [];
+        let pool = app.shuffle(app.dataRyby);
+
+        while (questions.length < app.maxQuestions) {
+            if (pool.length === 0) pool = app.shuffle(app.dataRyby);
+            const fish = pool.pop();
+
+            // Cca polovina situací má skončit ponecháním, polovina puštěním
+            const chceKeep = Math.random() < 0.5;
+            const sit = app.sestavSituaci(fish, chceKeep) || app.sestavSituaci(fish, !chceKeep);
+            if (!sit) continue;
+
+            const verdict = app.posudSituaci(fish, sit.md, sit.delka);
+            questions.push({
+                text: `Je ${app.formatDatum(sit.md)}. Chytil jsi rybu: ${fish.nazev_cz}, ${sit.delka} cm. Co uděláš?`,
+                image: fish.fotografie && fish.fotografie.length > 0
+                    ? 'assets/images/' + fish.fotografie[app.randInt(0, fish.fotografie.length - 1)]
+                    : null,
+                options: [KEEP, RELEASE],
+                correctAnswer: verdict.keep ? KEEP : RELEASE,
+                explanation: app.vysvetleniSituace(fish, sit.md, sit.delka, verdict)
+            });
+        }
+        return questions;
+    },
+
     generateQuestions: () => {
         app.questions = [];
-        
+
+        // --- 0. Mód CO SE DNES NECHYTÁ? (situace z míry a hájení) ---
+        if (app.gameMode === 'situace') {
+            app.questions = app.generateSituations();
+            return;
+        }
+
         // --- 1. Mód ZNALEC ŘÁDU (z data_rad.json) ---
         if (app.gameMode === 'knowledge') {
             const shuffled = app.shuffle(app.dataRad);
@@ -582,6 +726,7 @@ const app = {
     saveResultTimeAttack: (score, timeMs) => { app.saveScoreToDatabase(score, 'timeattack', timeMs); },
     saveResultKnowledge: (score) => { app.saveScoreToDatabase(score, 'knowledge'); },
     saveResultPoznavacka: (score) => { app.saveScoreToDatabase(score, 'poznavacka'); },
+    saveResultSituace: (score) => { app.saveScoreToDatabase(score, 'situace'); },
 
     finishQuiz: () => {
         app.stopTimer();
@@ -635,6 +780,9 @@ const app = {
         } else if (app.gameMode === 'poznavacka') {
             resultText = `Získal jsi <span style="font-size:1.5em; font-weight:bold">${app.score}</span> bodů z ${app.questions.length}.`;
             if (!app.isRetry) app.saveResultPoznavacka(app.score);
+        } else if (app.gameMode === 'situace') {
+            resultText = `Správně jsi rozhodl <span style="font-size:1.5em; font-weight:bold">${app.score}</span> z ${app.questions.length} situací.`;
+            if (!app.isRetry) app.saveResultSituace(app.score);
         } else {
             resultText = `Získal jsi <span style="font-size:1.5em; font-weight:bold">${app.score}</span> bodů z ${app.questions.length}.`;
             if (!app.isRetry) app.saveResultClassic(app.score);
@@ -757,6 +905,9 @@ const app = {
             sortField = 'score';
         } else if (mode === 'poznavacka') {
             document.getElementById('tab-poznavacka').classList.add('active');
+            sortField = 'score';
+        } else if (mode === 'situace') {
+            document.getElementById('tab-situace').classList.add('active');
             sortField = 'score';
         } else {
             document.getElementById('tab-time').classList.add('active');

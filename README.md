@@ -18,6 +18,7 @@ Interaktivní webová aplikace vytvořená pro **MO Lípa nad Orlicí** s cílem
 * **🎣 Kvíz na body:** Mix otázek – poznávání ryb z fotografie i znalost jejich parametrů (délka, hájení).
 * **⏱️ Kvíz na čas:** Stejný mix otázek jako Kvíz na body, ale hodnotí se celkový čas dokončení. Za každou špatnou odpověď se k času přičítají **3 sekundy**, takže rychlé tipování se nevyplatí.
 * **🐠 Poznávačka:** Výhradně fotografie ryb – hráč identifikuje rybu z nabízených čtyř možností. Určeno k tréninku vizuálního rozpoznávání.
+* **🤔 Co se dnes nechytá?:** Hra na praktické použití pravidel. Hráč dostane situaci (datum, ryba, naměřená délka) a rozhoduje, zda si rybu smí **ponechat**, nebo ji musí **pustit zpět**. Vyhodnocuje se podle minimální lovné míry a doby hájení z `data_ryby.json`, otázky se generují automaticky. Po chybě se zobrazí vysvětlení.
 * **📜 Znalec řádu:** Samostatný kvízový modul testující teoretické znalosti z Rybářského řádu s automatickým vysvětlením správné odpovědi.
 * **⚙️ Flexibilní nastavení:** Možnost zvolit vlastní počet otázek (až 50+).
 * **🖼️ Fotogalerie v atlasu:** Kliknutím na fotografii ryby se otevře interaktivní galerie – hráč může listovat všemi dostupnými fotkami dané ryby pomocí šipek, klávesnice (← →) nebo dotyku. Galerie zobrazuje název ryby a čítač snímků.

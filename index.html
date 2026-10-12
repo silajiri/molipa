@@ -57,6 +57,8 @@
             <p class="mode-hint">⏱️ Měří se čas, ale pozor: za každou špatnou odpověď se přičte <strong>+3 s</strong>. Rychlé tipování se nevyplatí.</p>
             <button class="big-btn primary" style="background-color: #8e44ad;" onclick="app.startQuiz('knowledge')">📜 Znalec řádu</button>
             <button class="big-btn primary" style="background-color: #27ae60;" onclick="app.startQuiz('poznavacka')">🐠 Poznávačka</button>
+            <button class="big-btn primary" style="background-color: #d35400;" onclick="app.startQuiz('situace')">🤔 Co se dnes nechytá?</button>
+            <p class="mode-hint">🤔 Dostaneš situaci: datum, rybu a její délku. Rozhodni, jestli si ji smíš <strong>ponechat</strong>, nebo ji musíš <strong>pustit zpět</strong>. Platí minimální lovná míra a doba hájení.</p>
 
             <button class="big-btn secondary" onclick="app.showLearning()">📖 Atlas ryb</button>
             <button class="big-btn secondary" onclick="app.showLeaderboard('classic')">🏆 Žebříček</button>
@@ -109,6 +111,7 @@
                 <button id="tab-time" class="tab-btn" onclick="app.showLeaderboard('timeattack')">Kvíz na čas</button>
                 <button id="tab-knowledge" class="tab-btn" onclick="app.showLeaderboard('knowledge')">Řád</button>
                 <button id="tab-poznavacka" class="tab-btn" onclick="app.showLeaderboard('poznavacka')">Poznávačka</button>
+                <button id="tab-situace" class="tab-btn" onclick="app.showLeaderboard('situace')">Co se nechytá</button>
             </div>
 
             <table id="leaderboard-table">
