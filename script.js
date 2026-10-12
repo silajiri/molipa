@@ -92,6 +92,16 @@ const app = {
         return `${fish.min_delka_cm} cm`;
     },
 
+    // Fisher–Yates: vrací zamíchanou kopii, původní pole zůstává beze změny
+    shuffle: (arr) => {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    },
+
     formatTime: (ms) => {
         const totalSeconds = Math.floor(ms / 1000);
         const minutes = Math.floor(totalSeconds / 60);
@@ -271,14 +281,13 @@ const app = {
         
         // --- 1. Mód ZNALEC ŘÁDU (z data_rad.json) ---
         if (app.gameMode === 'knowledge') {
-            const availableQuestions = [...app.dataRad]; 
-            const shuffled = availableQuestions.sort(() => Math.random() - 0.5);
-            const selected = shuffled.slice(0, Math.min(app.maxQuestions, availableQuestions.length));
-            
+            const shuffled = app.shuffle(app.dataRad);
+            const selected = shuffled.slice(0, Math.min(app.maxQuestions, app.dataRad.length));
+
             app.questions = selected.map(q => ({
                 text: q.otazka,
-                image: null, 
-                options: q.moznosti.sort(() => Math.random() - 0.5), 
+                image: null,
+                options: app.shuffle(q.moznosti),
                 correctAnswer: q.spravna_odpoved,
                 explanation: q.vysvetleni
             }));
@@ -288,14 +297,14 @@ const app = {
         // --- 2. Mód POZNÁVAČKA (pouze foto) ---
         if (app.gameMode === 'poznavacka') {
             const fishWithPhotos = app.dataRyby.filter(f => f.fotografie && f.fotografie.length > 0);
-            const shuffled = [...fishWithPhotos].sort(() => Math.random() - 0.5);
+            const shuffled = app.shuffle(fishWithPhotos);
             const selected = shuffled.slice(0, Math.min(app.maxQuestions, fishWithPhotos.length));
 
             app.questions = selected.map(targetFish => {
                 const randomPhotoIdx = Math.floor(Math.random() * targetFish.fotografie.length);
                 const correctVal = targetFish.nazev_cz;
                 let options = [correctVal];
-                const otherFish = fishWithPhotos.filter(f => f.nazev_cz !== correctVal).sort(() => Math.random() - 0.5);
+                const otherFish = app.shuffle(fishWithPhotos.filter(f => f.nazev_cz !== correctVal));
                 let i = 0;
                 while (options.length < 4 && i < otherFish.length) {
                     options.push(otherFish[i].nazev_cz);
@@ -304,7 +313,7 @@ const app = {
                 return {
                     text: "Jak se jmenuje ryba na obrázku?",
                     image: 'assets/images/' + targetFish.fotografie[randomPhotoIdx],
-                    options: options.sort(() => Math.random() - 0.5),
+                    options: app.shuffle(options),
                     correctAnswer: correctVal,
                     explanation: null
                 };
@@ -313,11 +322,11 @@ const app = {
         }
 
         // --- 3. Módy KVÍZ (Classic + Timeattack) ---
-        let shuffledPool = [...app.dataRyby].sort(() => Math.random() - 0.5);
+        let shuffledPool = app.shuffle(app.dataRyby);
 
         for (let i = 0; i < app.maxQuestions; i++) {
             if (shuffledPool.length === 0) {
-                shuffledPool = [...app.dataRyby].sort(() => Math.random() - 0.5);
+                shuffledPool = app.shuffle(app.dataRyby);
             }
             const targetFish = shuffledPool.pop();
             const type = Math.random() > 0.5 ? 1 : 2;
@@ -371,7 +380,7 @@ const app = {
                 if (!options.includes(wrongVal)) options.push(wrongVal);
             }
             
-            questionObj.options = options.sort(() => Math.random() - 0.5);
+            questionObj.options = app.shuffle(options);
             app.questions.push(questionObj);
         }
     },
