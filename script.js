@@ -22,6 +22,8 @@ const app = {
     // Proměnné pro časovku
     timerInterval: null,
     startTime: 0,
+    penaltyMs: 0,
+    PENALTY_PER_MISTAKE_MS: 3000, // Kvíz na čas: trest za každou chybnou odpověď
 
     // Proměnné pro galerii
     galleryFishIndex: 0,
@@ -137,6 +139,9 @@ const app = {
             }
         });
 
+        // Předvyplnění zapamatované přezdívky
+        document.getElementById('username-input').value = app.loadSavedUsername();
+
         // Načtení statických dat (Ryby a Řád)
         try {
             const resRyby = await fetch('data/data_ryby.json');
@@ -167,10 +172,38 @@ const app = {
         input.focus();
     },
 
+    // Zapamatování přezdívky (localStorage může být nedostupné, např. v anonymním okně)
+    USERNAME_KEY: 'molipa_username',
+
+    loadSavedUsername: () => {
+        try {
+            return localStorage.getItem(app.USERNAME_KEY) || '';
+        } catch (e) {
+            return '';
+        }
+    },
+
+    saveUsername: (name) => {
+        try {
+            localStorage.setItem(app.USERNAME_KEY, name);
+        } catch (e) { /* nevadí, jen se jméno nezapamatuje */ }
+    },
+
+    changeUser: () => {
+        app.stopTimer();
+        app.user = null;
+        document.getElementById('user-display').classList.add('hidden');
+        app.showScreen('screen-login');
+        const input = document.getElementById('username-input');
+        input.focus();
+        input.select();
+    },
+
     login: () => {
         const name = document.getElementById('username-input').value.trim();
         if (name) {
             app.user = name;
+            app.saveUsername(name);
             document.getElementById('current-username').textContent = name;
             document.getElementById('user-display').classList.remove('hidden');
             app.showMenu();
@@ -260,6 +293,7 @@ const app = {
     launchQuiz: () => {
         const mode = app.gameMode;
         app.score = 0;
+        app.penaltyMs = 0;
         app.mistakes = [];
         app.currentQuestionIndex = 0;
         app.showScreen('screen-quiz');
@@ -287,9 +321,18 @@ const app = {
         const timerEl = document.getElementById('timer-val');
         app.timerInterval = setInterval(() => {
             const now = Date.now();
-            const elapsed = now - app.startTime;
+            const elapsed = now - app.startTime + app.penaltyMs;
             timerEl.textContent = app.formatTime(elapsed);
         }, 50);
+    },
+
+    // Krátce zobrazí u časovače „+3 s“ po chybné odpovědi
+    flashPenalty: () => {
+        const el = document.getElementById('penalty-flash');
+        el.textContent = `+${app.PENALTY_PER_MISTAKE_MS / 1000} s`;
+        el.classList.remove('show');
+        void el.offsetWidth; // restart animace
+        el.classList.add('show');
     },
 
     stopTimer: () => {
@@ -460,11 +503,15 @@ const app = {
         }
 
         if (app.gameMode === 'timeattack') {
+            // Zamezí dvojitému kliknutí během krátké pauzy před další otázkou
+            document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
             if (isCorrect) {
                 app.score++;
                 btn.classList.add('correct');
             } else {
                 btn.classList.add('wrong');
+                app.penaltyMs += app.PENALTY_PER_MISTAKE_MS;
+                app.flashPenalty();
             }
             setTimeout(() => app.nextQuestion(), 300);
             return; 
@@ -571,11 +618,15 @@ const app = {
 
         if (app.gameMode === 'timeattack') {
             const now = Date.now();
-            const finalTime = now - app.startTime;
+            const finalTime = now - app.startTime + app.penaltyMs;
             const timeString = app.formatTime(finalTime);
+            const mistakeCount = app.questions.length - app.score;
+            const penaltyNote = app.penaltyMs > 0
+                ? `<br><small>včetně penalizace +${app.formatTime(app.penaltyMs)} (${mistakeCount}× chyba)</small>`
+                : '';
             resultText = `
                 Dosažené body: <span style="font-size:1.5em; font-weight:bold">${app.score} / ${app.questions.length}</span><br>
-                Výsledný čas: <span style="font-size:1.5em; font-weight:bold">${timeString}</span>
+                Výsledný čas: <span style="font-size:1.5em; font-weight:bold">${timeString}</span>${penaltyNote}
             `;
             if (!app.isRetry) app.saveResultTimeAttack(app.score, finalTime);
         } else if (app.gameMode === 'knowledge') {

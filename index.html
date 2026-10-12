@@ -13,7 +13,9 @@
 
     <header>
         <h1>🐟 Rybářský Znalec</h1>
-        <div id="user-display" class="hidden">Rybář: <span id="current-username"></span></div>
+        <div id="user-display" class="hidden">Rybář: <span id="current-username"></span>
+            <button type="button" id="change-user-btn" onclick="app.changeUser()" title="Změnit jméno">✎</button>
+        </div>
     </header>
 
     <main id="app">
@@ -52,6 +54,7 @@
 
             <button class="big-btn primary" onclick="app.startQuiz('classic')">🎣 Kvíz na body</button>
             <button class="big-btn danger-btn" onclick="app.startQuiz('timeattack')">⏱️ Kvíz na čas</button>
+            <p class="mode-hint">⏱️ Měří se čas, ale pozor: za každou špatnou odpověď se přičte <strong>+3 s</strong>. Rychlé tipování se nevyplatí.</p>
             <button class="big-btn primary" style="background-color: #8e44ad;" onclick="app.startQuiz('knowledge')">📜 Znalec řádu</button>
             <button class="big-btn primary" style="background-color: #27ae60;" onclick="app.startQuiz('poznavacka')">🐠 Poznávačka</button>
 
@@ -74,7 +77,7 @@
             </div>
             
             <div id="status-time" class="quiz-status hidden">
-                <div id="timer-container">⏱️ <span id="timer-val">00:00</span></div>
+                <div id="timer-container">⏱️ <span id="timer-val">00:00</span><span id="penalty-flash"></span></div>
                 <div>Otázka: <span id="q-current-time">1</span>/<span id="q-total-time">10</span></div>
             </div>
 
