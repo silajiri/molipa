@@ -893,9 +893,15 @@ tr.active-row {
     font-weight: 800;
     color: var(--primary-dark);
     font-size: 1.1rem;
-    margin-bottom: 20px;
+    margin-bottom: 4px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
+}
+
+.org-revir {
+    color: var(--primary-dark);
+    font-size: 0.95rem;
+    margin: 0 0 20px;
 }
 
 .logos-row {

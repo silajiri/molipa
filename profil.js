@@ -33,9 +33,76 @@ app.profil = {
     },
 
     save: () => {
+        app.profil.saveLocal();
+        app.profil.naplanujSync();
+    },
+
+    saveLocal: () => {
         try {
             localStorage.setItem(app.profil.key(), JSON.stringify(app.profil.data));
         } catch (e) { /* nevadí, profil se jen nezapamatuje */ }
+    },
+
+    // --- Přenos mezi zařízeními (Firestore, kolekce „profily“) ---
+    // Profil se páruje jen podle přezdívky. Slučuje se vždy „po maximech“ (XP, počty úlovků,
+    // rekordy), takže žádné zařízení nemůže druhému postup snížit. Když databáze není dostupná
+    // nebo zápis nepovolí pravidla, hra tiše pokračuje jen s localStorage. Žebříčku se to netýká.
+    CLOUD_KOLEKCE: 'profily',
+    cloudVypnuto: false,
+    syncTimer: null,
+
+    cloudDoc: () => {
+        if (app.profil.cloudVypnuto || typeof db === 'undefined' || !db || !app.user) return null;
+        return db.collection(app.profil.CLOUD_KOLEKCE).doc('u_' + encodeURIComponent(app.user.toLowerCase()));
+    },
+
+    cislo: (x) => (Number.isFinite(x) && x > 0 ? Math.floor(x) : 0),
+
+    sloucit: (a, b) => {
+        const c = app.profil.cislo;
+        const out = { xp: Math.max(c(a.xp), c(b.xp)), vypravy: Math.max(c(a.vypravy), c(b.vypravy)), sbirka: {} };
+        const sa = a.sbirka || {}, sb = b.sbirka || {};
+        new Set([...Object.keys(sa), ...Object.keys(sb)]).forEach(id => {
+            const x = sa[id] || {}, y = sb[id] || {};
+            out.sbirka[id] = { pocet: Math.max(c(x.pocet), c(y.pocet)), max: Math.max(c(x.max), c(y.max)) };
+        });
+        return out;
+    },
+
+    stejne: (a, b) => JSON.stringify(app.profil.sloucit(a, {})) === JSON.stringify(app.profil.sloucit(b, {})),
+
+    naplanujSync: () => {
+        const p = app.profil;
+        if (!p.cloudDoc()) return;
+        clearTimeout(p.syncTimer);
+        p.syncTimer = setTimeout(p.sync, 2500);
+    },
+
+    // Stáhne profil z databáze, sloučí s místním a případný rozdíl zapíše na obě strany
+    sync: async () => {
+        const p = app.profil;
+        clearTimeout(p.syncTimer);
+        const doc = p.cloudDoc();
+        if (!doc) return;
+        const user = app.user;
+        try {
+            const snap = await doc.get();
+            if (app.user !== user) return;   // mezitím se přihlásil někdo jiný
+            const vzdaleny = snap.exists ? snap.data() : {};
+            const slouceny = p.sloucit(p.data, vzdaleny);
+            if (!p.stejne(slouceny, p.data)) {
+                p.data = slouceny;
+                p.saveLocal();
+                p.render();
+            }
+            if (!snap.exists || !p.stejne(slouceny, vzdaleny)) {
+                await doc.set({ name: user, ...slouceny, updated: firebase.firestore.FieldValue.serverTimestamp() });
+            }
+        } catch (e) {
+            // Typicky „permission-denied“, dokud pravidla Firestore kolekci profily nepovolí
+            if (e && e.code === 'permission-denied') p.cloudVypnuto = true;
+            console.warn('Profil se nepodařilo synchronizovat:', e && e.code ? e.code : e);
+        }
     },
 
     indexHodnosti: (xp) => {

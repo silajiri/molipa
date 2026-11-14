@@ -39,6 +39,7 @@
 
             <div class="partners-footer">
                 <p class="org-name">MO Lípa nad Orlicí</p>
+                <p class="org-revir">Revír č. <strong>451 061</strong> – Orlice Divoká 1</p>
                 <div class="logos-row">
                     <img src="assets/images/crs.jpg" alt="ČRS" class="partner-logo" title="Český rybářský svaz">
                     <img src="assets/images/lipa.png" alt="Lípa nad Orlicí" class="partner-logo" title="Lípa nad Orlicí">
@@ -150,10 +151,13 @@
                         <ellipse cx="376" cy="170" rx="2.6" ry="8" fill="#6b4226"/><ellipse cx="381" cy="182" rx="2.4" ry="7" fill="#6b4226"/><ellipse cx="396" cy="190" rx="2.2" ry="6" fill="#6b4226"/>
                     </g>
                     <path id="vy-line" d="" fill="none" stroke="#f8fafc" stroke-width="0.9"/>
+                    <clipPath id="vy-float-clip"><rect x="-12" y="-80" width="24" height="82"/></clipPath>
                     <g id="vy-float" style="display:none">
-                        <line x1="0" y1="-13" x2="0" y2="-5" stroke="#1e293b" stroke-width="1"/>
-                        <ellipse cx="0" cy="-1" rx="3.6" ry="6" fill="#fff"/>
-                        <path d="M-3.6 -1 a3.6 6 0 0 1 7.2 0z" fill="#ef4444"/>
+                        <g id="vy-float-in">
+                            <line x1="0" y1="-13" x2="0" y2="-5" stroke="#1e293b" stroke-width="1"/>
+                            <ellipse cx="0" cy="-1" rx="3.6" ry="6" fill="#fff"/>
+                            <path d="M-3.6 -1 a3.6 6 0 0 1 7.2 0z" fill="#ef4444"/>
+                        </g>
                     </g>
                     <path d="M0 250 L0 220 L92 212 L102 250Z" fill="#9a6a3c"/>
                     <path d="M0 229 L95 221 M0 239 L98 232 M30 217 L33 250 M64 214 L68 250" stroke="#6f4a26" stroke-width="1.2" fill="none"/>

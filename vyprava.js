@@ -437,6 +437,7 @@
             } else if (v.phase === 'waiting') {
                 sc.fx = sc.target.x;
                 sc.fy = sc.target.y + Math.sin(v.t * 3) * 1.2;
+                sc.sink = 0;
                 if (sc.nibbles.length && v.t >= sc.nibbles[0]) {
                     sc.nibbles.shift();
                     sc.nibbleUntil = v.t + 0.35;
@@ -446,8 +447,12 @@
                 if (v.t < sc.nibbleUntil) sc.fy += Math.abs(Math.sin(v.t * 28)) * 3;
                 if (v.t >= sc.biteAt) v.zaber();
             } else if (v.phase === 'bite') {
-                sc.fx = sc.target.x + Math.sin(v.t * 45) * 1.5;
-                sc.fy = sc.target.y + 9;
+                // Splávek během čtvrt vteřiny zajede celý pod hladinu
+                const bylNad = (sc.sink || 0) < 1;
+                sc.sink = Math.min(1, (sc.sink || 0) + dt / 0.25);
+                if (bylNad && sc.sink >= 1) v.ripple(sc.target.x, sc.target.y);
+                sc.fx = sc.target.x + Math.sin(v.t * 45) * 1.5 * (1 - sc.sink);
+                sc.fy = sc.target.y + sc.sink * 24;
                 if (v.t >= sc.biteDeadline) {
                     v.st.prvniZaber = false;
                     app.fx.play('wrong');
@@ -553,14 +558,24 @@
                 const sag = v.phase === 'waiting' ? 22 : (v.phase === 'flying' ? 8 : 0);
                 const mx = (tipX + sc.fx) / 2;
                 const my = (tipY + sc.fy) / 2 + sag;
-                line.setAttribute('d', `M${tipX} ${tipY} Q${mx} ${my} ${sc.fx} ${sc.fy}`);
+                // Pod hladinou vlasec není vidět – při záběru končí na hladině
+                const ly = v.phase === 'bite' ? Math.min(sc.fy, sc.target.y + 2) : sc.fy;
+                line.setAttribute('d', `M${tipX} ${tipY} Q${mx} ${my} ${sc.fx} ${ly}`);
             } else {
                 // Vlasec visí ze špičky prutu
                 line.setAttribute('d', `M${tipX} ${tipY} q2 30 -4 52`);
             }
 
             float.style.display = sc.floatVisible ? '' : 'none';
-            if (sc.floatVisible) float.setAttribute('transform', `translate(${sc.fx.toFixed(1)} ${sc.fy.toFixed(1)})`);
+            if (sc.floatVisible) {
+                // Na vodě je splávek oříznutý hladinou: co je pod ní, není vidět
+                const naVode = v.phase !== 'flying';
+                const hladina = naVode ? sc.target.y : sc.fy;
+                if (naVode) float.setAttribute('clip-path', 'url(#vy-float-clip)');
+                else float.removeAttribute('clip-path');
+                float.setAttribute('transform', `translate(${sc.fx.toFixed(1)} ${hladina.toFixed(1)})`);
+                $('vy-float-in').setAttribute('transform', `translate(0 ${(sc.fy - hladina).toFixed(1)})`);
+            }
 
             if (v.phase === 'reeling') {
                 hooked.style.display = '';

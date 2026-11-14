@@ -213,6 +213,7 @@ const app = {
             document.getElementById('current-username').textContent = name;
             document.getElementById('user-display').classList.remove('hidden');
             app.showMenu();
+            app.profil.sync();   // dotáhne hodnost a sbírku z jiných zařízení
         } else {
             alert("Zadej jméno!");
         }
