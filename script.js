@@ -11,8 +11,9 @@ const app = {
     user: null,
     
     // Stav hry
-    gameMode: 'classic', // 'classic', 'timeattack', 'knowledge'
+    gameMode: 'classic', // 'classic', 'timeattack', 'knowledge', 'poznavacka', 'situace', 'vyprava'
     score: 0,
+    streak: 0, // počet správných odpovědí v řadě
     currentQuestionIndex: 0,
     questions: [],
     mistakes: [], // chybně zodpovězené otázky v aktuální hře
@@ -139,6 +140,8 @@ const app = {
             }
         });
 
+        app.fx.init();
+
         // Předvyplnění zapamatované přezdívky
         document.getElementById('username-input').value = app.loadSavedUsername();
 
@@ -159,6 +162,8 @@ const app = {
     },
     
     showScreen: (screenId) => {
+        // Odchod z výpravy zastaví její herní smyčku
+        if (app.vyprava && screenId !== 'screen-vyprava') app.vyprava.stop();
         document.querySelectorAll('.screen').forEach(el => el.classList.add('hidden'));
         document.getElementById(screenId).classList.remove('hidden');
         document.querySelector('.help-fab').classList.add('hidden');
@@ -204,6 +209,7 @@ const app = {
         if (name) {
             app.user = name;
             app.saveUsername(name);
+            app.profil.load();
             document.getElementById('current-username').textContent = name;
             document.getElementById('user-display').classList.remove('hidden');
             app.showMenu();
@@ -214,6 +220,7 @@ const app = {
 
     showMenu: () => {
         app.stopTimer();
+        app.profil.render();
         app.showScreen('screen-menu');
         document.querySelector('.help-fab').classList.remove('hidden');
     },
@@ -221,9 +228,16 @@ const app = {
     showLearning: () => {
         const list = document.getElementById('fish-list');
         list.innerHTML = '';
+        const sbirka = app.profil.data.sbirka;
+        document.getElementById('sbirka-info').innerHTML =
+            `🎣 Tvoje sbírka z výprav: <strong>${app.profil.pocetDruhu()} / ${app.dataRyby.length}</strong> druhů. Ulov a poznej rybu na Výpravě k vodě a přibude ti sem.`;
         app.dataRyby.forEach((fish, fishIndex) => {
             const card = document.createElement('div');
-            card.className = 'fish-card';
+            const uloveno = sbirka[fish.id];
+            card.className = 'fish-card' + (uloveno ? ' fish-card-uloveno' : '');
+            const ulovenoHtml = uloveno
+                ? `<p class="fish-uloveno">🎣 Uloveno ${uloveno.pocet}× · rekord ${uloveno.max} cm</p>`
+                : '';
             const imgPath = fish.fotografie.length > 0 ? 'assets/images/' + fish.fotografie[0] : '';
             const photoCount = fish.fotografie.length;
             const badge = photoCount > 1 ? `<span class="photo-count-badge">📷 ${photoCount}</span>` : '';
@@ -237,6 +251,7 @@ const app = {
                 <p><i>${fish.nazev_latinsky}</i></p>
                 <p><strong>Min. délka:</strong> ${app.formatDelka(fish)}</p>
                 <p><strong>Hájení:</strong> ${app.formatHajeni(fish)}</p>
+                ${ulovenoHtml}
             `;
             list.appendChild(card);
         });
@@ -294,6 +309,7 @@ const app = {
         const mode = app.gameMode;
         app.score = 0;
         app.penaltyMs = 0;
+        app.streak = 0;
         app.mistakes = [];
         app.currentQuestionIndex = 0;
         app.showScreen('screen-quiz');
@@ -634,6 +650,18 @@ const app = {
     handleAnswer: (btn, selected, correct, explanation) => {
         const isCorrect = (selected === correct);
 
+        // Zvuk, série správných odpovědí a zkušenosti do profilu
+        if (isCorrect) {
+            app.streak++;
+            app.fx.play('correct');
+            app.profil.addXp(app.isRetry ? 2 : app.profil.XP_ZA_ODPOVED);
+            if (app.streak >= 3) app.fx.toast(`🔥 ${app.streak}× v řadě!`);
+        } else {
+            app.streak = 0;
+            app.fx.play('wrong');
+            btn.classList.add('shake');
+        }
+
         if (!isCorrect) {
             const q = app.questions[app.currentQuestionIndex];
             app.mistakes.push({
@@ -728,38 +756,36 @@ const app = {
     saveResultPoznavacka: (score) => { app.saveScoreToDatabase(score, 'poznavacka'); },
     saveResultSituace: (score) => { app.saveScoreToDatabase(score, 'situace'); },
 
+    // Hodnotící GIF podle úspěšnosti (0–1): winner / well_done / looser
+    showResultGif: (percentage) => {
+        let gifCategory, maxGifs;
+        if (percentage > 0.8) {
+            gifCategory = "winner";
+            maxGifs = 4; // winner_1 až winner_4
+        } else if (percentage >= 0.4) {
+            gifCategory = "well_done";
+            maxGifs = 4; // well_done_1 až well_done_4
+        } else {
+            gifCategory = "looser";
+            maxGifs = 7; // looser_1 až looser_7
+        }
+        const randomNum = Math.floor(Math.random() * maxGifs) + 1;
+        const gifElement = document.getElementById('result-gif');
+        gifElement.src = `assets/images/${gifCategory}_${randomNum}.gif`;
+        gifElement.style.display = "block";
+    },
+
     finishQuiz: () => {
         app.stopTimer();
         
         let resultText = "";
         
-        // --- NOVÁ LOGIKA PRO VÝPOČET ÚSPĚŠNOSTI A VÝBĚR GIFU ---
         const percentage = app.score / app.questions.length;
-        let gifCategory = "";
-        let maxGifs = 0;
-
-        // Podmínky pro výběr kategorie (1a, 1b, 1c)
+        app.showResultGif(percentage);
         if (percentage > 0.8) {
-            gifCategory = "winner";
-            maxGifs = 4; // Máš winner_1 až winner_4
-        } else if (percentage >= 0.4 && percentage <= 0.8) {
-            gifCategory = "well_done";
-            maxGifs = 4; // Máš well_done_1 až well_done_4
-        } else {
-            gifCategory = "looser";
-            maxGifs = 7; // Máš looser_1 až looser_7
+            app.fx.play('fanfare');
+            app.fx.confetti();
         }
-
-        // Náhodný výběr z dostupné sady (1 až maxGifs)
-        const randomNum = Math.floor(Math.random() * maxGifs) + 1;
-        const gifFileName = `${gifCategory}_${randomNum}.gif`;
-        const gifPath = `assets/images/${gifFileName}`; // Cesta dle tvé struktury
-
-        // Nastavení GIFu do HTML a jeho zobrazení
-        const gifElement = document.getElementById('result-gif');
-        gifElement.src = gifPath;
-        gifElement.style.display = "block"; 
-        // --------------------------------------------------------
 
         if (app.gameMode === 'timeattack') {
             const now = Date.now();
@@ -897,7 +923,9 @@ const app = {
         let sortField = 'score';
         let sortDirection = 'desc';
 
-        if (mode === 'classic') {
+        if (mode === 'vyprava') {
+            document.getElementById('tab-vyprava').classList.add('active');
+        } else if (mode === 'classic') {
             document.getElementById('tab-classic').classList.add('active');
             sortField = 'score';
         } else if (mode === 'knowledge') {
@@ -920,7 +948,7 @@ const app = {
                 if (mode === 'timeattack') {
                     app.renderLeaderboardTime(data);
                 } else {
-                    app.renderLeaderboardPoints(data);
+                    app.renderLeaderboardPoints(data, mode === 'vyprava');
                 }
             })
             .catch(e => {
@@ -932,7 +960,8 @@ const app = {
         app.showScreen('screen-leaderboard');
     },
 
-    renderLeaderboardPoints: (data) => {
+    // bodyOnly = režimy, kde se sbírají body bez pevného počtu otázek (Výprava k vodě)
+    renderLeaderboardPoints: (data, bodyOnly = false) => {
         document.getElementById('table-header').innerHTML = `<th>Pořadí</th><th>Jméno</th><th>Body</th><th>Datum</th>`;
         const tbody = document.querySelector('#leaderboard-table tbody');
         tbody.innerHTML = '';
@@ -950,7 +979,7 @@ const app = {
             tdName.textContent = u.name;
             
             const tdScore = document.createElement('td');
-            tdScore.textContent = `${u.score} / ${u.questions}`;
+            tdScore.textContent = bodyOnly ? `${u.score} b.` : `${u.score} / ${u.questions}`;
             
             const tdDate = document.createElement('td');
             tdDate.textContent = u.timestamp;

@@ -8,11 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="vyprava.css">
 </head>
 <body>
 
     <header>
-        <h1>🐟 Rybářský Znalec</h1>
+        <h1><span class="logo-fish">🐟</span> Rybářský Znalec</h1>
+        <button type="button" id="sound-btn" onclick="app.fx.toggleSound()" title="Vypnout zvuky">🔊</button>
         <div id="user-display" class="hidden">Rybář: <span id="current-username"></span>
             <button type="button" id="change-user-btn" onclick="app.changeUser()" title="Změnit jméno">✎</button>
         </div>
@@ -46,27 +48,138 @@
         </section>
 
         <section id="screen-menu" class="screen hidden">
-            
-            <div style="margin-bottom: 20px; background: #e6f7ff; padding: 15px; border-radius: 8px;">
-                <label for="question-count" style="font-weight:bold; margin-right: 10px;">Počet otázek v kvízu:</label>
-                <input type="number" id="question-count" min="1" max="50" value="5" style="width: 60px; padding: 5px; text-align: center; font-size: 1.1rem; border: 1px solid #ccc; border-radius: 4px;">
+
+            <div id="profil-card" class="profil-card"></div>
+
+            <button type="button" class="hero-card" onclick="app.vyprava.start()">
+                <span class="hero-badge">NOVÉ</span>
+                <span class="hero-float" aria-hidden="true"></span>
+                <span class="hero-title">🎣 Výprava k vodě</span>
+                <span class="hero-text">Nahoď, zasekni a zdolej rybu. Poznáš ji? A smíš si ji nechat? Pozor – u vody nikdy nevíš, co zabere…</span>
+                <span class="hero-cta">Vyrazit ▶</span>
+            </button>
+
+            <h3 class="menu-nadpis">Trénink</h3>
+
+            <div class="pocet-otazek">
+                <label for="question-count">Počet otázek v kvízu:</label>
+                <input type="number" id="question-count" min="1" max="50" value="5">
             </div>
 
-            <button class="big-btn primary" onclick="app.startQuiz('classic')">🎣 Kvíz na body</button>
-            <button class="big-btn danger-btn" onclick="app.startQuiz('timeattack')">⏱️ Kvíz na čas</button>
-            <p class="mode-hint">⏱️ Měří se čas, ale pozor: za každou špatnou odpověď se přičte <strong>+3 s</strong>. Rychlé tipování se nevyplatí.</p>
-            <button class="big-btn primary" style="background-color: #8e44ad;" onclick="app.startQuiz('knowledge')">📜 Znalec řádu</button>
-            <button class="big-btn primary" style="background-color: #27ae60;" onclick="app.startQuiz('poznavacka')">🐠 Poznávačka</button>
-            <button class="big-btn primary" style="background-color: #d35400;" onclick="app.startQuiz('situace')">🤔 Co se dnes nechytá?</button>
-            <p class="mode-hint">🤔 Dostaneš situaci: datum, rybu a její délku. Rozhodni, jestli si ji smíš <strong>ponechat</strong>, nebo ji musíš <strong>pustit zpět</strong>. Platí minimální lovná míra a doba hájení.</p>
+            <div class="mode-grid">
+                <button type="button" class="mode-tile tile-blue" onclick="app.startQuiz('classic')">
+                    <span class="tile-icon">🎯</span>
+                    <span class="tile-title">Kvíz na body</span>
+                    <span class="tile-text">Poznávání ryb, míry a hájení.</span>
+                </button>
+                <button type="button" class="mode-tile tile-red" onclick="app.startQuiz('timeattack')">
+                    <span class="tile-icon">⏱️</span>
+                    <span class="tile-title">Kvíz na čas</span>
+                    <span class="tile-text">Za každou chybu <strong>+3 s</strong>. Tipování se nevyplatí.</span>
+                </button>
+                <button type="button" class="mode-tile tile-purple" onclick="app.startQuiz('knowledge')">
+                    <span class="tile-icon">📜</span>
+                    <span class="tile-title">Znalec řádu</span>
+                    <span class="tile-text">Otázky z rybářského řádu.</span>
+                </button>
+                <button type="button" class="mode-tile tile-green" onclick="app.startQuiz('poznavacka')">
+                    <span class="tile-icon">🐠</span>
+                    <span class="tile-title">Poznávačka</span>
+                    <span class="tile-text">Poznáš rybu podle fotky?</span>
+                </button>
+                <button type="button" class="mode-tile tile-orange tile-wide" onclick="app.startQuiz('situace')">
+                    <span class="tile-icon">🤔</span>
+                    <span class="tile-title">Co se dnes nechytá?</span>
+                    <span class="tile-text">Datum, ryba a délka: <strong>ponechat</strong>, nebo <strong>pustit</strong>?</span>
+                </button>
+            </div>
 
-            <button class="big-btn secondary" onclick="app.showLearning()">📖 Atlas ryb</button>
-            <button class="big-btn secondary" onclick="app.showLeaderboard('classic')">🏆 Žebříček</button>
+            <div class="menu-dole">
+                <button class="big-btn secondary" onclick="app.showLearning()">📖 Atlas ryb</button>
+                <button class="big-btn secondary" onclick="app.showLeaderboard('vyprava')">🏆 Žebříček</button>
+            </div>
+        </section>
+
+        <section id="screen-vyprava" class="screen hidden">
+            <button class="back-btn" onclick="app.showMenu()">ukončit výpravu</button>
+
+            <div class="vy-hud">
+                <span class="vy-chip" title="Dnešní datum – rozhoduje o hájení">📅 <span id="vy-hud-datum"></span></span>
+                <span class="vy-chip" id="vy-hud-navnady-chip" title="Zbývající návnady">🪱 <span id="vy-hud-navnady">6</span></span>
+                <span class="vy-chip" id="vy-hud-vezirek-chip">🧺 <span id="vy-hud-vezirek">0</span></span>
+                <span class="vy-chip vy-chip-body" id="vy-hud-body-chip" title="Body">⭐ <span id="vy-hud-body">0</span><span id="vy-hud-zlata" class="hidden" title="Zlatá návnada: další ryba za dvojnásobek"> ✨×2</span></span>
+            </div>
+
+            <div id="vy-scene" class="vy-scene">
+                <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="vy-sky" x1="0" y1="0" x2="0" y2="1">
+                            <stop id="vy-sky-top" offset="0" stop-color="#7cc4f5"/>
+                            <stop id="vy-sky-bottom" offset="1" stop-color="#dcf1ff"/>
+                        </linearGradient>
+                        <linearGradient id="vy-water" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stop-color="#4fb3dc"/>
+                            <stop offset="1" stop-color="#0b4f7a"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="400" height="114" fill="url(#vy-sky)"/>
+                    <circle id="vy-sun" cx="300" cy="40" r="15" fill="#ffe066"/>
+                    <g class="vy-cloud vy-cloud-a" fill="#fff" opacity="0.9">
+                        <ellipse cx="0" cy="30" rx="22" ry="8"/><ellipse cx="14" cy="24" rx="14" ry="8"/><ellipse cx="-12" cy="25" rx="11" ry="6"/>
+                    </g>
+                    <g class="vy-cloud vy-cloud-b" fill="#fff" opacity="0.75">
+                        <ellipse cx="0" cy="52" rx="17" ry="6"/><ellipse cx="10" cy="47" rx="10" ry="6"/>
+                    </g>
+                    <path d="M0 114 L0 88 Q50 58 110 84 T240 80 T400 70 L400 114Z" fill="#8cc594"/>
+                    <path d="M0 114 L0 100 Q20 88 42 99 Q60 84 86 99 Q110 88 132 101 Q160 90 190 102 Q220 92 250 103 Q280 90 310 101 Q340 88 368 100 Q385 92 400 98 L400 114Z" fill="#3f8a57"/>
+                    <rect y="112" width="400" height="138" fill="url(#vy-water)"/>
+                    <rect id="vy-tint" width="400" height="250" fill="#ffb27a" opacity="0"/>
+                    <g id="vy-waves"></g>
+                    <g class="vy-shadow vy-shadow-a"><ellipse rx="14" ry="4.5"/><path d="M-12 0 l-9 -5 v10z"/></g>
+                    <g class="vy-shadow vy-shadow-b"><ellipse rx="10" ry="3.5"/><path d="M9 0 l7 -4 v8z"/></g>
+                    <g class="vy-shadow vy-shadow-c"><ellipse rx="18" ry="5.5"/><path d="M-16 0 l-11 -6 v12z"/></g>
+                    <g id="vy-ripples">
+                        <circle r="10" class="vy-ripple"/><circle r="10" class="vy-ripple"/><circle r="10" class="vy-ripple"/><circle r="10" class="vy-ripple"/>
+                    </g>
+                    <g id="vy-hooked" style="display:none">
+                        <ellipse rx="15" ry="5.5" fill="#06324f" opacity="0.75"/><path d="M13 0 l10 -6 v12z" fill="#06324f" opacity="0.75"/>
+                        <path d="M-18 -4 q-5 -5 -9 -2 M-17 4 q-6 4 -10 1" stroke="#e8f7ff" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+                    </g>
+                    <g class="vy-reeds">
+                        <path d="M372 250 Q370 200 376 170 M384 250 Q386 205 381 182 M392 250 Q392 210 396 190 M364 250 Q362 220 366 204" stroke="#2f6b3f" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+                        <ellipse cx="376" cy="170" rx="2.6" ry="8" fill="#6b4226"/><ellipse cx="381" cy="182" rx="2.4" ry="7" fill="#6b4226"/><ellipse cx="396" cy="190" rx="2.2" ry="6" fill="#6b4226"/>
+                    </g>
+                    <path id="vy-line" d="" fill="none" stroke="#f8fafc" stroke-width="0.9"/>
+                    <g id="vy-float" style="display:none">
+                        <line x1="0" y1="-13" x2="0" y2="-5" stroke="#1e293b" stroke-width="1"/>
+                        <ellipse cx="0" cy="-1" rx="3.6" ry="6" fill="#fff"/>
+                        <path d="M-3.6 -1 a3.6 6 0 0 1 7.2 0z" fill="#ef4444"/>
+                    </g>
+                    <path d="M0 250 L0 220 L92 212 L102 250Z" fill="#9a6a3c"/>
+                    <path d="M0 229 L95 221 M0 239 L98 232 M30 217 L33 250 M64 214 L68 250" stroke="#6f4a26" stroke-width="1.2" fill="none"/>
+                    <rect x="84" y="208" width="7" height="42" fill="#6f4a26"/>
+                    <path id="vy-rod" d="M34 250 Q70 150 118 60" fill="none" stroke="#3b2a1a" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="44" cy="226" r="5" fill="#475569" stroke="#1e293b" stroke-width="1.2"/>
+                </svg>
+                <div id="vy-bubble" class="vy-bubble hidden"></div>
+                <div id="vy-alert" class="vy-alert hidden">❗</div>
+                <div id="vy-pop" class="vy-pop"></div>
+                <div id="vy-postava" class="vy-postava hidden"></div>
+                <div id="vy-reel" class="vy-reel hidden">
+                    <div id="vy-reel-hint" class="vy-reel-hint">🌀 Drž a navíjej!</div>
+                    <div class="vy-meter" title="Napětí vlasce"><div id="vy-tension-fill"></div></div>
+                    <div class="vy-dist"><span class="vy-dist-end">🧺</span><span id="vy-dist-fish">🐟</span></div>
+                </div>
+            </div>
+
+            <button type="button" id="vy-action" class="vy-action">🎣 Nahodit!</button>
+            <div id="vy-panel" class="vy-panel hidden"></div>
         </section>
 
         <section id="screen-learning" class="screen hidden">
             <button class="back-btn" onclick="app.showMenu()">zpět do menu</button>
             <h2>Atlas ryb</h2>
+            <div id="sbirka-info" class="sbirka-info"></div>
             <div id="fish-list" class="grid-container"></div>
         </section>
 
@@ -107,6 +220,7 @@
             <h2>🏆 Síň slávy</h2>
             
             <div class="tabs">
+                <button id="tab-vyprava" class="tab-btn" onclick="app.showLeaderboard('vyprava')">🎣 Výprava</button>
                 <button id="tab-classic" class="tab-btn active" onclick="app.showLeaderboard('classic')">Kvíz na body</button>
                 <button id="tab-time" class="tab-btn" onclick="app.showLeaderboard('timeattack')">Kvíz na čas</button>
                 <button id="tab-knowledge" class="tab-btn" onclick="app.showLeaderboard('knowledge')">Řád</button>
@@ -151,5 +265,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
     <script src="config.js"></script>
     <script src="script.js"></script>
+    <script src="fx.js"></script>
+    <script src="profil.js"></script>
+    <script src="vyprava.js"></script>
 </body>
 </html>

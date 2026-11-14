@@ -15,7 +15,10 @@ Interaktivní webová aplikace vytvořená pro **MO Lípa nad Orlicí** s cílem
 ## ✨ Klíčové funkce
 
 * **🌐 Centralizovaný Žebříček:** Výsledky jsou ukládány v databázi **Firebase Firestore**, díky čemuž jsou žebříčky sdílené a konzistentní pro všechny uživatele na jakémkoliv zařízení.
-* **🎣 Kvíz na body:** Mix otázek – poznávání ryb z fotografie i znalost jejich parametrů (délka, hájení).
+* **🎣 Výprava k vodě:** Rybářská minihra (`vyprava.js`). Hráč nahodí, počká na záběr (pozor na falešná ťuknutí), zasekne a rybu zdolá – když ryba táhne, musí povolit, jinak praskne vlasec. Vytaženou rybu pak **pozná podle fotky**, přeměří a **rozhodne podle řádu**, zda si ji smí ponechat (míra, hájení k datu výpravy, chráněné druhy, denní limit 2 ks ušlechtilých ryb). Cestou čekají překvapení: **vodník** s hádankou z řádu, **rybářská stráž** s kontrolní otázkou, **zlatá rybka** plnící přání a odpadky, které je třeba uklidit. Na konci se zobrazí úlovkový lístek a body jdou do žebříčku (režim `vyprava`).
+* **🏅 Hodnosti a sbírka:** Za správné odpovědi hráč sbírá XP a postupuje hodnostmi od Jikry po Vodníkova parťáka. Ryby ulovené a poznané na výpravě se ukládají do sbírky v Atlasu (počet úlovků, osobní rekord). Ukládá se v prohlížeči (`localStorage`) pro každou přezdívku zvlášť (`profil.js`).
+* **🔊 Zvuky a efekty:** Zvuky syntetizované přes WebAudio (bez zvukových souborů, lze vypnout tlačítkem v záhlaví), série správných odpovědí, konfety při výborném výsledku (`fx.js`).
+* **🎯 Kvíz na body:** Mix otázek – poznávání ryb z fotografie i znalost jejich parametrů (délka, hájení).
 * **⏱️ Kvíz na čas:** Stejný mix otázek jako Kvíz na body, ale hodnotí se celkový čas dokončení. Za každou špatnou odpověď se k času přičítají **3 sekundy**, takže rychlé tipování se nevyplatí.
 * **🐠 Poznávačka:** Výhradně fotografie ryb – hráč identifikuje rybu z nabízených čtyř možností. Určeno k tréninku vizuálního rozpoznávání.
 * **🤔 Co se dnes nechytá?:** Hra na praktické použití pravidel. Hráč dostane situaci (datum, ryba, naměřená délka) a rozhoduje, zda si rybu smí **ponechat**, nebo ji musí **pustit zpět**. Vyhodnocuje se podle minimální lovné míry a doby hájení z `data_ryby.json`, otázky se generují automaticky. Po chybě se zobrazí vysvětlení.

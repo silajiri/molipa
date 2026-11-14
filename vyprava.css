@@ -1,0 +1,758 @@
+/* vyprava.css – styly pro hru „Výprava k vodě“, profil hráče, nové menu a efekty.
+   Navazuje na proměnné ze style.css. */
+
+/* --- HLAVIČKA: zvuk a plovoucí rybka --- */
+#sound-btn {
+    margin-left: auto;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    font-size: 1rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    padding: 0;
+    flex: none;
+}
+
+.logo-fish {
+    display: inline-block;
+    animation: logo-swim 3.5s ease-in-out infinite;
+}
+
+@keyframes logo-swim {
+    0%, 100% { transform: translateX(0) rotate(0); }
+    50%      { transform: translateX(-4px) rotate(-8deg); }
+}
+
+/* --- HLÁŠKY (toast) A KONFETY --- */
+#toast-box {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+    padding: 0 16px;
+}
+
+.toast {
+    background: #1e293b;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 10px 18px;
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    animation: toast-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: opacity 0.4s, transform 0.4s;
+    max-width: 100%;
+}
+
+.toast-gold  { background: linear-gradient(135deg, #b45309, #f59e0b); }
+.toast-green { background: linear-gradient(135deg, #047857, #00a86b); }
+.toast-out   { opacity: 0; transform: translateY(-10px); }
+
+@keyframes toast-in {
+    from { opacity: 0; transform: translateY(-14px) scale(0.9); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.confetti-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 1900;
+    pointer-events: none;
+}
+
+/* Zatřesení špatnou odpovědí */
+.shake { animation: shake 0.4s; }
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-7px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(3px); }
+}
+
+/* --- PROFIL HRÁČE (rybářský průkaz) --- */
+.profil-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+    background: linear-gradient(135deg, #f0f9ff, #ecfdf5);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+}
+
+.profil-ikona {
+    font-size: 2rem;
+    width: 54px;
+    height: 54px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+    border: 2px solid var(--primary);
+}
+
+.profil-info { flex: 1; min-width: 0; }
+
+.profil-radek {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.profil-hodnost { font-weight: 800; color: var(--primary-dark); font-size: 1.05rem; }
+.profil-xp      { font-weight: 700; color: var(--text-muted); font-size: 0.85rem; white-space: nowrap; }
+
+.profil-bar {
+    height: 10px;
+    background: #dbeafe;
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 6px 0 4px;
+}
+
+.profil-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 999px;
+    transition: width 0.6s;
+}
+
+.profil-dalsi { font-size: 0.75rem; color: var(--text-muted); }
+
+.profil-sbirka {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    color: var(--text-color);
+    line-height: 1.2;
+}
+
+.profil-sbirka-cislo { font-weight: 800; font-size: 1.05rem; color: var(--secondary); }
+.profil-sbirka-popis { font-size: 0.7rem; color: var(--text-muted); }
+
+/* --- MENU: hlavní karta výpravy --- */
+.hero-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    width: 100%;
+    text-align: left;
+    color: #fff;
+    padding: 22px 22px 20px;
+    border-radius: 18px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 85% 18%, #ffe066 0 22px, transparent 23px),
+        linear-gradient(180deg, #58b7ee 0%, #8fd3f7 42%, #1b86b8 42.5%, #0b4f7a 100%);
+    box-shadow: 0 10px 26px rgba(0, 71, 119, 0.28);
+}
+
+.hero-card:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 16px 34px rgba(0, 71, 119, 0.35);
+}
+
+.hero-badge {
+    position: absolute;
+    top: 12px;
+    left: -34px;
+    transform: rotate(-38deg);
+    background: #ef4444;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 3px 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Malý splávek pohupující se na hladině karty */
+.hero-float {
+    position: absolute;
+    right: 7%;
+    top: 42.5%;
+    width: 12px;
+    height: 22px;
+    margin-top: -14px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #ef4444 50%, #fff 50%);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+    animation: hero-bob 2.2s ease-in-out infinite;
+}
+
+@keyframes hero-bob {
+    0%, 100% { transform: translateY(0) rotate(-4deg); }
+    50%      { transform: translateY(5px) rotate(5deg); }
+}
+
+.hero-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    margin-top: 6px;
+}
+
+.hero-text {
+    font-size: 0.92rem;
+    font-weight: 500;
+    max-width: 82%;
+    margin-top: 26px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.hero-cta {
+    margin-top: 8px;
+    background: #fde047;
+    color: #713f12;
+    font-weight: 800;
+    padding: 8px 20px;
+    border-radius: 999px;
+    box-shadow: 0 4px 0 #ca8a04;
+}
+
+.menu-nadpis {
+    margin: 26px 0 10px;
+    text-align: left;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+}
+
+.pocet-otazek {
+    background: var(--primary-light);
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.pocet-otazek input {
+    width: 60px;
+    padding: 5px;
+    margin-left: 8px;
+    text-align: center;
+    font-size: 1.05rem;
+    font-family: inherit;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+}
+
+.mode-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.mode-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    text-align: left;
+    color: #fff;
+    padding: 14px 16px;
+    border-radius: 14px;
+    box-shadow: 0 4px 10px rgba(0, 71, 119, 0.12);
+}
+
+.tile-wide   { grid-column: 1 / -1; }
+.tile-blue   { background: linear-gradient(135deg, #0077be, #0096c7); }
+.tile-red    { background: linear-gradient(135deg, #d9534f, #e87b5f); }
+.tile-purple { background: linear-gradient(135deg, #8e44ad, #a66bd0); }
+.tile-green  { background: linear-gradient(135deg, #1e9e57, #34c27a); }
+.tile-orange { background: linear-gradient(135deg, #d35400, #f08a2b); }
+
+.tile-icon  { font-size: 1.6rem; line-height: 1.2; }
+.tile-title { font-size: 1.05rem; font-weight: 800; }
+.tile-text  { font-size: 0.8rem; font-weight: 500; opacity: 0.95; }
+
+.menu-dole {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.menu-dole .big-btn { margin: 0; max-width: none; }
+
+/* --- ATLAS: sbírka úlovků --- */
+.sbirka-info {
+    background: var(--secondary-light);
+    border: 1px solid rgba(0, 168, 107, 0.25);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+}
+
+.fish-card-uloveno { border-color: var(--secondary); }
+
+.fish-card p.fish-uloveno {
+    margin-top: 8px;
+    color: #065f46;
+    font-weight: 700;
+    font-size: 0.8rem;
+    background: var(--secondary-light);
+    border-radius: 6px;
+    padding: 4px 8px;
+}
+
+/* --- ŽEBŘÍČEK: víc záložek se musí umět zalomit --- */
+.tabs { flex-wrap: wrap; }
+
+/* ============================================================
+   VÝPRAVA K VODĚ
+   ============================================================ */
+.vy-hud {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.vy-chip {
+    background: var(--primary-light);
+    border: 1px solid rgba(0, 119, 190, 0.15);
+    color: var(--primary-dark);
+    font-weight: 800;
+    font-size: 0.95rem;
+    padding: 6px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.vy-chip-body { background: #fef9c3; border-color: #fde047; color: #713f12; }
+
+.vy-bump { animation: vy-bump 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+@keyframes vy-bump {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+.vy-scene {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 400 / 250;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
+    transition: max-width 0.35s;
+}
+
+/* Při otázce se scéna zmenší, aby se otázka vešla na obrazovku */
+.vy-scene-compact { max-width: 320px; cursor: default; }
+
+.vy-scene svg { display: block; width: 100%; height: 100%; }
+
+.vy-scene-bite { animation: vy-scene-shake 0.25s infinite; }
+
+@keyframes vy-scene-shake {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(-2px, 1px); }
+    75% { transform: translate(2px, -1px); }
+}
+
+.vy-wave {
+    fill: none;
+    stroke: #e8f7ff;
+    stroke-width: 1;
+    animation: vy-wave 6s linear infinite;
+}
+
+@keyframes vy-wave {
+    from { transform: translateX(0); }
+    to   { transform: translateX(40px); }
+}
+
+.vy-cloud-a { animation: vy-cloud 70s linear infinite; }
+.vy-cloud-b { animation: vy-cloud 110s linear infinite; animation-delay: -50s; }
+
+@keyframes vy-cloud {
+    from { transform: translateX(-40px); }
+    to   { transform: translateX(440px); }
+}
+
+.vy-shadow   { fill: rgba(6, 40, 66, 0.3); }
+.vy-shadow-a { animation: vy-swim-right 19s linear infinite; }
+.vy-shadow-b { animation: vy-swim-left 26s linear infinite; animation-delay: -9s; }
+.vy-shadow-c { animation: vy-swim-right 33s linear infinite; animation-delay: -20s; }
+
+@keyframes vy-swim-right {
+    0%   { transform: translate(-40px, 168px); }
+    50%  { transform: translate(200px, 196px); }
+    100% { transform: translate(440px, 176px); }
+}
+
+@keyframes vy-swim-left {
+    0%   { transform: translate(440px, 228px); }
+    50%  { transform: translate(210px, 210px); }
+    100% { transform: translate(-40px, 232px); }
+}
+
+.vy-reeds {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: vy-sway 4s ease-in-out infinite;
+}
+
+@keyframes vy-sway {
+    0%, 100% { transform: rotate(-1.5deg); }
+    50%      { transform: rotate(2deg); }
+}
+
+.vy-ripple {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1.2;
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.vy-ripple-go { animation: vy-ripple 0.9s ease-out; }
+
+@keyframes vy-ripple {
+    from { opacity: 0.9; transform: scale(0.2, 0.1); }
+    to   { opacity: 0; transform: scale(1.8, 0.7); }
+}
+
+.vy-bubble {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 92%;
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.35;
+    padding: 7px 14px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    animation: toast-in 0.3s;
+}
+
+.vy-alert {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    font-size: 3.4rem;
+    margin-left: -0.5em;
+    pointer-events: none;
+    animation: vy-alert 0.35s ease-in-out infinite alternate;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes vy-alert {
+    from { transform: scale(0.9) rotate(-8deg); }
+    to   { transform: scale(1.25) rotate(8deg); }
+}
+
+.vy-pop {
+    position: absolute;
+    left: 38%;
+    top: 62%;
+    font-size: 3.6rem;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.vy-pop-show { animation: vy-pop 1.3s ease-out; }
+
+@keyframes vy-pop {
+    0%   { opacity: 0; transform: translateY(20px) scale(0.3) rotate(-20deg); }
+    25%  { opacity: 1; transform: translateY(-50px) scale(1.2) rotate(8deg); }
+    70%  { opacity: 1; transform: translateY(-60px) scale(1) rotate(0); }
+    100% { opacity: 0; transform: translateY(-80px) scale(0.9); }
+}
+
+/* Postava ve scéně (vodník, zlatá rybka, stráž) */
+.vy-postava {
+    position: absolute;
+    right: 9%;
+    bottom: 8%;
+    width: 30%;
+    max-width: 130px;
+    pointer-events: none;
+    animation: vy-vynor 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.3));
+}
+
+.vy-postava svg { width: 100%; height: auto; }
+
+@keyframes vy-vynor {
+    from { opacity: 0; transform: translateY(60%) scale(0.5); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Zdolávání ryby */
+.vy-reel {
+    position: absolute;
+    left: 50%;
+    top: 6px;
+    transform: translateX(-50%);
+    width: min(94%, 360px);
+    background: rgba(15, 23, 42, 0.72);
+    border-radius: 12px;
+    padding: 6px 12px 6px;
+    pointer-events: none;
+}
+
+.vy-reel-hint { color: #bbf7d0; font-weight: 800; font-size: 0.9rem; margin-bottom: 3px; }
+.vy-reel-hint-danger { color: #fecaca; animation: shake 0.35s infinite; }
+
+.vy-meter {
+    height: 12px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: linear-gradient(90deg, rgba(34, 197, 94, 0.35) 0 50%, rgba(250, 204, 21, 0.35) 50% 75%, rgba(239, 68, 68, 0.45) 75% 100%);
+}
+
+#vy-tension-fill { height: 100%; width: 0; background: #22c55e; border-radius: 999px; }
+#vy-tension-fill.warn   { background: #facc15; }
+#vy-tension-fill.danger { background: #ef4444; }
+
+.vy-dist {
+    position: relative;
+    height: 20px;
+    margin: 2px 14px 0 26px;
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.5);
+}
+
+.vy-dist-end { position: absolute; left: -26px; top: 0; font-size: 1rem; }
+#vy-dist-fish { position: absolute; top: -1px; font-size: 1.05rem; margin-left: -10px; }
+
+/* Akční tlačítko */
+.vy-action {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    margin: 14px auto 0;
+    padding: 18px 20px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary), #0096c7);
+    border-radius: 16px;
+    box-shadow: 0 6px 0 var(--primary-dark);
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
+}
+
+.vy-action:hover  { transform: none; box-shadow: 0 6px 0 var(--primary-dark); }
+.vy-action:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--primary-dark); }
+
+.vy-action-wait { background: linear-gradient(135deg, #64748b, #94a3b8); box-shadow: 0 6px 0 #475569; }
+.vy-action-wait:hover { box-shadow: 0 6px 0 #475569; }
+
+.vy-action-alert {
+    background: linear-gradient(135deg, #dc2626, #f97316);
+    box-shadow: 0 6px 0 #991b1b;
+    animation: vy-pulse 0.4s ease-in-out infinite alternate;
+}
+
+.vy-action-alert:hover { box-shadow: 0 6px 0 #991b1b; }
+
+@keyframes vy-pulse {
+    from { transform: scale(1); }
+    to   { transform: scale(1.04); }
+}
+
+/* Panel s otázkou */
+.vy-panel {
+    max-width: 640px;
+    margin: 14px auto 0;
+    text-align: left;
+    animation: fadeIn 0.3s;
+}
+
+.vy-question {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.vy-photo {
+    display: block;
+    max-width: 100%;
+    max-height: 210px;
+    margin: 10px auto;
+    object-fit: contain;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: #f8fafc;
+    box-shadow: var(--shadow-md);
+    cursor: zoom-in;
+}
+
+.vy-options { margin-top: 12px; }
+.vy-options-1 { grid-template-columns: 1fr; }
+
+.vy-dialog {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: #f1f5f9;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 12px;
+}
+
+.vy-dialog-vodnik { background: #ecfdf5; border-color: #86efac; }
+.vy-dialog-straz  { background: #f7fee7; border-color: #bef264; }
+.vy-dialog-gold   { background: #fffbeb; border-color: #fcd34d; }
+
+.vy-avatar { flex: none; width: 64px; }
+.vy-avatar svg { width: 100%; height: auto; display: block; }
+
+.vy-speech { font-size: 0.98rem; line-height: 1.45; }
+.vy-kdo    { font-weight: 800; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+
+.vy-otazka {
+    margin-top: 8px;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--text-color);
+}
+
+.vy-feedback {
+    margin-top: 14px;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    background: var(--danger-light);
+    border: 1px solid rgba(217, 83, 79, 0.2);
+}
+
+.vy-feedback-ok { background: var(--secondary-light); border-color: rgba(0, 168, 107, 0.25); }
+
+.vy-ok    { color: #065f46; }
+.vy-bad   { color: var(--danger); }
+.vy-serie { color: #c2410c; white-space: nowrap; }
+
+.vy-feedback small {
+    display: block;
+    margin-top: 8px;
+    padding: 9px 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text-muted);
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+.vy-next {
+    width: 100%;
+    margin-top: 12px;
+    padding: 14px 24px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--primary);
+}
+
+/* Přeměření ryby */
+.vy-mereni { text-align: center; }
+
+.vy-pravitko {
+    height: 18px;
+    max-width: 420px;
+    margin: 4px auto 8px;
+    border: 2px solid #a16207;
+    border-radius: 4px;
+    background: repeating-linear-gradient(90deg, #fef9c3 0 9px, #a16207 9px 10px);
+    overflow: hidden;
+}
+
+.vy-pravitko-fill {
+    height: 100%;
+    width: 0;
+    background: rgba(0, 168, 107, 0.55);
+    border-right: 3px solid #dc2626;
+}
+
+.vy-mereni-text { font-size: 1.15rem; font-weight: 600; }
+.vy-mereni-text span { font-size: 1.5rem; font-weight: 800; color: var(--primary-dark); }
+
+/* Výsledek výpravy */
+.vy-vysledek-body { font-size: 1.8em; font-weight: 800; color: #b45309; }
+
+.vy-listek {
+    margin: 16px auto 0;
+    max-width: 520px;
+    background: #fffdf5;
+    border: 1px dashed #d6b65c;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 0.85rem;
+}
+
+.vy-listek-nadpis { font-weight: 800; margin-bottom: 6px; }
+.vy-listek table  { margin-top: 0; font-size: 0.85rem; }
+.vy-listek th, .vy-listek td { padding: 7px 6px; }
+.vy-listek tbody tr { background: transparent !important; font-weight: 500 !important; }
+
+@media (max-width: 600px) {
+    .hero-title { font-size: 1.35rem; }
+    .hero-text  { font-size: 0.85rem; margin-top: 20px; }
+    .mode-tile  { padding: 12px; }
+    .tile-text  { font-size: 0.74rem; }
+    .tab-btn    { padding: 8px 12px; font-size: 0.85rem; }
+    .vy-chip    { font-size: 0.85rem; padding: 5px 10px; }
+    .vy-scene-compact { max-width: 240px; }
+    .vy-photo   { max-height: 160px; }
+    .vy-avatar  { width: 50px; }
+    .vy-action  { font-size: 1.15rem; padding: 16px; }
+    .vy-bubble  { font-size: 0.8rem; }
+    .profil-card { gap: 10px; padding: 10px; }
+    .profil-ikona { width: 46px; height: 46px; font-size: 1.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .vy-scene-bite, .vy-wave, .vy-cloud, .vy-reeds,
+    .logo-fish, .hero-float, .vy-action-alert { animation: none; }
+}
