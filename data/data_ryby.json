@@ -14,7 +14,11 @@
       "amur_bily_03.jpg",
       "amur_bily_04.jpg",
       "amur_bily_05.jpg",
-      "amur_bily_06.jpg"
+      "amur_bily_06.jpg",
+      "amur_bily_07.jpg",
+      "amur_bily_08.jpg",
+      "amur_bily_09.jpg",
+      "amur_bily_11.jpg"
     ]
   },
   {
@@ -31,7 +35,9 @@
       "bolen_dravy_02.jpg",
       "bolen_dravy_03.jpg",
       "bolen_dravy_04.jpg",
-      "bolen_dravy_05.jpg"
+      "bolen_dravy_05.jpg",
+      "bolen_dravy_08.jpg",
+      "bolen_dravy_09.jpg"
     ]
   },
   {
@@ -46,7 +52,12 @@
       "candat_obecny_00.jpg",
       "candat_obecny_01.jpg",
       "candat_obecny_03.jpg",
-      "candat_obecny_04.jpg"
+      "candat_obecny_04.jpg",
+      "candat_obecny_05.jpg",
+      "candat_obecny_06.jpg",
+      "candat_obecny_07.jpg",
+      "candat_obecny_08.jpg",
+      "candat_obecny_09.jpg"
     ]
   },
   {
@@ -78,7 +89,13 @@
       "cejn_velky_01.jpg",
       "cejn_velky_02.jpg",
       "cejn_velky_03.jpg",
-      "cejn_velky_04.jpg"
+      "cejn_velky_04.jpg",
+      "cejn_velky_05.jpg",
+      "cejn_velky_06.jpg",
+      "cejn_velky_07.jpg",
+      "cejn_velky_08.jpg",
+      "cejn_velky_09.jpg",
+      "cejn_velky_10.jpg"
     ]
   },
   {
@@ -93,7 +110,8 @@
       "hlavatka_obecna_00.jpg",
       "hlavatka_obecna_01.jpg",
       "hlavatka_obecna_02.jpg",
-      "hlavatka_obecna_03.jpg"
+      "hlavatka_obecna_03.jpg",
+      "hlavatka_obecna_04.jpg"
     ]
   },
   {
@@ -109,7 +127,12 @@
       "hrouzek_obecny_01.jpg",
       "hrouzek_obecny_02.jpg",
       "hrouzek_obecny_03.jpg",
-      "hrouzek_obecny_04.jpg"
+      "hrouzek_obecny_04.jpg",
+      "hrouzek_obecny_05.jpg",
+      "hrouzek_obecny_06.jpg",
+      "hrouzek_obecny_07.jpg",
+      "hrouzek_obecny_08.jpg",
+      "hrouzek_obecny_10.jpg"
     ]
   },
   {
@@ -125,7 +148,9 @@
       "jelec_tloust_01.jpg",
       "jelec_tloust_02.jpg",
       "jelec_tloust_03.jpg",
-      "jelec_tloust_04.jpg"
+      "jelec_tloust_04.jpg",
+      "jelec_tloust_05.jpg",
+      "jelec_tloust_06.jpg"
     ]
   },
   {
@@ -157,7 +182,12 @@
       "jelec_jesen_00.jpg",
       "jelec_jesen_02.jpg",
       "jelec_jesen_03.jpg",
-      "jelec_jesen_04.jpg"
+      "jelec_jesen_04.jpg",
+      "jelec_jesen_05.jpg",
+      "jelec_jesen_06.jpg",
+      "jelec_jesen_07.jpg",
+      "jelec_jesen_08.jpg",
+      "jelec_jesen_09.jpg"
     ]
   },
   {
@@ -171,7 +201,9 @@
     "fotografie": [
       "jelec_proudnik_00.jpg",
       "jelec_proudnik_02.jpg",
-      "jelec_proudnik_03.jpg"
+      "jelec_proudnik_03.jpg",
+      "jelec_proudnik_04.jpg",
+      "jelec_proudnik_05.jpg"
     ]
   },
   {
@@ -188,7 +220,10 @@
       "jeseter_maly_03.jpg",
       "jeseter_maly_04.jpg",
       "jeseter_maly_05.jpg",
-      "jeseter_maly_06.jpg"
+      "jeseter_maly_06.jpg",
+      "jeseter_maly_07.jpg",
+      "jeseter_maly_08.jpg",
+      "jeseter_maly_09.jpg"
     ]
   },
   {
@@ -204,7 +239,11 @@
       "jezdik_obecny_02.jpg",
       "jezdik_obecny_03.jpg",
       "jezdik_obecny_04.jpg",
-      "jezdik_obecny_05.jpg"
+      "jezdik_obecny_05.jpg",
+      "jezdik_obecny_06.jpg",
+      "jezdik_obecny_07.jpg",
+      "jezdik_obecny_08.jpg",
+      "jezdik_obecny_09.jpg"
     ]
   },
   {
@@ -221,7 +260,11 @@
       "kapr_obecny_03.jpg",
       "kapr_obecny_04.jpg",
       "kapr_obecny_05.jpg",
-      "kapr_obecny_06.jpg"
+      "kapr_obecny_06.jpg",
+      "kapr_obecny_07.jpg",
+      "kapr_obecny_08.jpg",
+      "kapr_obecny_09.jpg",
+      "kapr_obecny_10.jpg"
     ]
   },
   {
@@ -238,7 +281,11 @@
       "karas_obecny_03.jpg",
       "karas_obecny_04.jpg",
       "karas_obecny_05.jpg",
-      "karas_obecny_06.jpg"
+      "karas_obecny_06.jpg",
+      "karas_obecny_07.jpg",
+      "karas_obecny_08.jpg",
+      "karas_obecny_09.jpg",
+      "karas_obecny_10.jpg"
     ]
   },
   {
@@ -251,7 +298,17 @@
     "doba_hajeni_do": "",
     "fotografie": [
       "karas_stribrity_00.jpg",
-      "karas_stribrity_02.jpg"
+      "karas_stribrity_02.jpg",
+      "karas_stribrity_03.jpg",
+      "karas_stribrity_04.jpg",
+      "karas_stribrity_05.jpg",
+      "karas_stribrity_06.jpg",
+      "karas_stribrity_07.jpg",
+      "karas_stribrity_08.jpg",
+      "karas_stribrity_09.jpg",
+      "karas_stribrity_10.jpg",
+      "karas_stribrity_11.jpg",
+      "karas_stribrity_12.jpg"
     ]
   },
   {
@@ -265,7 +322,12 @@
     "fotografie": [
       "koljuska_triostna_00.jpg",
       "koljuska_triostna_02.jpg",
-      "koljuska_triostna_03.jpg"
+      "koljuska_triostna_03.jpg",
+      "koljuska_triostna_04.jpg",
+      "koljuska_triostna_06.jpg",
+      "koljuska_triostna_07.jpg",
+      "koljuska_triostna_08.jpg",
+      "koljuska_triostna_11.jpg"
     ]
   },
   {
@@ -281,7 +343,14 @@
       "lin_obecny_01.jpg",
       "lin_obecny_03.jpg",
       "lin_obecny_04.jpg",
-      "lin_obecny_05.jpg"
+      "lin_obecny_05.jpg",
+      "lin_obecny_06.jpg",
+      "lin_obecny_07.jpg",
+      "lin_obecny_08.jpg",
+      "lin_obecny_09.jpg",
+      "lin_obecny_10.jpg",
+      "lin_obecny_11.jpg",
+      "lin_obecny_12.jpg"
     ]
   },
   {
@@ -297,7 +366,12 @@
       "lipan_podhorni_02.jpg",
       "lipan_podhorni_03.jpg",
       "lipan_podhorni_04.jpg",
-      "lipan_podhorni_05.jpg"
+      "lipan_podhorni_05.jpg",
+      "lipan_podhorni_06.jpg",
+      "lipan_podhorni_07.jpg",
+      "lipan_podhorni_08.jpg",
+      "lipan_podhorni_10.jpg",
+      "lipan_podhorni_11.jpg"
     ]
   },
   {
@@ -312,7 +386,9 @@
       "losos_obecny_00.jpg",
       "losos_obecny_02.jpg",
       "losos_obecny_03.jpg",
-      "losos_obecny_04.jpg"
+      "losos_obecny_04.jpg",
+      "losos_obecny_05.jpg",
+      "losos_obecny_06.jpg"
     ]
   },
   {
@@ -327,7 +403,9 @@
       "mihule_potocni_00.jpg",
       "mihule_potocni_01.jpg",
       "mihule_potocni_03.jpg",
-      "mihule_potocni_04.jpg"
+      "mihule_potocni_04.jpg",
+      "mihule_potocni_05.jpg",
+      "mihule_potocni_06.jpg"
     ]
   },
   {
@@ -342,7 +420,12 @@
       "mnik_jednovousy_00.jpg",
       "mnik_jednovousy_02.jpg",
       "mnik_jednovousy_03.jpg",
-      "mnik_jednovousy_04.jpg"
+      "mnik_jednovousy_04.jpg",
+      "mnik_jednovousy_05.jpg",
+      "mnik_jednovousy_06.jpg",
+      "mnik_jednovousy_07.jpg",
+      "mnik_jednovousy_08.jpg",
+      "mnik_jednovousy_09.jpg"
     ]
   },
   {
@@ -357,7 +440,11 @@
       "mrenka_mramorovana_00.jpg",
       "mrenka_mramorovana_01.jpg",
       "mrenka_mramorovana_03.jpg",
-      "mrenka_mramorovana_04.jpg"
+      "mrenka_mramorovana_04.jpg",
+      "mrenka_mramorovana_05.jpg",
+      "mrenka_mramorovana_06.jpg",
+      "mrenka_mramorovana_07.jpg",
+      "mrenka_mramorovana_08.jpg"
     ]
   },
   {
@@ -372,7 +459,15 @@
       "okoun_ricni_00.jpg",
       "okoun_ricni_02.jpg",
       "okoun_ricni_03.jpg",
-      "okoun_ricni_04.jpg"
+      "okoun_ricni_04.jpg",
+      "okoun_ricni_05.jpg",
+      "okoun_ricni_06.jpg",
+      "okoun_ricni_07.jpg",
+      "okoun_ricni_08.jpg",
+      "okoun_ricni_09.jpg",
+      "okoun_ricni_10.jpg",
+      "okoun_ricni_11.jpg",
+      "okoun_ricni_12.jpg"
     ]
   },
   {
@@ -388,7 +483,9 @@
       "ostroretka_stehovava_01.jpg",
       "ostroretka_stehovava_03.jpg",
       "ostroretka_stehovava_04.jpg",
-      "ostroretka_stehovava_05.jpg"
+      "ostroretka_stehovava_05.jpg",
+      "ostroretka_stehovava_06.jpg",
+      "ostroretka_stehovava_07.jpg"
     ]
   },
   {
@@ -403,7 +500,10 @@
       "ostrucha_krivocara_00.jpg",
       "ostrucha_krivocara_02.jpg",
       "ostrucha_krivocara_03.jpg",
-      "ostrucha_krivocara_04.jpg"
+      "ostrucha_krivocara_04.jpg",
+      "ostrucha_krivocara_05.jpg",
+      "ostrucha_krivocara_06.jpg",
+      "ostrucha_krivocara_07.jpg"
     ]
   },
   {
@@ -419,7 +519,12 @@
       "ouklej_obecna_02.jpg",
       "ouklej_obecna_03.jpg",
       "ouklej_obecna_04.jpg",
-      "ouklej_obecna_05.jpg"
+      "ouklej_obecna_05.jpg",
+      "ouklej_obecna_06.jpg",
+      "ouklej_obecna_08.jpg",
+      "ouklej_obecna_09.jpg",
+      "ouklej_obecna_10.jpg",
+      "ouklej_obecna_11.jpg"
     ]
   },
   {
@@ -436,7 +541,11 @@
       "ouklejka_pruhovana_03.jpg",
       "ouklejka_pruhovana_04.png",
       "ouklejka_pruhovana_05.jpg",
-      "ouklejka_pruhovana_06.jpg"
+      "ouklejka_pruhovana_06.jpg",
+      "ouklejka_pruhovana_07.jpg",
+      "ouklejka_pruhovana_08.jpg",
+      "ouklejka_pruhovana_09.jpg",
+      "ouklejka_pruhovana_10.jpg"
     ]
   },
   {
@@ -452,7 +561,11 @@
       "parma_obecna_02.jpg",
       "parma_obecna_03.jpg",
       "parma_obecna_04.jpg",
-      "parma_obecna_05.jpg"
+      "parma_obecna_05.jpg",
+      "parma_obecna_06.jpg",
+      "parma_obecna_07.jpg",
+      "parma_obecna_08.jpg",
+      "parma_obecna_09.jpg"
     ]
   },
   {
@@ -469,7 +582,12 @@
       "perlin_ostrobrichy_03.jpg",
       "perlin_ostrobrichy_04.jpg",
       "perlin_ostrobrichy_05.jpg",
-      "perlin_ostrobrichy_06.jpg"
+      "perlin_ostrobrichy_06.jpg",
+      "perlin_ostrobrichy_07.jpg",
+      "perlin_ostrobrichy_08.jpg",
+      "perlin_ostrobrichy_09.jpg",
+      "perlin_ostrobrichy_10.jpg",
+      "perlin_ostrobrichy_11.jpg"
     ]
   },
   {
@@ -500,7 +618,12 @@
       "plotice_obecna_00.jpg",
       "plotice_obecna_02.jpg",
       "plotice_obecna_03.jpg",
-      "plotice_obecna_04.jpg"
+      "plotice_obecna_04.jpg",
+      "plotice_obecna_05.jpg",
+      "plotice_obecna_07.jpg",
+      "plotice_obecna_08.jpg",
+      "plotice_obecna_09.jpg",
+      "plotice_obecna_11.jpg"
     ]
   },
   {
@@ -516,7 +639,10 @@
       "podoustev_ricni_02.jpg",
       "podoustev_ricni_03.jpg",
       "podoustev_ricni_04.jpg",
-      "podoustev_ricni_05.jpg"
+      "podoustev_ricni_05.jpg",
+      "podoustev_ricni_06.jpg",
+      "podoustev_ricni_07.jpg",
+      "podoustev_ricni_08.jpg"
     ]
   },
   {
@@ -532,7 +658,11 @@
       "pstruh_duhovy_02.jpg",
       "pstruh_duhovy_03.jpg",
       "pstruh_duhovy_04.jpg",
-      "pstruh_duhovy_05.jpg"
+      "pstruh_duhovy_05.jpg",
+      "pstruh_duhovy_06.jpg",
+      "pstruh_duhovy_07.jpg",
+      "pstruh_duhovy_08.jpg",
+      "pstruh_duhovy_09.jpg"
     ]
   },
   {
@@ -550,7 +680,11 @@
       "pstruh_obecny_04.jpg",
       "pstruh_obecny_05.jpg",
       "pstruh_obecny_06.jpg",
-      "pstruh_obecny_07.jpg"
+      "pstruh_obecny_07.jpg",
+      "pstruh_obecny_08.jpg",
+      "pstruh_obecny_09.jpg",
+      "pstruh_obecny_10.jpg",
+      "pstruh_obecny_11.jpg"
     ]
   },
   {
@@ -581,7 +715,13 @@
       "siven_americky_02.jpg",
       "siven_americky_03.jpg",
       "siven_americky_04.jpg",
-      "siven_americky_05.jpg"
+      "siven_americky_05.jpg",
+      "siven_americky_06.jpg",
+      "siven_americky_07.jpg",
+      "siven_americky_08.jpg",
+      "siven_americky_09.jpg",
+      "siven_americky_10.jpg",
+      "siven_americky_11.jpg"
     ]
   },
   {
@@ -597,7 +737,13 @@
       "slunka_obecna_02.jpg",
       "slunka_obecna_03.jpg",
       "slunka_obecna_04.jpg",
-      "slunka_obecna_05.jpg"
+      "slunka_obecna_05.jpg",
+      "slunka_obecna_06.jpg",
+      "slunka_obecna_07.jpg",
+      "slunka_obecna_08.jpg",
+      "slunka_obecna_09.jpg",
+      "slunka_obecna_10.jpg",
+      "slunka_obecna_11.jpg"
     ]
   },
   {
@@ -612,7 +758,14 @@
       "stika_obecna_00.jpg",
       "stika_obecna_02.jpg",
       "stika_obecna_03.jpg",
-      "stika_obecna_04.jpg"
+      "stika_obecna_04.jpg",
+      "stika_obecna_05.jpg",
+      "stika_obecna_06.jpg",
+      "stika_obecna_07.jpg",
+      "stika_obecna_08.jpg",
+      "stika_obecna_09.jpg",
+      "stika_obecna_10.jpg",
+      "stika_obecna_11.jpg"
     ]
   },
   {
@@ -628,7 +781,11 @@
       "strevle_potocni_02.jpg",
       "strevle_potocni_03.jpg",
       "strevle_potocni_04.jpg",
-      "strevle_potocni_05.jpg"
+      "strevle_potocni_05.jpg",
+      "strevle_potocni_06.jpg",
+      "strevle_potocni_07.jpg",
+      "strevle_potocni_08.jpg",
+      "strevle_potocni_09.jpg"
     ]
   },
   {
@@ -644,7 +801,10 @@
       "sumec_velky_02.jpg",
       "sumec_velky_03.jpg",
       "sumec_velky_04.jpg",
-      "sumec_velky_05.jpg"
+      "sumec_velky_05.jpg",
+      "sumec_velky_06.jpg",
+      "sumec_velky_07.jpg",
+      "sumec_velky_08.jpg"
     ]
   },
   {
@@ -660,7 +820,9 @@
       "sumecek_americky_02.jpg",
       "sumecek_americky_03.jpg",
       "sumecek_americky_04.jpg",
-      "sumecek_americky_05.jpg"
+      "sumecek_americky_05.jpg",
+      "sumecek_americky_06.jpg",
+      "sumecek_americky_07.jpg"
     ]
   },
   {
@@ -675,7 +837,9 @@
       "tolstolobec_pestry_00.jpg",
       "tolstolobec_pestry_02.jpg",
       "tolstolobec_pestry_03.jpg",
-      "tolstolobec_pestry_04.jpg"
+      "tolstolobec_pestry_04.jpg",
+      "tolstolobec_pestry_05.jpg",
+      "tolstolobec_pestry_06.jpg"
     ]
   },
   {
@@ -690,7 +854,10 @@
       "tolstolobik_bily_00.jpg",
       "tolstolobik_bily_02.png",
       "tolstolobik_bily_03.jpg",
-      "tolstolobik_bily_04.jpg"
+      "tolstolobik_bily_04.jpg",
+      "tolstolobik_bily_05.jpg",
+      "tolstolobik_bily_06.jpg",
+      "tolstolobik_bily_07.jpg"
     ]
   },
   {
@@ -706,7 +873,12 @@
       "uhor_ricni_02.jpg",
       "uhor_ricni_03.jpg",
       "uhor_ricni_04.jpg",
-      "uhor_ricni_05.jpg"
+      "uhor_ricni_05.jpg",
+      "uhor_ricni_06.jpg",
+      "uhor_ricni_07.jpg",
+      "uhor_ricni_08.jpg",
+      "uhor_ricni_09.jpg",
+      "uhor_ricni_10.jpg"
     ]
   },
   {
@@ -722,7 +894,11 @@
       "vranka_obecna_02.jpg",
       "vranka_obecna_03.jpg",
       "vranka_obecna_04.jpg",
-      "vranka_obecna_05.jpg"
+      "vranka_obecna_05.jpg",
+      "vranka_obecna_06.jpg",
+      "vranka_obecna_07.jpg",
+      "vranka_obecna_08.jpg",
+      "vranka_obecna_09.jpg"
     ]
   }
 ]
