@@ -974,3 +974,14 @@ tr.active-row {
     font-size: 0.95rem;
     margin-bottom: 4px;
 }
+.foto-zdroje {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 18px 0 4px;
+}
+
+.foto-zdroje a {
+    color: inherit;
+    text-decoration: underline;
+}
